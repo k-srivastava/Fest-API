@@ -1,0 +1,4 @@
+.env
+fest.db
+
+/tests/fest.db
