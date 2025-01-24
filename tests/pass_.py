@@ -91,7 +91,3 @@ class PassTest(unittest.TestCase):
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
-
-
-if __name__ == '__main__':
-    unittest.main()
