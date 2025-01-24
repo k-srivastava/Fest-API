@@ -48,8 +48,9 @@ def update_db[T](primary_key: Any, update_model: BaseModel, reader: Callable[[An
     """
     db_item = reader(primary_key, session)
 
-    for key, value in update_model.model_dump(exclude_none=True).items():
-        setattr(db_item, key, value)
+    model_dump = update_model.model_dump()
+    for key in update_model.model_fields_set:
+        setattr(db_item, key, model_dump[key])
 
     session.commit()
     session.refresh(db_item)
