@@ -1,6 +1,5 @@
 """Route for all passes at /pass."""
-from fastapi import APIRouter
-from fastapi.params import Depends
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
 
