@@ -17,6 +17,9 @@ USER_JSON = {
     'phone_number': '9999999999', 'mahe_registration_number': 255800000, 'pass_id': None
 }
 
+PASS_ID: Optional[int] = None
+USER_ID: Optional[int] = None
+
 
 class UserTest(unittest.TestCase):
     @classmethod
@@ -40,7 +43,11 @@ class UserTest(unittest.TestCase):
         self.assertEqual(pass_id, data['pass_id'])
 
     def test_1_create_user(self):
-        self.client.post('/pass/', json=PASS_JSON)
+        response = self.client.post('/pass/', json=PASS_JSON)
+        data = response.json()
+
+        global PASS_ID
+        PASS_ID = data['id']
 
         response = self.client.post('/user/', json=USER_JSON)
 
@@ -55,25 +62,26 @@ class UserTest(unittest.TestCase):
         )
         self.assertTrue('id' in data)
 
+        global USER_ID
+        USER_ID = data['id']
+
     def test_2_read_user(self):
-        user_id = 1
-        response = self.client.get(f'/user/{user_id}/')
+        response = self.client.get(f'/user/{USER_ID}/')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
 
-        self.assertEqual(user_id, data['id'])
+        self.assertEqual(USER_ID, data['id'])
         self.assert_user_is_equal(
             data, USER_JSON['first_name'], USER_JSON['last_name'], USER_JSON['email_address'],
             USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], USER_JSON['pass_id']
         )
 
     def test_3_update_user(self):
-        user_id = 1
         response = self.client.patch(
-            f'/user/{user_id}/',
+            f'/user/{USER_ID}/',
             json={'last_name': 'Doe', 'email_address': 'john.doe2025@learner.manipal.edu', 'pass_id': 1}
         )
 
@@ -87,25 +95,21 @@ class UserTest(unittest.TestCase):
         )
 
     def test_4_read_valid_pass(self):
-        user_id = 1
-        pass_id = 1
-        response = self.client.get(f'/user/{user_id}/pass')
+        response = self.client.get(f'/user/{USER_ID}/pass')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
 
-        self.assertEqual(pass_id, data['id'])
+        self.assertEqual(PASS_ID, data['id'])
         self.assertEqual(PASS_JSON['name'], data['name'])
         self.assertEqual(PASS_JSON['description'], data['description'])
         self.assertEqual('299.00', data['cost'])
 
     def test_5_read_invalid_pass(self):
-        user_id = 1
-
         # Remove the pass ID from the user.
-        response = self.client.patch(f'/user/{user_id}/', json={'pass_id': None})
+        response = self.client.patch(f'/user/{USER_ID}/', json={'pass_id': None})
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -113,22 +117,21 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assertIsNone(data['pass_id'])
 
-        response = self.client.get(f'/user/{user_id}/pass')
+        response = self.client.get(f'/user/{USER_ID}/pass')
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
 
     def test_6_delete_user(self):
-        user_id = 1
-        response = self.client.delete(f'/user/{user_id}/')
+        response = self.client.delete(f'/user/{USER_ID}/')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
-        self.assertEqual(user_id, data['id'])
+        self.assertEqual(USER_ID, data['id'])
 
-        response = self.client.get(f'/user/{user_id}/')
+        response = self.client.get(f'/user/{USER_ID}/')
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)

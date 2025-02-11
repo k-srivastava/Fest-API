@@ -14,6 +14,8 @@ EVENT_JSON = {
     'venue': 'Mega Auditorium'
 }
 
+EVENT_ID: Optional[int] = None
+
 
 class EventTest(unittest.TestCase):
     @classmethod
@@ -50,24 +52,25 @@ class EventTest(unittest.TestCase):
         )
         self.assertTrue('id' in data)
 
+        global EVENT_ID
+        EVENT_ID = data['id']
+
     def test_2_read_event(self):
-        event_id = 1
-        response = self.client.get(f'/event/{event_id}/')
+        response = self.client.get(f'/event/{EVENT_ID}/')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
 
-        self.assertEqual(event_id, data['id'])
+        self.assertEqual(EVENT_ID, data['id'])
         self.assert_event_is_equal(
             data, EVENT_JSON['name'], EVENT_JSON['description'], EVENT_JSON['type'], EVENT_JSON['team_members'],
             EVENT_JSON['start'], EVENT_JSON['venue']
         )
 
     def test_3_update_event(self):
-        event_id = 1
-        response = self.client.patch(f'/event/{event_id}/', json={'type': EventType.PRO_SHOW.value, 'venue': None})
+        response = self.client.patch(f'/event/{EVENT_ID}/', json={'type': EventType.PRO_SHOW.value, 'venue': None})
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -79,16 +82,15 @@ class EventTest(unittest.TestCase):
         )
 
     def test_4_delete_event(self):
-        event_id = 1
-        response = self.client.delete(f'/event/{event_id}/')
+        response = self.client.delete(f'/event/{EVENT_ID}/')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
-        self.assertEqual(event_id, data['id'])
+        self.assertEqual(EVENT_ID, data['id'])
 
-        response = self.client.get(f'/event/{event_id}/')
+        response = self.client.get(f'/event/{EVENT_ID}/')
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)

@@ -1,5 +1,5 @@
 import unittest
-from typing import Any
+from typing import Any, Optional
 
 from starlette.testclient import TestClient
 
@@ -17,6 +17,8 @@ NEW_USER_JSON = {
 }
 
 TEAM_JSON = {'name': 'Team 1', 'host_id': 1}
+
+TEAM_ID: Optional[int] = None
 
 
 class TeamTest(unittest.TestCase):
@@ -46,23 +48,23 @@ class TeamTest(unittest.TestCase):
         self.assert_team_is_equal(data, 'Team 1', 1)
         self.assertTrue('id' in data)
 
+        global TEAM_ID
+        TEAM_ID = data['id']
+
     def test_2_read_team(self):
-        team_id = 1
-        response = self.client.get(f'/team/{team_id}/')
+        response = self.client.get(f'/team/{TEAM_ID}/')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
 
-        self.assertEqual(team_id, data['id'])
+        self.assertEqual(TEAM_ID, data['id'])
         self.assert_team_is_equal(data, 'Team 1', 1)
 
     def test_3_update_team(self):
-        team_id = 1
-
         self.client.post('/user/', json=NEW_USER_JSON)
-        response = self.client.patch(f'/team/{team_id}/', json={'name': 'New Team 1', 'host_id': 2})
+        response = self.client.patch(f'/team/{TEAM_ID}/', json={'name': 'New Team 1', 'host_id': 2})
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -71,15 +73,14 @@ class TeamTest(unittest.TestCase):
         self.assert_team_is_equal(data, 'New Team 1', 2)
 
     def test_4_delete_team(self):
-        team_id = 1
-        response = self.client.delete(f'/team/{team_id}/')
+        response = self.client.delete(f'/team/{TEAM_ID}/')
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
-        self.assertEqual(team_id, data['id'])
+        self.assertEqual(TEAM_ID, data['id'])
 
-        response = self.client.get(f'/team/{team_id}/')
+        response = self.client.get(f'/team/{TEAM_ID}/')
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
