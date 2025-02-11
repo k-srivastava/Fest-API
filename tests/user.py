@@ -28,7 +28,7 @@ class UserTest(unittest.TestCase):
     def tearDownClass(cls):
         core.teardown_tests()
 
-    def assert_equal_user(
+    def assert_user_is_equal(
             self, data: dict[str, Any], first_name: str, last_name: str, email_address: str,
             phone_number: Optional[str], mahe_registration_number: Optional[int], pass_id: Optional[int]
     ):
@@ -49,7 +49,7 @@ class UserTest(unittest.TestCase):
 
         data = response.json()
 
-        self.assert_equal_user(
+        self.assert_user_is_equal(
             data, USER_JSON['first_name'], USER_JSON['last_name'], USER_JSON['email_address'],
             USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], USER_JSON['pass_id']
         )
@@ -65,7 +65,7 @@ class UserTest(unittest.TestCase):
         data = response.json()
 
         self.assertEqual(user_id, data['id'])
-        self.assert_equal_user(
+        self.assert_user_is_equal(
             data, USER_JSON['first_name'], USER_JSON['last_name'], USER_JSON['email_address'],
             USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], USER_JSON['pass_id']
         )
@@ -81,7 +81,7 @@ class UserTest(unittest.TestCase):
         self.assertIsNotNone(response.text)
 
         data = response.json()
-        self.assert_equal_user(
+        self.assert_user_is_equal(
             data, USER_JSON['first_name'], 'Doe', 'john.doe2025@learner.manipal.edu',
             USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], 1
         )
