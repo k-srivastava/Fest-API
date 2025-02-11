@@ -14,7 +14,6 @@ class _PassBase(BaseModel):
     name: str
     description: Optional[str]
     cost: Decimal
-    events: list[int]
 
 
 class Pass(_PassBase):
@@ -34,7 +33,6 @@ class PassUpdate(_PassBase):
     name: Optional[str] = None
     description: Optional[str] = None
     cost: Optional[Decimal] = None
-    events: Optional[list[int]] = None
 
 
 def read_db(pass_id: int, session: Session) -> DBPass:

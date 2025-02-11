@@ -1,10 +1,16 @@
 import unittest
+from decimal import Decimal
 from typing import Any
 
 from starlette.testclient import TestClient
 
 import main
 from tests import core
+
+PASS_JSON = {
+    'name': 'Sports', 'description': 'The definitive sports pass. Access both sports and e-sports events.',
+    'cost': Decimal(299).to_eng_string()
+}
 
 
 class PassTest(unittest.TestCase):
@@ -13,40 +19,23 @@ class PassTest(unittest.TestCase):
         cls.client = TestClient(main.app)
         core.setup_tests(main.app)
 
-        cls.pass_name_json = 'Sports'
-        cls.pass_description_json = 'The definitive sports pass. Access both sports and e-sports events.'
-        cls.pass_cost_json = '299.00'
-        cls.pass_events_json = []
-
-        cls.new_pass_name_json = 'New Sports'
-        cls.new_pass_description_json = 'The updated new sports pass. Access everything sports related.'
-
-        cls.pass_json = {
-            'name': 'Sports', 'description': 'The definitive sports pass. Access both sports and e-sports events.',
-            'cost': 299, 'events': []
-        }
-
     @classmethod
     def tearDownClass(cls):
         core.teardown_tests()
 
-    def assert_equal_pass(self, data: dict[str, Any], name: str, description: str, cost: str, events: list):
+    def assert_pass_is_valid(self, data: dict[str, Any], name: str, description: str, cost: str):
         self.assertEqual(name, data['name'])
         self.assertEqual(description, data['description'])
         self.assertEqual(cost, data['cost'])
-        self.assertEqual(events, data['events'])
 
     def test_1_create_pass(self):
-        response = self.client.post('/pass/', json=self.pass_json)
+        response = self.client.post('/pass/', json=PASS_JSON)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
-
-        self.assert_equal_pass(
-            data, self.pass_name_json, self.pass_description_json, self.pass_cost_json, self.pass_events_json
-        )
+        self.assert_pass_is_valid(data, PASS_JSON['name'], PASS_JSON['description'], '299.00')
         self.assertTrue('id' in data)
 
     def test_2_read_pass(self):
@@ -57,27 +46,34 @@ class PassTest(unittest.TestCase):
         self.assertIsNotNone(response.text)
 
         data = response.json()
-
         self.assertEqual(pass_id, data['id'])
-        self.assert_equal_pass(
-            data, self.pass_name_json, self.pass_description_json, self.pass_cost_json, self.pass_events_json
-        )
+        self.assert_pass_is_valid(data, PASS_JSON['name'], PASS_JSON['description'], '299.00')
 
-    def test_3_update_pass(self):
+    def test_3_read_all_passes(self):
+        self.client.post('/pass/', json=PASS_JSON)
+
+        response = self.client.get('/pass/')
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(2, len(data))
+
+        self.assert_pass_is_valid(data[0], PASS_JSON['name'], PASS_JSON['description'], '299.00')
+        self.assert_pass_is_valid(data[1], PASS_JSON['name'], PASS_JSON['description'], '299.00')
+
+    def test_4_update_pass(self):
         pass_id = 1
-        response = self.client.patch(
-            f'/pass/{pass_id}/', json={'name': self.new_pass_name_json, 'description': self.new_pass_description_json}
-        )
+        response = self.client.patch(f'/pass/{pass_id}/', json={'description': 'New Sports'})
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
         data = response.json()
-        self.assert_equal_pass(
-            data, self.new_pass_name_json, self.new_pass_description_json, self.pass_cost_json, self.pass_events_json
-        )
+        self.assertEqual(pass_id, data['id'])
+        self.assert_pass_is_valid(data, PASS_JSON['name'], 'New Sports', '299.00')
 
-    def test_4_delete_pass(self):
+    def test_5_delete_pass(self):
         pass_id = 1
         response = self.client.delete(f'/pass/{pass_id}/')
 
@@ -88,6 +84,5 @@ class PassTest(unittest.TestCase):
         self.assertEqual(pass_id, data['id'])
 
         response = self.client.get(f'/pass/{pass_id}/')
-
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
