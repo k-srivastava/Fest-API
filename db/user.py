@@ -14,10 +14,9 @@ class _UserBase(BaseModel):
     first_name: str
     last_name: str
     email_address: str
-    phone_number: Optional[int]
+    phone_number: Optional[str]
     mahe_registration_number: Optional[int]
     pass_id: Optional[int]
-    teams: list[int]
 
 
 class User(_UserBase):
@@ -40,7 +39,6 @@ class UserUpdate(_UserBase):
     phone_number: Optional[int] = None
     mahe_registration_number: Optional[int] = None
     pass_id: Optional[int] = None
-    teams: Optional[list[int]] = None
 
 
 def read_db(user_id: int, session: Session) -> DBUser:
