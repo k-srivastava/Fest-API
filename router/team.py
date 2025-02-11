@@ -18,7 +18,7 @@ def create_team(team_create: TeamCreate, db: Session = Depends(core.get_db)) -> 
 
 
 @router.get('/{team_id}')
-def read_team(team_id: int, db: Session = Depends(core.get_db)) -> Team:
+def read_team(team_id: str, db: Session = Depends(core.get_db)) -> Team:
     try:
         db_team = team.read_db(team_id, db)
 
@@ -29,7 +29,7 @@ def read_team(team_id: int, db: Session = Depends(core.get_db)) -> Team:
 
 
 @router.patch('/{team_id}')
-def update_team(team_id: int, team_update: TeamUpdate, db: Session = Depends(core.get_db)) -> Team:
+def update_team(team_id: str, team_update: TeamUpdate, db: Session = Depends(core.get_db)) -> Team:
     try:
         db_team = team.update_db(team_id, team_update, db)
 
@@ -40,7 +40,7 @@ def update_team(team_id: int, team_update: TeamUpdate, db: Session = Depends(cor
 
 
 @router.delete('/{team_id}')
-def delete_team(team_id: int, db: Session = Depends(core.get_db)) -> Team:
+def delete_team(team_id: str, db: Session = Depends(core.get_db)) -> Team:
     try:
         db_team = team.delete_db(team_id, db)
 

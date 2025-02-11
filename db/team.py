@@ -11,12 +11,12 @@ from db.core import DBTeam, DBNotFoundError
 class _TeamBase(BaseModel):
     """Base team model."""
     name: str
-    host_id: int
+    host_id: str
 
 
 class Team(_TeamBase):
     """Actual team model with primary key."""
-    id: int
+    id: str
 
     class Config:
         from_attributes = True
@@ -29,15 +29,15 @@ class TeamCreate(_TeamBase):
 class TeamUpdate(_TeamBase):
     """Team update model."""
     name: Optional[str] = None
-    host_id: Optional[int] = None
+    host_id: Optional[str] = None
 
 
-def read_db(team_id: int, session: Session) -> DBTeam:
+def read_db(team_id: str, session: Session) -> DBTeam:
     """
     Read a team from the DB via its primary key.
 
     :param team_id: ID of the team to read.
-    :type team_id: int
+    :type team_id: str
     :param session: Current DB session.
     :type session: Session
 
@@ -69,12 +69,12 @@ def create_db(team: TeamCreate, session: Session) -> DBTeam:
     return operations.create_db(team, DBTeam, session)
 
 
-def update_db(team_id: int, team: TeamUpdate, session: Session) -> DBTeam:
+def update_db(team_id: str, team: TeamUpdate, session: Session) -> DBTeam:
     """
     Update an existing team in the DB.
 
     :param team_id: ID of the team to update.
-    :type team_id: int
+    :type team_id: str
     :param team: Team to update.
     :type team: TeamUpdate
     :param session: Current DB session.
@@ -88,12 +88,12 @@ def update_db(team_id: int, team: TeamUpdate, session: Session) -> DBTeam:
     return operations.update_db(team_id, team, read_db, session)
 
 
-def delete_db(team_id: int, session: Session) -> DBTeam:
+def delete_db(team_id: str, session: Session) -> DBTeam:
     """
     Delete an existing team from the DB.
 
     :param team_id: ID of the team to delete.
-    :type team_id: int
+    :type team_id: str
     :param session: Current DB session.
     :type session: Session
 

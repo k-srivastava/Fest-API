@@ -17,8 +17,8 @@ USER_JSON = {
     'phone_number': '9999999999', 'mahe_registration_number': 255800000, 'pass_id': None
 }
 
-PASS_ID: Optional[int] = None
-USER_ID: Optional[int] = None
+PASS_ID: Optional[str] = None
+USER_ID: Optional[str] = None
 
 
 class UserTest(unittest.TestCase):
@@ -82,7 +82,7 @@ class UserTest(unittest.TestCase):
     def test_3_update_user(self):
         response = self.client.patch(
             f'/user/{USER_ID}/',
-            json={'last_name': 'Doe', 'email_address': 'john.doe2025@learner.manipal.edu', 'pass_id': 1}
+            json={'last_name': 'Doe', 'email_address': 'john.doe2025@learner.manipal.edu', 'pass_id': PASS_ID}
         )
 
         self.assertEqual(200, response.status_code)
@@ -91,7 +91,7 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assert_user_is_equal(
             data, USER_JSON['first_name'], 'Doe', 'john.doe2025@learner.manipal.edu',
-            USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], 1
+            USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], PASS_ID
         )
 
     def test_4_read_valid_pass(self):

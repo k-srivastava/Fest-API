@@ -23,7 +23,7 @@ def create_pass(pass_create: PassCreate, db: Session = Depends(core.get_db)) -> 
 
 
 @router.get('/{pass_id}')
-def read_pass(pass_id: int, db: Session = Depends(core.get_db)) -> Pass:
+def read_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
     try:
         db_pass = pass_.read_db(pass_id, db)
 
@@ -34,7 +34,7 @@ def read_pass(pass_id: int, db: Session = Depends(core.get_db)) -> Pass:
 
 
 @router.patch('/{pass_id}')
-def update_pass(pass_id: int, pass_update: PassUpdate, db: Session = Depends(core.get_db)) -> Pass:
+def update_pass(pass_id: str, pass_update: PassUpdate, db: Session = Depends(core.get_db)) -> Pass:
     try:
         db_pass = pass_.update_db(pass_id, pass_update, db)
 
@@ -45,7 +45,7 @@ def update_pass(pass_id: int, pass_update: PassUpdate, db: Session = Depends(cor
 
 
 @router.delete('/{pass_id}')
-def delete_pass(pass_id: int, db: Session = Depends(core.get_db)) -> Pass:
+def delete_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
     try:
         db_pass = pass_.delete_db(pass_id, db)
 

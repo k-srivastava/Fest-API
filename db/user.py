@@ -16,12 +16,12 @@ class _UserBase(BaseModel):
     email_address: str
     phone_number: Optional[str]
     mahe_registration_number: Optional[int]
-    pass_id: Optional[int]
+    pass_id: Optional[str]
 
 
 class User(_UserBase):
     """Actual user model with primary key."""
-    id: int
+    id: str
 
     class Config:
         from_attributes = True
@@ -38,15 +38,15 @@ class UserUpdate(_UserBase):
     email_address: Optional[str] = None
     phone_number: Optional[int] = None
     mahe_registration_number: Optional[int] = None
-    pass_id: Optional[int] = None
+    pass_id: Optional[str] = None
 
 
-def read_db(user_id: int, session: Session) -> DBUser:
+def read_db(user_id: str, session: Session) -> DBUser:
     """
     Read a user from the DB via its primary key.
 
     :param user_id: ID of the user to read.
-    :type user_id: int
+    :type user_id: str
     :param session: Current DB session.
     :type session: Session
 
@@ -63,17 +63,17 @@ def read_db(user_id: int, session: Session) -> DBUser:
     return db_user
 
 
-def read_pass_db(user_id: int, session: Session) -> Optional[int]:
+def read_pass_db(user_id: str, session: Session) -> Optional[str]:
     """
     Read a user's pass from the DB via its primary key.
 
     :param user_id: ID of the user whose pass is to be read.
-    :type user_id: int
+    :type user_id: str
     :param session: Current DB session.
     :type session: Session
 
     :return: User pass primary key, if it exists, else None.
-    :rtype: Optional[int]
+    :rtype: Optional[str]
 
     :raise DBNotFoundError: User does not exist.
     """
@@ -101,12 +101,12 @@ def create_db(user: UserCreate, session: Session) -> DBUser:
     return operations.create_db(user, DBUser, session)
 
 
-def update_db(user_id: int, user: UserUpdate, session: Session) -> DBUser:
+def update_db(user_id: str, user: UserUpdate, session: Session) -> DBUser:
     """
     Update an existing user in the DB.
 
     :param user_id: ID of the user to update.
-    :type user_id: int
+    :type user_id: str
     :param user: User to update.
     :type user: UserUpdate
     :param session: Current DB session.
@@ -120,12 +120,12 @@ def update_db(user_id: int, user: UserUpdate, session: Session) -> DBUser:
     return operations.update_db(user_id, user, read_db, session)
 
 
-def delete_db(user_id: int, session: Session) -> DBUser:
+def delete_db(user_id: str, session: Session) -> DBUser:
     """
     Delete an existing user in the DB.
 
     :param user_id: ID of the user to delete.
-    :type user_id: int
+    :type user_id: str
     :param session: Current DB session.
     :type session: Session
 

@@ -18,7 +18,7 @@ def create_user(user_create: UserCreate, db: Session = Depends(core.get_db)) -> 
 
 
 @router.get('/{user_id}')
-def read_user(user_id: int, db: Session = Depends(core.get_db)) -> User:
+def read_user(user_id: str, db: Session = Depends(core.get_db)) -> User:
     try:
         db_user = user.read_db(user_id, db)
 
@@ -29,7 +29,7 @@ def read_user(user_id: int, db: Session = Depends(core.get_db)) -> User:
 
 
 @router.get('/{user_id}/pass')
-def read_user_pass(user_id: int, db: Session = Depends(core.get_db)) -> Pass:
+def read_user_pass(user_id: str, db: Session = Depends(core.get_db)) -> Pass:
     try:
         pass_id = user.read_pass_db(user_id, db)
         db_pass = pass_.read_db(pass_id, db)
@@ -41,7 +41,7 @@ def read_user_pass(user_id: int, db: Session = Depends(core.get_db)) -> Pass:
 
 
 @router.patch('/{user_id}')
-def update_user(user_id: int, user_update: UserUpdate, db: Session = Depends(core.get_db)) -> User:
+def update_user(user_id: str, user_update: UserUpdate, db: Session = Depends(core.get_db)) -> User:
     try:
         db_user = user.update_db(user_id, user_update, db)
 
@@ -52,7 +52,7 @@ def update_user(user_id: int, user_update: UserUpdate, db: Session = Depends(cor
 
 
 @router.delete('/{user_id}')
-def delete_user(user_id: int, db: Session = Depends(core.get_db)) -> User:
+def delete_user(user_id: str, db: Session = Depends(core.get_db)) -> User:
     try:
         db_user = user.delete_db(user_id, db)
 

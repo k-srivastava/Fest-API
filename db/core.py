@@ -1,5 +1,7 @@
 """Generate the DB schema and SQLAlchemy session."""
+import base64
 import os
+import uuid
 from datetime import datetime
 from decimal import Decimal
 from enum import Enum
@@ -7,8 +9,19 @@ from typing import Optional, Generator
 
 import dotenv
 import sqlalchemy
-from sqlalchemy import Enum as SQLAlchemyEnum, Numeric, ForeignKey, orm
+from sqlalchemy import Enum as SQLAlchemyEnum, Numeric, ForeignKey, orm, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session
+
+
+def _generate_base64_uuid() -> str:
+    """
+    Generate a base64 encoded UUIDv4 for use as primary keys throughout the database.
+
+    :return: Base64 encoded UUIDv4.
+    :rtype: str
+    """
+    raw_uuid = uuid.uuid4()
+    return base64.urlsafe_b64encode(raw_uuid.bytes).decode('utf-8').rstrip('=')
 
 
 class EventType(Enum):
@@ -21,7 +34,7 @@ class EventType(Enum):
 
 
 class DBBase(DeclarativeBase):
-    id: Mapped[int] = orm.mapped_column(primary_key=True, index=True)
+    id: Mapped[str] = orm.mapped_column(String(22), primary_key=True, default=_generate_base64_uuid, index=True)
 
 
 class DBEvent(DBBase):
@@ -50,7 +63,7 @@ class DBTeam(DBBase):
     __tablename__ = 'team'
 
     name: Mapped[str] = orm.mapped_column(unique=True)
-    host_id: Mapped[int] = orm.mapped_column(ForeignKey('user.id'))
+    host_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id'))
 
 
 class DBUser(DBBase):
@@ -62,21 +75,21 @@ class DBUser(DBBase):
     email_address: Mapped[str] = orm.mapped_column(unique=True)
     phone_number: Mapped[Optional[str]]
     mahe_registration_number: Mapped[Optional[int]]
-    pass_id: Mapped[Optional[int]] = orm.mapped_column(ForeignKey('pass.id'))
+    pass_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('pass.id'))
 
 
 class DBPassEvent(DBBase):
     __tablename__ = 'pass_event'
 
-    event_id: Mapped[int] = orm.mapped_column(ForeignKey('event.id'))
-    pass_id: Mapped[int] = orm.mapped_column(ForeignKey('pass.id'))
+    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id'))
+    pass_id: Mapped[str] = orm.mapped_column(ForeignKey('pass.id'))
 
 
 class DBTeamUser(DBBase):
     __tablename__ = 'team_user'
 
-    team_id: Mapped[int] = orm.mapped_column(ForeignKey('team.id'))
-    user_id: Mapped[int] = orm.mapped_column(ForeignKey('user.id'))
+    team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id'))
+    user_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id'))
 
 
 class DBNotFoundError(Exception):

@@ -14,7 +14,7 @@ EVENT_JSON = {
     'venue': 'Mega Auditorium'
 }
 
-EVENT_ID: Optional[int] = None
+EVENT_ID: Optional[str] = None
 
 
 class EventTest(unittest.TestCase):

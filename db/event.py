@@ -21,7 +21,7 @@ class _EventBase(BaseModel):
 
 class Event(_EventBase):
     """Actual event model with primary key."""
-    id: int
+    id: str
 
     class Config:
         from_attributes = True
@@ -41,12 +41,12 @@ class EventUpdate(_EventBase):
     venue: Optional[str] = None
 
 
-def read_db(event_id: int, session: Session) -> DBEvent:
+def read_db(event_id: str, session: Session) -> DBEvent:
     """
     Read an event from the DB via its primary key.
 
     :param event_id: ID of the event to read.
-    :type event_id: int
+    :type event_id: str
     :param session: Current DB session.
     :type session: Session
 
@@ -78,12 +78,12 @@ def create_db(event: EventCreate, session: Session) -> DBEvent:
     return operations.create_db(event, DBEvent, session)
 
 
-def update_db(event_id: int, event: EventUpdate, session: Session) -> DBEvent:
+def update_db(event_id: str, event: EventUpdate, session: Session) -> DBEvent:
     """
     Update an existing event in the DB.
 
     :param event_id: ID of the event to update.
-    :type event_id: int
+    :type event_id: str
     :param event: Event to update.
     :type event: EventUpdate
     :param session: Current DB session.
@@ -97,12 +97,12 @@ def update_db(event_id: int, event: EventUpdate, session: Session) -> DBEvent:
     return operations.update_db(event_id, event, read_db, session)
 
 
-def delete_db(event_id: int, session: Session) -> DBEvent:
+def delete_db(event_id: str, session: Session) -> DBEvent:
     """
     Delete an existing event from the DB.
 
     :param event_id: ID of the event to delete.
-    :type event_id: int
+    :type event_id: str
     :param session: Current DB session.
     :type session: Session
 

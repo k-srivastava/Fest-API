@@ -12,7 +12,7 @@ PASS_JSON = {
     'cost': Decimal(299).to_eng_string()
 }
 
-PASS_ID: Optional[int] = None
+PASS_ID: Optional[str] = None
 
 
 class PassTest(unittest.TestCase):

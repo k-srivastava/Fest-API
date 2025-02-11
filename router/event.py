@@ -17,7 +17,7 @@ def create_event(event_create: EventCreate, db: Session = Depends(core.get_db)) 
 
 
 @router.get('/{event_id}')
-def read_event(event_id: int, db: Session = Depends(core.get_db)) -> Event:
+def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
     try:
         db_event = event.read_db(event_id, db)
 
@@ -28,7 +28,7 @@ def read_event(event_id: int, db: Session = Depends(core.get_db)) -> Event:
 
 
 @router.patch('/{event_id}')
-def update_event(event_id: int, event_update: EventUpdate, db: Session = Depends(core.get_db)) -> Event:
+def update_event(event_id: str, event_update: EventUpdate, db: Session = Depends(core.get_db)) -> Event:
     try:
         db_event = event.update_db(event_id, event_update, db)
 
@@ -39,7 +39,7 @@ def update_event(event_id: int, event_update: EventUpdate, db: Session = Depends
 
 
 @router.delete('/{event_id}')
-def delete_event(event_id: int, db: Session = Depends(core.get_db)) -> Event:
+def delete_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
     try:
         db_event = event.delete_db(event_id, db)
 

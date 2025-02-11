@@ -18,7 +18,7 @@ class _PassBase(BaseModel):
 
 class Pass(_PassBase):
     """Actual pass model with primary key."""
-    id: int
+    id: str
 
     class Config:
         from_attributes = True
@@ -35,12 +35,12 @@ class PassUpdate(_PassBase):
     cost: Optional[Decimal] = None
 
 
-def read_db(pass_id: int, session: Session) -> DBPass:
+def read_db(pass_id: str, session: Session) -> DBPass:
     """
     Read a pass from the DB via its primary key.
 
     :param pass_id: ID of the pass to read.
-    :type pass_id: int
+    :type pass_id: str
     :param session: Current DB session.
     :type session: Session
 
@@ -85,12 +85,12 @@ def create_db(pass_: PassCreate, session: Session) -> DBPass:
     return operations.create_db(pass_, DBPass, session)
 
 
-def update_db(pass_id: int, pass_: PassUpdate, session: Session) -> DBPass:
+def update_db(pass_id: str, pass_: PassUpdate, session: Session) -> DBPass:
     """
     Update an existing pass in the DB.
 
     :param pass_id: ID of the pass to update.
-    :type pass_id: int
+    :type pass_id: str
     :param pass_: Pass to update.
     :type pass_: PassUpdate
     :param session: Current DB session.
@@ -104,12 +104,12 @@ def update_db(pass_id: int, pass_: PassUpdate, session: Session) -> DBPass:
     return operations.update_db(pass_id, pass_, read_db, session)
 
 
-def delete_db(pass_id: int, session: Session) -> DBPass:
+def delete_db(pass_id: str, session: Session) -> DBPass:
     """
     Delete an existing pass from the DB.
 
     :param pass_id: ID of the pass to delete.
-    :type pass_id: int
+    :type pass_id: str
     :param session: Current DB session.
     :type session: Session
 
