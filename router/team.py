@@ -13,13 +13,7 @@ router = APIRouter(prefix='/team', tags=['team'])
 
 @router.post('/')
 def create_team(team_create: TeamCreate, db: Session = Depends(core.get_db)) -> Team:
-    # resolved_members = db.query(DBUser).filter(DBUser.id.in_(team_create.members)).all()
-    # if len(resolved_members) != len(set(team_create.members)):
-    #     raise HTTPException(status_code=400, detail="Some member IDs do not exist.")
-
     db_team = team.create_db(team_create, db)
-    # db_team.members = resolved_members
-
     return Team.model_validate(db_team)
 
 
