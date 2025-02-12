@@ -69,7 +69,27 @@ class EventTest(unittest.TestCase):
             EVENT_JSON['start'], EVENT_JSON['venue']
         )
 
-    def test_3_update_event(self):
+    def test_3_read_all_events(self):
+        self.client.post('/event/', json=EVENT_JSON)
+
+        response = self.client.get('/event/')
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(2, len(data))
+
+        self.assert_event_is_equal(
+            data[0], EVENT_JSON['name'], EVENT_JSON['description'], EVENT_JSON['type'], EVENT_JSON['team_members'],
+            EVENT_JSON['start'], EVENT_JSON['venue']
+        )
+
+        self.assert_event_is_equal(
+            data[1], EVENT_JSON['name'], EVENT_JSON['description'], EVENT_JSON['type'], EVENT_JSON['team_members'],
+            EVENT_JSON['start'], EVENT_JSON['venue']
+        )
+
+    def test_4_update_event(self):
         response = self.client.patch(f'/event/{EVENT_ID}/', json={'type': EventType.PRO_SHOW.value, 'venue': None})
 
         self.assertEqual(200, response.status_code)
@@ -81,7 +101,7 @@ class EventTest(unittest.TestCase):
             EVENT_JSON['start'], None
         )
 
-    def test_4_delete_event(self):
+    def test_5_delete_event(self):
         response = self.client.delete(f'/event/{EVENT_ID}/')
 
         self.assertEqual(200, response.status_code)

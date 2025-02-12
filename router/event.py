@@ -10,6 +10,12 @@ from db.event import EventCreate, Event, EventUpdate
 router = APIRouter(prefix='/event', tags=['event'])
 
 
+@router.get('/')
+def read_all_events(db: Session = Depends(core.get_db)) -> list[Event]:
+    db_events = event.read_all_db(db)
+    return [Event.model_validate(db_event) for db_event in db_events]
+
+
 @router.post('/')
 def create_event(event_create: EventCreate, db: Session = Depends(core.get_db)) -> Event:
     db_event = event.create_db(event_create, db)

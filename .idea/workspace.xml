@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated all tests to use automatic IDs.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Moved DB to use a Base-64 encoded UUIDv4 for primary keys.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/pass_.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/pass_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/team.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/pass_.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/pass_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/team.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/pass_.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/pass_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/team.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,41 +58,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "FastAPI.Fest-API.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.generated-requests | #2.executor": "Run",
-    "HTTP Request.generated-requests | #3.executor": "Run",
-    "HTTP Request.generated-requests | #4.executor": "Run",
-    "Python tests.Python tests for pass_.PassTest.executor": "Run",
-    "Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor": "Run",
-    "Python tests.Python tests for pass_.test_create_pass.executor": "Run",
-    "Python tests.Python tests for pass_tests.PassTestNew.executor": "Run",
-    "Python tests.Python tests for team.TeamTest.executor": "Run",
-    "Python tests.Python tests for user.UserTest.executor": "Run",
-    "Python tests.Python tests for user.UserTest.test_1_create_user.executor": "Run",
-    "Python tests.Python tests in test_suite.py.executor": "Run",
-    "Python tests.pytest in pass_.py.executor": "Run",
-    "Python tests.pytest in test_api.py.executor": "Run",
-    "Python.test_app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/kshit/Developer/Python/spell-bee",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;FastAPI.Fest-API.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.PassTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.test_create_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_tests.PassTestNew.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for team.TeamTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for user.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for user.UserTest.test_1_create_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_suite.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in pass_.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_api.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kshit/Developer/Python/spell-bee&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python tests.Python tests in test_suite.py">
+}</component>
+  <component name="RunManager" selected="FastAPI.Fest-API">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -145,10 +134,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | #4" />
       <item itemvalue="HTTP Request.generated-requests | #1" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
+      <item itemvalue="HTTP Request.generated-requests | #4" />
+      <item itemvalue="FastAPI.Fest-API" />
       <item itemvalue="Python tests.Python tests in test_suite.py" />
     </list>
     <recent_temporary>
@@ -199,7 +188,10 @@
       <workItem from="1739168515349" duration="2295000" />
       <workItem from="1739210815758" duration="22000" />
       <workItem from="1739256874165" duration="447000" />
-      <workItem from="1739257331860" duration="14420000" />
+      <workItem from="1739257331860" duration="15857000" />
+      <workItem from="1739290881022" duration="183000" />
+      <workItem from="1739291366486" duration="56000" />
+      <workItem from="1739335424869" duration="221000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -361,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739270239379</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Moved DB to use a Base-64 encoded UUIDv4 for primary keys.">
+      <option name="closed" value="true" />
+      <created>1739271828445</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1739271828445</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,15 +389,16 @@
     <MESSAGE value="Added events and corresponding routes with tests." />
     <MESSAGE value="Removed commented code." />
     <MESSAGE value="Updated all tests to use automatic IDs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated all tests to use automatic IDs." />
+    <MESSAGE value="Moved DB to use a Base-64 encoded UUIDv4 for primary keys." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved DB to use a Base-64 encoded UUIDv4 for primary keys." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739267615312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739291380429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739271726541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739272029016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

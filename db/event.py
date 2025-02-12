@@ -63,6 +63,19 @@ def read_db(event_id: str, session: Session) -> DBEvent:
     return db_event
 
 
+def read_all_db(session: Session) -> list[DBEvent]:
+    """
+    Read all events from the DB.
+
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: All event DB instances.
+    :rtype: list[DBEvent]
+    """
+    return session.query(DBEvent).all()
+
+
 def create_db(event: EventCreate, session: Session) -> DBEvent:
     """
     Create a new event in the DB.
