@@ -57,7 +57,7 @@ def read_db(pass_id: str, session: Session) -> DBPass:
     return db_pass
 
 
-def read_all_db(session: Session) -> list[DBPass]:
+def read_all_db(session: Session) -> list[Pass]:
     """
     Read all passes from the DB.
 
@@ -67,6 +67,7 @@ def read_all_db(session: Session) -> list[DBPass]:
     :return: All pass DB instances.
     :rtype: list[DBPass]
     """
+    # noinspection PyTypeChecker
     return session.query(DBPass).all()
 
 

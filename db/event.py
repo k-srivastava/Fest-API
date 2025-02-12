@@ -73,6 +73,7 @@ def read_all_db(session: Session) -> list[DBEvent]:
     :return: All event DB instances.
     :rtype: list[DBEvent]
     """
+    # noinspection PyTypeChecker
     return session.query(DBEvent).all()
 
 
