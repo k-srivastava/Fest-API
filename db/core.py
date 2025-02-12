@@ -79,6 +79,7 @@ class DBUser(DBBase):
 
 
 class DBPassEvent(DBBase):
+    """Pass and event association table."""
     __tablename__ = 'pass_event'
 
     pass_id: Mapped[str] = orm.mapped_column(ForeignKey('pass.id'))
@@ -86,6 +87,7 @@ class DBPassEvent(DBBase):
 
 
 class DBTeamUser(DBBase):
+    """Team and user association table."""
     __tablename__ = 'team_user'
 
     team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id'))
@@ -93,6 +95,7 @@ class DBTeamUser(DBBase):
 
 
 class DBTeamEvent(DBBase):
+    """Team and event association table."""
     __tablename__ = 'team_event'
 
     team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id'))
