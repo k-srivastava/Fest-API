@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated test suite to work correctly in workflows.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated environment variables in the workflow.">
       <change beforePath="$PROJECT_DIR$/.github/workflows/python-app.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-app.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -56,41 +56,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "FastAPI.Fest-API.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.generated-requests | #2.executor": "Run",
-    "HTTP Request.generated-requests | #3.executor": "Run",
-    "HTTP Request.generated-requests | #4.executor": "Run",
-    "Python tests.Python Test Suite.executor": "Run",
-    "Python tests.Python tests for pass_.PassTest.executor": "Run",
-    "Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor": "Run",
-    "Python tests.Python tests for pass_.test_create_pass.executor": "Run",
-    "Python tests.Python tests for pass_tests.PassTestNew.executor": "Run",
-    "Python tests.Python tests for team.TeamTest.executor": "Run",
-    "Python tests.Python tests for user.UserTest.executor": "Run",
-    "Python tests.Python tests for user.UserTest.test_1_create_user.executor": "Run",
-    "Python tests.Python tests in test_suite.py.executor": "Run",
-    "Python tests.pytest in pass_.py.executor": "Run",
-    "Python tests.pytest in test_api.py.executor": "Run",
-    "Python.test_app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/kshit/Developer/Python/spell-bee",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;FastAPI.Fest-API.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python Test Suite.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.PassTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.test_create_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_tests.PassTestNew.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for team.TeamTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for user.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for user.UserTest.test_1_create_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_suite.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in pass_.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_api.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kshit/Developer/Python/spell-bee&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python tests.Python Test Suite">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
@@ -133,10 +133,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | #4" />
       <item itemvalue="HTTP Request.generated-requests | #1" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
+      <item itemvalue="HTTP Request.generated-requests | #4" />
+      <item itemvalue="FastAPI.Fest-API" />
       <item itemvalue="Python tests.Python Test Suite" />
     </list>
     <recent_temporary>
@@ -191,7 +191,8 @@
       <workItem from="1739290881022" duration="183000" />
       <workItem from="1739291366486" duration="56000" />
       <workItem from="1739335424869" duration="2736000" />
-      <workItem from="1739339478889" duration="1370000" />
+      <workItem from="1739339478889" duration="1427000" />
+      <workItem from="1739341046100" duration="114000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -433,7 +434,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739340641870</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Updated environment variables in the workflow.">
+      <option name="closed" value="true" />
+      <created>1739340875285</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1739340875285</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +450,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Removed bug that would not update fields with values set to None." />
     <MESSAGE value="Removed unnecessary file runner." />
     <MESSAGE value="Created a test suite for all tests." />
     <MESSAGE value="Added users." />
@@ -466,7 +474,8 @@
     <MESSAGE value="Updated test suite to work correctly in workflows." />
     <MESSAGE value="Updated requirements.txt." />
     <MESSAGE value="Fixed typo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed typo." />
+    <MESSAGE value="Updated environment variables in the workflow." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated environment variables in the workflow." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -474,7 +483,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739337935264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739340642291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739340872291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
