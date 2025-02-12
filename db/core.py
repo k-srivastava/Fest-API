@@ -81,8 +81,8 @@ class DBUser(DBBase):
 class DBPassEvent(DBBase):
     __tablename__ = 'pass_event'
 
-    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id'))
     pass_id: Mapped[str] = orm.mapped_column(ForeignKey('pass.id'))
+    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id'))
 
 
 class DBTeamUser(DBBase):
