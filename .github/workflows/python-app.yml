@@ -29,6 +29,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Set environment variables
+        run: echo "DATABASE_URL=sqlite:///:memory:" >> $GITHUB_ENV
       - name: Run test_suite.py
         run: |
           python tests/test_suite.py
