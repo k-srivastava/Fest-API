@@ -92,6 +92,13 @@ class DBTeamUser(DBBase):
     user_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id'))
 
 
+class DBTeamEvent(DBBase):
+    __tablename__ = 'team_event'
+
+    team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id'))
+    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id'))
+
+
 class DBNotFoundError(Exception):
     pass
 
