@@ -63,6 +63,29 @@ def read_db(user_id: str, session: Session) -> DBUser:
     return db_user
 
 
+def read_id_db(user_email_address: str, session: Session) -> Optional[str]:
+    """
+    Read a user's ID from the DB via their unique email address.
+
+    :param user_email_address: Email address of the user whose ID is to be read.
+    :type user_email_address: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: User ID primary key, if it exists, else None.
+    :rtype: Optional[str]
+
+    :raise DBNotFoundError: User does not exist.
+    """
+    query = sqlalchemy.select(DBUser.id).where(DBUser.email_address == user_email_address)
+    user_id = session.execute(query).scalar()
+
+    if user_id is None:
+        raise DBNotFoundError(f'User with email address {user_email_address} not found.')
+
+    return user_id
+
+
 def read_pass_db(user_id: str, session: Session) -> Optional[str]:
     """
     Read a user's pass from the DB via its primary key.

@@ -17,6 +17,17 @@ def create_user(user_create: UserCreate, db: Session = Depends(core.get_db)) -> 
     return User.model_validate(db_user)
 
 
+@router.get('/id')
+def read_user_id(email_address: str, db: Session = Depends(core.get_db)) -> str:
+    try:
+        user_id = user.read_id_db(email_address, db)
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return user_id
+
+
 @router.get('/{user_id}')
 def read_user(user_id: str, db: Session = Depends(core.get_db)) -> User:
     try:
