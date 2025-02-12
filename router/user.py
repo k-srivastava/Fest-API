@@ -3,9 +3,10 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
 
-from db import core, user, pass_
+from db import core, user, pass_, team
 from db.core import DBNotFoundError
 from db.pass_ import Pass
+from db.team import Team
 from db.user import UserCreate, User, UserUpdate
 
 router = APIRouter(prefix='/user', tags=['user'])
@@ -49,6 +50,18 @@ def read_user_pass(user_id: str, db: Session = Depends(core.get_db)) -> Pass:
         raise HTTPException(status_code=404, detail=str(e))
 
     return Pass.model_validate(db_pass)
+
+
+@router.get('/{user_id}/teams')
+def read_user_teams(user_id: str, db: Session = Depends(core.get_db)) -> list[Team]:
+    try:
+        team_ids = user.read_teams_host_db(user_id, db)
+        db_teams = [team.read_db(team_id, db) for team_id in team_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [Team.model_validate(db_team) for db_team in db_teams]
 
 
 @router.patch('/{user_id}')

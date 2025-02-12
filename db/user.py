@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from db import operations
-from db.core import DBUser, DBNotFoundError
+from db.core import DBUser, DBNotFoundError, DBTeam
 
 
 class _UserBase(BaseModel):
@@ -107,6 +107,24 @@ def read_pass_db(user_id: str, session: Session) -> Optional[str]:
         raise DBNotFoundError(f'User with ID {user_id} not found.')
 
     return pass_id
+
+
+def read_teams_host_db(user_id: str, session: Session) -> list[str]:
+    """
+    Read all the teams a user is a host of from the DB via the host's primary key.
+
+    :param user_id: ID of the user whose teams are to be read.
+    :type user_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: List of team primary keys, if any, else empty list.
+    :rtype: list[str]
+    """
+    query = sqlalchemy.select(DBTeam.id).where(DBTeam.host_id == user_id)
+    team_ids = session.execute(query).scalars().all()
+
+    return [team_id for team_id in team_ids] if team_ids is not None else []
 
 
 def create_db(user: UserCreate, session: Session) -> DBUser:

@@ -17,6 +17,9 @@ USER_JSON = {
     'phone_number': '9999999999', 'mahe_registration_number': 255800000, 'pass_id': None
 }
 
+TEAM_1_JSON = {'name': 'Team 1', 'host_id': None}
+TEAM_2_JSON = {'name': 'Team 2', 'host_id': None}
+
 PASS_ID: Optional[str] = None
 USER_ID: Optional[str] = None
 
@@ -131,7 +134,37 @@ class UserTest(unittest.TestCase):
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
 
-    def test_7_delete_user(self):
+    def test_7_read_empty_team_host(self):
+        response = self.client.get(f'/user/{USER_ID}/teams')
+
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(0, len(data))
+
+    def test_8_read_valid_team_host(self):
+        TEAM_1_JSON['host_id'] = USER_ID
+        TEAM_2_JSON['host_id'] = USER_ID
+
+        self.client.post('/team/', json=TEAM_1_JSON)
+        self.client.post('/team/', json=TEAM_2_JSON)
+
+        response = self.client.get(f'/user/{USER_ID}/teams')
+
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(2, len(data))
+
+        self.assertEqual(TEAM_1_JSON['name'], data[0]['name'])
+        self.assertEqual(TEAM_1_JSON['host_id'], data[0]['host_id'])
+
+        self.assertEqual(TEAM_2_JSON['name'], data[1]['name'])
+        self.assertEqual(TEAM_2_JSON['host_id'], data[1]['host_id'])
+
+    def test_9_delete_user(self):
         response = self.client.delete(f'/user/{USER_ID}/')
 
         self.assertEqual(200, response.status_code)
