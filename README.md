@@ -10,10 +10,6 @@ effortlessly for all fests hosted by **MIT Bengaluru**—whether they are cultur
   <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI Logo" width="150"/>
 </p>
 
-
-A scalable and high-performance fest API built with **FastAPI**, designed to manage and retrieve information
-effortlessly for all fests in MIT Bengaluru; whether they be cultural, technical or anything in between.
-
 ---
 
 ## 📚 Table of Contents
@@ -86,9 +82,9 @@ This API adheres to the **OpenAPI Specification**. The schema is auto-generated 
 | **Endpoint**       | **Method** | **Description**                 |
 |--------------------|------------|---------------------------------|
 | `/event/`          | `GET`      | Fetch all events.               |
-| `/pass/`           | `GET`      | Fetch user passes.              |
+| `/pass/`           | `GET`      | Fetch all passes.               |
 | `/team/{team_id}/` | `GET`      | Fetch information about a team. |
-| `/user/{user_id}/` | `GET`      | Fetch user-specific data.       |
+| `/user/{user_id}/` | `GET`      | Fetch information about a user. |
 
 You can test the endpoints either in Swagger-UI or using a REST client like Postman.
 
