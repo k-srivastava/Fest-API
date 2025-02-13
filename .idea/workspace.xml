@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Created many-to-many relationship DB functions.">
-      <change afterPath="$PROJECT_DIR$/tests/associations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/pass_.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/pass_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/team.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added tests for many-to-many relationships.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_suite.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_suite.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +216,7 @@
       <workItem from="1739335424869" duration="2736000" />
       <workItem from="1739339478889" duration="1427000" />
       <workItem from="1739341046100" duration="14326000" />
-      <workItem from="1739439012731" duration="1113000" />
+      <workItem from="1739439012731" duration="1229000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -542,7 +538,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739440127743</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Updated routes in all entities to map to many-to-many relationships.">
+      <option name="closed" value="true" />
+      <created>1739440160464</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1739440160464</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Added tests for many-to-many relationships.">
+      <option name="closed" value="true" />
+      <created>1739440173064</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1739440173064</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,8 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Updated assert names for parity." />
-    <MESSAGE value="Added teams and corresponding routes with tests." />
     <MESSAGE value="Added events and corresponding routes with tests." />
     <MESSAGE value="Removed commented code." />
     <MESSAGE value="Updated all tests to use automatic IDs." />
@@ -586,7 +596,9 @@
     <MESSAGE value="Updated documentation for associations." />
     <MESSAGE value="Added some default entities to the test DB." />
     <MESSAGE value="Created many-to-many relationship DB functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created many-to-many relationship DB functions." />
+    <MESSAGE value="Updated routes in all entities to map to many-to-many relationships." />
+    <MESSAGE value="Added tests for many-to-many relationships." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tests for many-to-many relationships." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -594,7 +606,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739440046865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739440042012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739440180047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
