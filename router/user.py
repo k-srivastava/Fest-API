@@ -2,8 +2,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
+from starlette.responses import JSONResponse
 
-from db import core, user, pass_, team
+from db import core, user, pass_, team, associations
 from db.core import DBNotFoundError
 from db.pass_ import Pass
 from db.team import Team
@@ -62,6 +63,21 @@ def read_user_teams(user_id: str, db: Session = Depends(core.get_db)) -> list[Te
         raise HTTPException(status_code=404, detail=str(e))
 
     return [Team.model_validate(db_team) for db_team in db_teams]
+
+
+@router.post('/{user_id}/teams/{team_id}')
+def create_user_team(user_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.create_team_user_db(team_id, user_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.delete('/{user_id}/teams/{team_id}')
+def delete_user_team(user_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    if team.read_db(team_id, db).host_id == user_id:
+        raise HTTPException(status_code=403, detail='Cannot delete host of team.')
+
+    association_id = associations.delete_team_user_db(team_id, user_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.patch('/{user_id}')

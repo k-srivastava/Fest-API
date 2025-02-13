@@ -2,9 +2,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
+from starlette.responses import JSONResponse
 
-from db import core, pass_
+from db import associations, core, event, pass_
 from db.core import DBNotFoundError
+from db.event import Event
 from db.pass_ import Pass, PassCreate, PassUpdate
 
 router = APIRouter(prefix='/pass', tags=['pass'])
@@ -31,6 +33,30 @@ def read_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
         raise HTTPException(status_code=404, detail=str(e))
 
     return Pass.model_validate(db_pass)
+
+
+@router.get('/{pass_id}/events')
+def read_pass_events(pass_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
+    try:
+        event_ids = associations.read_pass_events_db(pass_id, db)
+        db_events = [event.read_db(event_id, db) for event_id in event_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [Event.model_validate(db_event) for db_event in db_events]
+
+
+@router.post('/{pass_id}/events/{event_id}')
+def create_pass_event(pass_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.create_pass_event_db(pass_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.delete('/{pass_id}/events/{event_id}')
+def delete_pass_event(pass_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.delete_pass_event_db(pass_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.patch('/{pass_id}')

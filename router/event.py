@@ -2,10 +2,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
+from starlette.responses import JSONResponse
 
-from db import core, event
+from db import associations, core, event, pass_, team
 from db.core import DBNotFoundError
 from db.event import EventCreate, Event, EventUpdate
+from db.pass_ import Pass
+from db.team import Team
 
 router = APIRouter(prefix='/event', tags=['event'])
 
@@ -31,6 +34,54 @@ def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
         raise HTTPException(status_code=404, detail=str(e))
 
     return Event.model_validate(db_event)
+
+
+@router.get('/{event_id}/passes')
+def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -> list[Pass]:
+    try:
+        pass_ids = associations.read_event_passes_db(event_id, db)
+        db_passes = [pass_.read_db(pass_id, db) for pass_id in pass_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [Pass.model_validate(db_pass) for db_pass in db_passes]
+
+
+@router.post('/{event_id}/passes/{pass_id}')
+def create_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.create_pass_event_db(pass_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.delete('/{event_id}/passes/{pass_id}')
+def delete_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.delete_pass_event_db(pass_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.get('/{event_id}/teams')
+def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) -> list[Team]:
+    try:
+        team_ids = associations.read_event_teams_db(event_id, db)
+        db_teams = [team.read_db(team_id, db) for team_id in team_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [Team.model_validate(db_team) for db_team in db_teams]
+
+
+@router.post('/{event_id}/teams/{team_id}')
+def create_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.create_team_event_db(team_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.delete('/{event_id}/teams/{team_id}')
+def delete_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.delete_team_event_db(team_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.patch('/{event_id}')
