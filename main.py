@@ -9,6 +9,6 @@ app.include_router(team.router)
 app.include_router(user.router)
 
 
-@app.get("/")
-async def root():
-    return {'message': 'Hello World'}
+@app.get('/')
+def root():
+    return {'message': 'Hello Fest-API!'}
