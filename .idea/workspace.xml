@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added tests for many-to-many relationships.">
-      <change beforePath="$PROJECT_DIR$/.idea/Fest-API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Fest-API.iml" afterDir="false" />
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated requirements.txt,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -555,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739440173064</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Updated requirements.txt,">
+      <option name="closed" value="true" />
+      <created>1739951507489</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1739951507489</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,7 +593,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Added events and corresponding routes with tests." />
     <MESSAGE value="Removed commented code." />
     <MESSAGE value="Updated all tests to use automatic IDs." />
     <MESSAGE value="Moved DB to use a Base-64 encoded UUIDv4 for primary keys." />
@@ -611,7 +617,8 @@
     <MESSAGE value="Created many-to-many relationship DB functions." />
     <MESSAGE value="Updated routes in all entities to map to many-to-many relationships." />
     <MESSAGE value="Added tests for many-to-many relationships." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests for many-to-many relationships." />
+    <MESSAGE value="Updated requirements.txt," />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated requirements.txt," />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -619,7 +626,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739951381781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739951444932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739951508089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

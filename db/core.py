@@ -28,7 +28,12 @@ class EventType(Enum):
     """Types of events in a fest."""
     CULTURAL = 'cultural'
     E_SPORTS = 'e_sports'
+    EXPERIENCES = 'experiences'
+    FINANCE = 'finance'
+    HACKATHON = 'hackathon'
+    OTHER = 'other'
     PRO_SHOW = 'pro_show'
+    ROBOTICS = 'robotics'
     SPORTS = 'sports'
     TECHNICAL = 'technical'
 
