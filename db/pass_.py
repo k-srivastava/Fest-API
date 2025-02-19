@@ -57,7 +57,7 @@ def read_db(pass_id: str, session: Session) -> DBPass:
     return db_pass
 
 
-def read_all_db(session: Session) -> list[Pass]:
+def read_all_db(session: Session) -> list[DBPass]:
     """
     Read all passes from the DB.
 
