@@ -1,6 +1,6 @@
 python-dotenv~=1.0.1
-SQLAlchemy~=2.0.36
-pydantic~=2.10.3
-fastapi~=0.115.6
-starlette~=0.41.3
+SQLAlchemy~=2.0.38
+pydantic~=2.10.6
+fastapi~=0.115.8
+starlette~=0.45.3
 httpx~=0.28.1

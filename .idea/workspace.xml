@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added tests for many-to-many relationships.">
+      <change beforePath="$PROJECT_DIR$/.idea/Fest-API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Fest-API.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_suite.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_suite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,60 +57,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;FastAPI.Fest-API.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.All in generated-requests.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #12.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | All Sports Pass.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Email ID to User ID of John Smith User.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Events Accessible by All-Sports Pass.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Events Registered by Sports Champs.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | John Smith User.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | John Smith.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Passes Used to Acess Track&amp;Field Event.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Sports Champs Team.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Teams Created by John Smith User.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Teams Registered for Track&amp;Field Event.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Track&amp;Field Event.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | Users Part of Sports Champs Team.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python Test Suite.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for pass_.PassTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for pass_.test_create_pass.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for pass_tests.PassTestNew.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for team.TeamTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for user.UserTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for user.UserTest.test_1_create_user.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_suite.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Test Suite.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in pass_.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_api.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kshit/Developer/Python/spell-bee&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "FastAPI.Fest-API.executor": "Run",
+    "HTTP Request.All in generated-requests.executor": "Run",
+    "HTTP Request.generated-requests | #1.executor": "Run",
+    "HTTP Request.generated-requests | #12.executor": "Run",
+    "HTTP Request.generated-requests | #2.executor": "Run",
+    "HTTP Request.generated-requests | #3.executor": "Run",
+    "HTTP Request.generated-requests | #4.executor": "Run",
+    "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | All Sports Pass.executor": "Run",
+    "HTTP Request.generated-requests | Email ID to User ID of John Smith User.executor": "Run",
+    "HTTP Request.generated-requests | Events Accessible by All-Sports Pass.executor": "Run",
+    "HTTP Request.generated-requests | Events Registered by Sports Champs.executor": "Run",
+    "HTTP Request.generated-requests | John Smith User.executor": "Run",
+    "HTTP Request.generated-requests | John Smith.executor": "Run",
+    "HTTP Request.generated-requests | Passes Used to Acess Track&Field Event.executor": "Run",
+    "HTTP Request.generated-requests | Sports Champs Team.executor": "Run",
+    "HTTP Request.generated-requests | Teams Created by John Smith User.executor": "Run",
+    "HTTP Request.generated-requests | Teams Registered for Track&Field Event.executor": "Run",
+    "HTTP Request.generated-requests | Track&Field Event.executor": "Run",
+    "HTTP Request.generated-requests | Users Part of Sports Champs Team.executor": "Run",
+    "Python tests.Python Test Suite.executor": "Run",
+    "Python tests.Python tests for pass_.PassTest.executor": "Run",
+    "Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor": "Run",
+    "Python tests.Python tests for pass_.test_create_pass.executor": "Run",
+    "Python tests.Python tests for pass_tests.PassTestNew.executor": "Run",
+    "Python tests.Python tests for team.TeamTest.executor": "Run",
+    "Python tests.Python tests for user.UserTest.executor": "Run",
+    "Python tests.Python tests for user.UserTest.test_1_create_user.executor": "Run",
+    "Python tests.Python tests in test_suite.py.executor": "Run",
+    "Python tests.Test Suite.executor": "Run",
+    "Python tests.pytest in pass_.py.executor": "Run",
+    "Python tests.pytest in test_api.py.executor": "Run",
+    "Python.test_app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/kshit/Developer/Python/spell-bee",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="FastAPI.Fest-API">
+}]]></component>
+  <component name="RunManager" selected="Python tests.Test Suite">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -565,7 +566,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -604,9 +617,9 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739440046865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739951381781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739440180047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739951444932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
