@@ -11,6 +11,7 @@ class AssociationTest(unittest.TestCase):
     def setUpClass(cls):
         cls.client = TestClient(main.app)
         cls.ids = core.get_default_db_ids()
+        cls.headers = core.get_default_headers()
 
         core.setup_tests(main.app)
         core.create_default_test_db()
@@ -20,7 +21,7 @@ class AssociationTest(unittest.TestCase):
         core.teardown_tests()
 
     def test_pass_events(self):
-        response = self.client.get(f'/pass/{self.ids["all-sports-pass"]}/events/')
+        response = self.client.get(f'/pass/{self.ids["all-sports-pass"]}/events/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
@@ -28,7 +29,7 @@ class AssociationTest(unittest.TestCase):
         self.assertEqual(2, len(data))
 
     def test_event_passes(self):
-        response = self.client.get(f'/event/{self.ids["track&field-event"]}/passes/')
+        response = self.client.get(f'/event/{self.ids["track&field-event"]}/passes/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
@@ -36,7 +37,7 @@ class AssociationTest(unittest.TestCase):
         self.assertEqual(3, len(data))
 
     def test_team_events(self):
-        response = self.client.get(f'/team/{self.ids["sports-champs-team"]}/events/')
+        response = self.client.get(f'/team/{self.ids["sports-champs-team"]}/events/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
@@ -45,7 +46,7 @@ class AssociationTest(unittest.TestCase):
         self.assertEqual(self.ids["track&field-event"], data[0]['id'])
 
     def test_event_teams(self):
-        response = self.client.get(f'/event/{self.ids["track&field-event"]}/teams/')
+        response = self.client.get(f'/event/{self.ids["track&field-event"]}/teams/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
@@ -54,7 +55,7 @@ class AssociationTest(unittest.TestCase):
         self.assertEqual(self.ids["sports-champs-team"], data[0]['id'])
 
     def test_team_users(self):
-        response = self.client.get(f'/team/{self.ids["sports-champs-team"]}/users/')
+        response = self.client.get(f'/team/{self.ids["sports-champs-team"]}/users/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
@@ -62,7 +63,7 @@ class AssociationTest(unittest.TestCase):
         self.assertEqual(2, len(data))
 
     def test_user_teams(self):
-        response = self.client.get(f'/user/{self.ids["john-smith-user"]}/teams/')
+        response = self.client.get(f'/user/{self.ids["john-smith-user"]}/teams/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 

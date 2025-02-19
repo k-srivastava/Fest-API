@@ -21,6 +21,8 @@ class EventTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(main.app)
+        cls.headers = core.get_default_headers()
+
         core.setup_tests(main.app)
 
     @classmethod
@@ -39,7 +41,7 @@ class EventTest(unittest.TestCase):
         self.assertEqual(venue, data['venue'])
 
     def test_1_create_event(self):
-        response = self.client.post('/event/', json=EVENT_JSON)
+        response = self.client.post('/event/', json=EVENT_JSON, headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -56,7 +58,7 @@ class EventTest(unittest.TestCase):
         EVENT_ID = data['id']
 
     def test_2_read_event(self):
-        response = self.client.get(f'/event/{EVENT_ID}/')
+        response = self.client.get(f'/event/{EVENT_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -70,9 +72,9 @@ class EventTest(unittest.TestCase):
         )
 
     def test_3_read_all_events(self):
-        self.client.post('/event/', json=EVENT_JSON)
+        self.client.post('/event/', json=EVENT_JSON, headers=self.headers)
 
-        response = self.client.get('/event/')
+        response = self.client.get('/event/', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
 
@@ -90,7 +92,10 @@ class EventTest(unittest.TestCase):
         )
 
     def test_4_update_event(self):
-        response = self.client.patch(f'/event/{EVENT_ID}/', json={'type': EventType.PRO_SHOW.value, 'venue': None})
+        response = self.client.patch(
+            f'/event/{EVENT_ID}/', json={'type': EventType.PRO_SHOW.value, 'venue': None},
+            headers=self.headers
+        )
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -102,7 +107,7 @@ class EventTest(unittest.TestCase):
         )
 
     def test_5_delete_event(self):
-        response = self.client.delete(f'/event/{EVENT_ID}/')
+        response = self.client.delete(f'/event/{EVENT_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -110,7 +115,7 @@ class EventTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(EVENT_ID, data['id'])
 
-        response = self.client.get(f'/event/{EVENT_ID}/')
+        response = self.client.get(f'/event/{EVENT_ID}/', headers=self.headers)
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)

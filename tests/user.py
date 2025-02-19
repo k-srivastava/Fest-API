@@ -28,6 +28,8 @@ class UserTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(main.app)
+        cls.headers = core.get_default_headers()
+
         core.setup_tests(main.app)
 
     @classmethod
@@ -46,13 +48,13 @@ class UserTest(unittest.TestCase):
         self.assertEqual(pass_id, data['pass_id'])
 
     def test_1_create_user(self):
-        response = self.client.post('/pass/', json=PASS_JSON)
+        response = self.client.post('/pass/', json=PASS_JSON, headers=self.headers)
         data = response.json()
 
         global PASS_ID
         PASS_ID = data['id']
 
-        response = self.client.post('/user/', json=USER_JSON)
+        response = self.client.post('/user/', json=USER_JSON, headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -69,7 +71,7 @@ class UserTest(unittest.TestCase):
         USER_ID = data['id']
 
     def test_2_read_user(self):
-        response = self.client.get(f'/user/{USER_ID}/')
+        response = self.client.get(f'/user/{USER_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -83,7 +85,9 @@ class UserTest(unittest.TestCase):
         )
 
     def test_3_read_user_id(self):
-        response = self.client.get('/user/id', params={'email_address': USER_JSON['email_address']})
+        response = self.client.get(
+            '/user/id', params={'email_address': USER_JSON['email_address']}, headers=self.headers
+        )
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -94,7 +98,8 @@ class UserTest(unittest.TestCase):
     def test_4_update_user(self):
         response = self.client.patch(
             f'/user/{USER_ID}/',
-            json={'last_name': 'Doe', 'email_address': 'john.doe2025@learner.manipal.edu', 'pass_id': PASS_ID}
+            json={'last_name': 'Doe', 'email_address': 'john.doe2025@learner.manipal.edu', 'pass_id': PASS_ID},
+            headers=self.headers
         )
 
         self.assertEqual(200, response.status_code)
@@ -107,7 +112,7 @@ class UserTest(unittest.TestCase):
         )
 
     def test_5_read_valid_pass(self):
-        response = self.client.get(f'/user/{USER_ID}/pass')
+        response = self.client.get(f'/user/{USER_ID}/pass', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -121,7 +126,7 @@ class UserTest(unittest.TestCase):
 
     def test_6_read_invalid_pass(self):
         # Remove the pass ID from the user.
-        response = self.client.patch(f'/user/{USER_ID}/', json={'pass_id': None})
+        response = self.client.patch(f'/user/{USER_ID}/', json={'pass_id': None}, headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -129,13 +134,13 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assertIsNone(data['pass_id'])
 
-        response = self.client.get(f'/user/{USER_ID}/pass')
+        response = self.client.get(f'/user/{USER_ID}/pass', headers=self.headers)
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
 
     def test_7_read_empty_team_host(self):
-        response = self.client.get(f'/user/{USER_ID}/teams')
+        response = self.client.get(f'/user/{USER_ID}/teams', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -147,10 +152,10 @@ class UserTest(unittest.TestCase):
         TEAM_1_JSON['host_id'] = USER_ID
         TEAM_2_JSON['host_id'] = USER_ID
 
-        self.client.post('/team/', json=TEAM_1_JSON)
-        self.client.post('/team/', json=TEAM_2_JSON)
+        self.client.post('/team/', json=TEAM_1_JSON, headers=self.headers)
+        self.client.post('/team/', json=TEAM_2_JSON, headers=self.headers)
 
-        response = self.client.get(f'/user/{USER_ID}/teams')
+        response = self.client.get(f'/user/{USER_ID}/teams', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -165,7 +170,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(TEAM_2_JSON['host_id'], data[1]['host_id'])
 
     def test_9_delete_user(self):
-        response = self.client.delete(f'/user/{USER_ID}/')
+        response = self.client.delete(f'/user/{USER_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -173,7 +178,7 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(USER_ID, data['id'])
 
-        response = self.client.get(f'/user/{USER_ID}/')
+        response = self.client.get(f'/user/{USER_ID}/', headers=self.headers)
 
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)

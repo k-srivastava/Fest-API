@@ -28,6 +28,8 @@ class TeamTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(main.app)
+        cls.headers = core.get_default_headers()
+
         core.setup_tests(main.app)
 
     @classmethod
@@ -39,7 +41,7 @@ class TeamTest(unittest.TestCase):
         self.assertEqual(host_id, data['host_id'])
 
     def test_1_create_team(self):
-        response = self.client.post('/user/', json=USER_JSON)
+        response = self.client.post('/user/', json=USER_JSON, headers=self.headers)
         data = response.json()
 
         global HOST_ID
@@ -47,7 +49,7 @@ class TeamTest(unittest.TestCase):
 
         TEAM_JSON['host_id'] = HOST_ID
 
-        response = self.client.post('/team/', json=TEAM_JSON)
+        response = self.client.post('/team/', json=TEAM_JSON, headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -61,7 +63,7 @@ class TeamTest(unittest.TestCase):
         TEAM_ID = data['id']
 
     def test_2_read_team(self):
-        response = self.client.get(f'/team/{TEAM_ID}/')
+        response = self.client.get(f'/team/{TEAM_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -72,13 +74,16 @@ class TeamTest(unittest.TestCase):
         self.assert_team_is_equal(data, 'Team 1', HOST_ID)
 
     def test_3_update_team(self):
-        response = self.client.post('/user/', json=NEW_USER_JSON)
+        response = self.client.post('/user/', json=NEW_USER_JSON, headers=self.headers)
         data = response.json()
 
         global NEW_HOST_ID
         NEW_HOST_ID = data['id']
 
-        response = self.client.patch(f'/team/{TEAM_ID}/', json={'name': 'New Team 1', 'host_id': NEW_HOST_ID})
+        response = self.client.patch(
+            f'/team/{TEAM_ID}/', json={'name': 'New Team 1', 'host_id': NEW_HOST_ID},
+            headers=self.headers
+        )
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -87,7 +92,7 @@ class TeamTest(unittest.TestCase):
         self.assert_team_is_equal(data, 'New Team 1', NEW_HOST_ID)
 
     def test_4_delete_team(self):
-        response = self.client.delete(f'/team/{TEAM_ID}/')
+        response = self.client.delete(f'/team/{TEAM_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -95,6 +100,6 @@ class TeamTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(TEAM_ID, data['id'])
 
-        response = self.client.get(f'/team/{TEAM_ID}/')
+        response = self.client.get(f'/team/{TEAM_ID}/', headers=self.headers)
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)

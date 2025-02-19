@@ -1,12 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 
+import security
 from router import event, pass_, team, user
 
 app = FastAPI()
-app.include_router(event.router)
-app.include_router(pass_.router)
-app.include_router(team.router)
-app.include_router(user.router)
+app.include_router(event.router, dependencies=[Depends(security.verify_token)])
+app.include_router(pass_.router, dependencies=[Depends(security.verify_token)])
+app.include_router(team.router, dependencies=[Depends(security.verify_token)])
+app.include_router(user.router, dependencies=[Depends(security.verify_token)])
 
 
 @app.get('/')

@@ -1,4 +1,5 @@
 """Generate the DB schema and SQLAlchemy session for testing."""
+import os
 from typing import Generator
 
 import sqlalchemy
@@ -271,6 +272,12 @@ def get_default_db_ids() -> dict[str, str]:
         'all-sports-pass': 'v1rYrkgMQ92a96ri8Xmegg',
         'sports-champs-team': 'yNWqAe1qSOGKzUq6o1XkTw',
         'john-smith-user': '5hYNA08sSUmQKV91kqTFvQ'
+    }
+
+
+def get_default_headers() -> dict[str, str]:
+    return {
+        'Authorization': f'Bearer {os.getenv("BEARER_TOKEN")}'
     }
 
 

@@ -51,7 +51,7 @@ source .venv/bin/activate  # For Windows: .\.venv\Scripts\activate
 # Install the required dependencies.
 pip install -r requirements.txt
 
-# (Optional) Set the environment variables (e.g., the database URL).
+# (Optional) Set the environment variables (e.g., the database URL and bearer token).
 export DATABASE_URL=<your-database-url>
 ```
 
