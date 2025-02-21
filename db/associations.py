@@ -111,6 +111,24 @@ def read_team_users_db(team_id: str, session: Session) -> list[str]:
     return [user_id for user_id in user_ids] if user_ids is not None else []
 
 
+def read_user_teams_db(user_id: str, session: Session) -> list[str]:
+    """
+    Read a user's teams of which they are a member from the DB via its primary key.
+
+    :param user_id: ID of the user whose teams are to be read.
+    :type user_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: List of team primary keys, if any, else empty list.
+    :rtype: list[str]
+    """
+    query = sqlalchemy.select(DBTeamUser.team_id).where(DBTeamUser.user_id == user_id)
+    team_ids = session.execute(query).scalars().all()
+
+    return [team_id for team_id in team_ids] if team_ids is not None else []
+
+
 def create_team_user_db(team_id: str, user_id: str, session: Session) -> str:
     """
     Create a new team-user association in the DB.

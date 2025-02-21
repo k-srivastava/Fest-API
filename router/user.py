@@ -54,9 +54,13 @@ def read_user_pass(user_id: str, db: Session = Depends(core.get_db)) -> Pass:
 
 
 @router.get('/{user_id}/teams')
-def read_user_teams(user_id: str, db: Session = Depends(core.get_db)) -> list[Team]:
+def read_user_teams(user_id: str, host: bool, db: Session = Depends(core.get_db)) -> list[Team]:
     try:
-        team_ids = user.read_teams_host_db(user_id, db)
+        if host:
+            team_ids = user.read_teams_host_db(user_id, db)
+        else:
+            team_ids = associations.read_user_teams_db(user_id, db)
+
         db_teams = [team.read_db(team_id, db) for team_id in team_ids]
 
     except DBNotFoundError as e:

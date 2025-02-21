@@ -62,10 +62,17 @@ class AssociationTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(2, len(data))
 
-    def test_user_teams(self):
-        response = self.client.get(f'/user/{self.ids["john-smith-user"]}/teams/', headers=self.headers)
+    def test_user_teams_host(self):
+        response = self.client.get(f'/user/{self.ids["john-smith-user"]}/teams/?host=true', headers=self.headers)
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(2, len(data))
+
+    def test_user_teams_member(self):
+        response = self.client.get(f'/user/{self.ids["john-smith-user"]}/teams/?host=false', headers=self.headers)
+        self.assertEqual(200, response.status_code)
 
         data = response.json()
         self.assertEqual(2, len(data))

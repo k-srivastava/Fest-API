@@ -140,7 +140,7 @@ class UserTest(unittest.TestCase):
         self.assertIsNotNone(response.text)
 
     def test_7_read_empty_team_host(self):
-        response = self.client.get(f'/user/{USER_ID}/teams', headers=self.headers)
+        response = self.client.get(f'/user/{USER_ID}/teams?host=true', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)
@@ -155,7 +155,7 @@ class UserTest(unittest.TestCase):
         self.client.post('/team/', json=TEAM_1_JSON, headers=self.headers)
         self.client.post('/team/', json=TEAM_2_JSON, headers=self.headers)
 
-        response = self.client.get(f'/user/{USER_ID}/teams', headers=self.headers)
+        response = self.client.get(f'/user/{USER_ID}/teams?host=true', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response.text)

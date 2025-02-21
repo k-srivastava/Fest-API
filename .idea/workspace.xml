@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated repository and actions with secret keys.">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/python-app.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-app.yml" afterDir="false" />
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Changed the workflow to use an .env file instead of the environment variable.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/associations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/associations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,14 +73,23 @@
     "HTTP Request.generated-requests | #3.executor": "Run",
     "HTTP Request.generated-requests | #4.executor": "Run",
     "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | Add organizer to event..executor": "Run",
+    "HTTP Request.generated-requests | Add the team to an event..executor": "Run",
     "HTTP Request.generated-requests | All Passes.executor": "Run",
     "HTTP Request.generated-requests | All Sports Pass.executor": "Run",
+    "HTTP Request.generated-requests | Associate Batman with two events..executor": "Run",
+    "HTTP Request.generated-requests | Check here.executor": "Run",
+    "HTTP Request.generated-requests | Create a new team..executor": "Run",
+    "HTTP Request.generated-requests | Create a new team.executor": "Run",
+    "HTTP Request.generated-requests | Create an event that does not need a pass..executor": "Run",
+    "HTTP Request.generated-requests | Delete Batman.executor": "Run",
     "HTTP Request.generated-requests | Email ID to User ID of John Smith User.executor": "Run",
     "HTTP Request.generated-requests | Events Accessible by All-Sports Pass.executor": "Run",
     "HTTP Request.generated-requests | Events Registered by Sports Champs.executor": "Run",
     "HTTP Request.generated-requests | John Smith User.executor": "Run",
     "HTTP Request.generated-requests | John Smith.executor": "Run",
     "HTTP Request.generated-requests | Passes Used to Acess Track&Field Event.executor": "Run",
+    "HTTP Request.generated-requests | Retrieve both ways..executor": "Run",
     "HTTP Request.generated-requests | Sports Champs Team.executor": "Run",
     "HTTP Request.generated-requests | Teams Created by John Smith User.executor": "Run",
     "HTTP Request.generated-requests | Teams Registered for Track&Field Event.executor": "Run",
@@ -93,13 +108,14 @@
     "Python tests.pytest in pass_.py.executor": "Run",
     "Python tests.pytest in test_api.py.executor": "Run",
     "Python.test_app.executor": "Run",
+    "Python.test_suite.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/kshit/Developer/Python/spell-bee",
+    "last_opened_file_path": "C:/Users/kshit/Developer/Python/Fest-API/tests/test_suite.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,16 +127,13 @@
   }
 }]]></component>
   <component name="RunManager" selected="Python tests.Test Suite">
-    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+    <configuration name="generated-requests | Add organizer to event." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Add organizer to event." index="16" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | All Passes" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="All Passes" runType="Run single request">
+    <configuration name="generated-requests | Associate Batman with two events." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Associate Batman with two events." index="14" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | Email ID to User ID of John Smith User" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Email ID to User ID of John Smith User" index="11" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #12" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#12" index="12" runType="Run single request">
+    <configuration name="generated-requests | Delete Batman" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Delete Batman" index="15" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Fest-API" type="Python.FastAPI">
@@ -150,33 +163,31 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_suite.py&quot;" />
+      <option name="_new_target" value="&quot;C:\\Users\\kshit\\Developer\\Python\\Fest-API\\tests\\test_suite.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | All Passes" />
-      <item itemvalue="HTTP Request.generated-requests | #12" />
-      <item itemvalue="HTTP Request.generated-requests | Email ID to User ID of John Smith User" />
-      <item itemvalue="HTTP Request.All in generated-requests" />
+      <item itemvalue="HTTP Request.generated-requests | Add organizer to event." />
+      <item itemvalue="HTTP Request.generated-requests | Associate Batman with two events." />
+      <item itemvalue="HTTP Request.generated-requests | Delete Batman" />
       <item itemvalue="Python tests.Test Suite" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Test Suite" />
-        <item itemvalue="HTTP Request.generated-requests | All Passes" />
-        <item itemvalue="HTTP Request.generated-requests | #12" />
-        <item itemvalue="HTTP Request.generated-requests | Email ID to User ID of John Smith User" />
-        <item itemvalue="HTTP Request.All in generated-requests" />
+        <item itemvalue="HTTP Request.generated-requests | Add organizer to event." />
+        <item itemvalue="HTTP Request.generated-requests | Delete Batman" />
+        <item itemvalue="HTTP Request.generated-requests | Associate Batman with two events." />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
-        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PY-243.24978.54" />
+        <option value="bundled-python-sdk-91e3b7efe1d4-466328ff949b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.24978.54" />
       </set>
     </attachedChunks>
   </component>
@@ -218,6 +229,9 @@
       <workItem from="1739339478889" duration="1427000" />
       <workItem from="1739341046100" duration="14326000" />
       <workItem from="1739439012731" duration="1229000" />
+      <workItem from="1740042695498" duration="1543000" />
+      <workItem from="1740050181851" duration="2510000" />
+      <workItem from="1740112272991" duration="1285000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -595,7 +609,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739972684920</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Changed the workflow to use an .env file instead of the environment variable.">
+      <option name="closed" value="true" />
+      <created>1739973230634</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1739973230634</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +648,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Added an endpoint to get a user's ID given their email." />
     <MESSAGE value="Suppressed redundant type warnings." />
     <MESSAGE value="Added endpoint to get all teams a user is the host of." />
     <MESSAGE value="Updated workflow to allow manual running." />
@@ -651,15 +672,17 @@
     <MESSAGE value="Cleaned up main.py." />
     <MESSAGE value="Added a bearer token based authentication to all endpoints." />
     <MESSAGE value="Updated repository and actions with secret keys." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated repository and actions with secret keys." />
+    <MESSAGE value="Changed the workflow to use an .env file instead of the environment variable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the workflow to use an .env file instead of the environment variable." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1739952938718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1740112696653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1739972685449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740113550513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$test_suite.coverage" NAME="test_suite Coverage Results" MODIFIED="1740112627581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
