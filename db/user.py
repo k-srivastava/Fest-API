@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from db import operations
-from db.core import DBUser, DBNotFoundError, DBTeam
+from db.core import DBUser, DBNotFoundError, DBTeam, DBEvent
 
 
 class _UserBase(BaseModel):
@@ -107,6 +107,24 @@ def read_pass_db(user_id: str, session: Session) -> Optional[str]:
         raise DBNotFoundError(f'User with ID {user_id} not found.')
 
     return pass_id
+
+
+def read_events_organizer_db(user_id: str, session: Session) -> list[str]:
+    """
+    Read all the events a user is an organizer of from the DB via the organizer's primary key.
+
+    :param user_id: ID of the user whose events are to be read.
+    :type user_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: List of event primary keys, if any, else empty list.
+    :rtype: list[str]
+    """
+    query = sqlalchemy.select(DBEvent.id).where(DBEvent.organizer_id == user_id)
+    event_ids = session.execute(query).scalars().all()
+
+    return [event_id for event_id in event_ids] if event_ids is not None else []
 
 
 def read_teams_host_db(user_id: str, session: Session) -> list[str]:

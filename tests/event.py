@@ -11,7 +11,7 @@ from tests import core
 EVENT_JSON = {
     'name': 'Battle of Bands', 'description': 'A competition between the best bands on campus.',
     'type': EventType.CULTURAL.value, 'team_members': 5, 'start': datetime.datetime(2025, 1, 1, 12, 0, 0).isoformat(),
-    'venue': 'Mega Auditorium'
+    'venue': 'Mega Auditorium', 'organizer_id': None
 }
 
 EVENT_ID: Optional[str] = None

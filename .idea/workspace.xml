@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Changed the workflow to use an .env file instead of the environment variable.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated the user-teams endpoint to allow searching for both host and member users for a team.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/associations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/associations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/core.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/event.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user.py" afterDir="false" />
     </list>
@@ -231,7 +232,7 @@
       <workItem from="1739439012731" duration="1229000" />
       <workItem from="1740042695498" duration="1543000" />
       <workItem from="1740050181851" duration="2510000" />
-      <workItem from="1740112272991" duration="1285000" />
+      <workItem from="1740112272991" duration="2207000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -617,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739973230634</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Updated the user-teams endpoint to allow searching for both host and member users for a team.">
+      <option name="closed" value="true" />
+      <created>1740113627738</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1740113627738</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +657,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Suppressed redundant type warnings." />
     <MESSAGE value="Added endpoint to get all teams a user is the host of." />
     <MESSAGE value="Updated workflow to allow manual running." />
     <MESSAGE value="Fixed indentation error with workflow_dispatch." />
@@ -673,7 +681,8 @@
     <MESSAGE value="Added a bearer token based authentication to all endpoints." />
     <MESSAGE value="Updated repository and actions with secret keys." />
     <MESSAGE value="Changed the workflow to use an .env file instead of the environment variable." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the workflow to use an .env file instead of the environment variable." />
+    <MESSAGE value="Updated the user-teams endpoint to allow searching for both host and member users for a team." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the user-teams endpoint to allow searching for both host and member users for a team." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -681,7 +690,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1740112696653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740113550513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740114479182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_suite.coverage" NAME="test_suite Coverage Results" MODIFIED="1740112627581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>

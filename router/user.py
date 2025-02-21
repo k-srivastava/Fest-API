@@ -4,8 +4,9 @@ from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
-from db import core, user, pass_, team, associations
+from db import core, event, user, pass_, team, associations
 from db.core import DBNotFoundError
+from db.event import Event
 from db.pass_ import Pass
 from db.team import Team
 from db.user import UserCreate, User, UserUpdate
@@ -51,6 +52,18 @@ def read_user_pass(user_id: str, db: Session = Depends(core.get_db)) -> Pass:
         raise HTTPException(status_code=404, detail=str(e))
 
     return Pass.model_validate(db_pass)
+
+
+@router.get('/{user_id}/events')
+def read_user_events(user_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
+    try:
+        event_ids = user.read_events_organizer_db(user_id, db)
+        db_events = [event.read_db(event_id, db) for event_id in event_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [Event.model_validate(db_event) for db_event in db_events]
 
 
 @router.get('/{user_id}/teams')

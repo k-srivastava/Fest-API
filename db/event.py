@@ -17,6 +17,7 @@ class _EventBase(BaseModel):
     team_members: Optional[int]
     start: Optional[datetime]
     venue: Optional[str]
+    organizer_id: Optional[str]
 
 
 class Event(_EventBase):
@@ -39,6 +40,7 @@ class EventUpdate(_EventBase):
     team_members: Optional[int] = None
     start: Optional[datetime] = None
     venue: Optional[str] = None
+    organizer_id: Optional[str] = None
 
 
 def read_db(event_id: str, session: Session) -> DBEvent:

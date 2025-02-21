@@ -41,7 +41,8 @@ def create_default_test_db():
             "team_members": None,
             "start": None,
             "venue": None,
-            "id": "TSK4dI3xTaCMBNqVCF_whg"
+            "id": "TSK4dI3xTaCMBNqVCF_whg",
+            "organizer_id": None
         },
 
         {
@@ -51,7 +52,8 @@ def create_default_test_db():
             "team_members": 3,
             "start": None,
             "venue": None,
-            "id": "qkjB9pe1QNqn-HeZyJHhtg"
+            "id": "qkjB9pe1QNqn-HeZyJHhtg",
+            "organizer_id": None
         },
 
         {
@@ -61,7 +63,8 @@ def create_default_test_db():
             "team_members": 5,
             "start": None,
             "venue": None,
-            "id": "BR2PlUXzRKO8FKwsq3oh5Q"
+            "id": "BR2PlUXzRKO8FKwsq3oh5Q",
+            "organizer_id": '5hYNA08sSUmQKV91kqTFvQ'
         },
 
         {
@@ -71,7 +74,8 @@ def create_default_test_db():
             "team_members": 2,
             "start": None,
             "venue": None,
-            "id": "lu943W-NRQC5TvVLQOBA1w"
+            "id": "lu943W-NRQC5TvVLQOBA1w",
+            "organizer_id": '5hYNA08sSUmQKV91kqTFvQ'
         }
     ]
 

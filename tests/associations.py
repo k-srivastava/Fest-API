@@ -76,3 +76,10 @@ class AssociationTest(unittest.TestCase):
 
         data = response.json()
         self.assertEqual(2, len(data))
+
+    def test_user_events_organizer(self):
+        response = self.client.get(f'/user/{self.ids["john-smith-user"]}/events', headers=self.headers)
+        self.assertEqual(200, response.status_code)
+
+        data = response.json()
+        self.assertEqual(2, len(data))

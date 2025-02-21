@@ -52,6 +52,7 @@ class DBEvent(DBBase):
     team_members: Mapped[Optional[int]]
     start: Mapped[Optional[datetime]]
     venue: Mapped[Optional[str]]
+    organizer_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('user.id'))
 
 
 class DBPass(DBBase):

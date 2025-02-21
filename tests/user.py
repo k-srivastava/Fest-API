@@ -1,3 +1,4 @@
+import datetime
 import unittest
 from decimal import Decimal
 from typing import Any, Optional
@@ -5,6 +6,7 @@ from typing import Any, Optional
 from starlette.testclient import TestClient
 
 import main
+from db.core import EventType
 from tests import core
 
 PASS_JSON = {
@@ -19,6 +21,12 @@ USER_JSON = {
 
 TEAM_1_JSON = {'name': 'Team 1', 'host_id': None}
 TEAM_2_JSON = {'name': 'Team 2', 'host_id': None}
+
+EVENT_JSON = {
+    'name': 'Battle of Bands', 'description': 'A competition between the best bands on campus.',
+    'type': EventType.CULTURAL.value, 'team_members': 5, 'start': datetime.datetime(2025, 1, 1, 12, 0, 0).isoformat(),
+    'venue': 'Mega Auditorium', 'organizer_id': None
+}
 
 PASS_ID: Optional[str] = None
 USER_ID: Optional[str] = None
@@ -47,7 +55,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(mahe_registration_number, data['mahe_registration_number'])
         self.assertEqual(pass_id, data['pass_id'])
 
-    def test_1_create_user(self):
+    def test_01_create_user(self):
         response = self.client.post('/pass/', json=PASS_JSON, headers=self.headers)
         data = response.json()
 
@@ -70,7 +78,7 @@ class UserTest(unittest.TestCase):
         global USER_ID
         USER_ID = data['id']
 
-    def test_2_read_user(self):
+    def test_02_read_user(self):
         response = self.client.get(f'/user/{USER_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
@@ -84,7 +92,7 @@ class UserTest(unittest.TestCase):
             USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], USER_JSON['pass_id']
         )
 
-    def test_3_read_user_id(self):
+    def test_03_read_user_id(self):
         response = self.client.get(
             '/user/id', params={'email_address': USER_JSON['email_address']}, headers=self.headers
         )
@@ -95,7 +103,7 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(USER_ID, data)
 
-    def test_4_update_user(self):
+    def test_04_update_user(self):
         response = self.client.patch(
             f'/user/{USER_ID}/',
             json={'last_name': 'Doe', 'email_address': 'john.doe2025@learner.manipal.edu', 'pass_id': PASS_ID},
@@ -111,7 +119,7 @@ class UserTest(unittest.TestCase):
             USER_JSON['phone_number'], USER_JSON['mahe_registration_number'], PASS_ID
         )
 
-    def test_5_read_valid_pass(self):
+    def test_05_read_valid_pass(self):
         response = self.client.get(f'/user/{USER_ID}/pass', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
@@ -124,7 +132,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(PASS_JSON['description'], data['description'])
         self.assertEqual('299.00', data['cost'])
 
-    def test_6_read_invalid_pass(self):
+    def test_06_read_invalid_pass(self):
         # Remove the pass ID from the user.
         response = self.client.patch(f'/user/{USER_ID}/', json={'pass_id': None}, headers=self.headers)
 
@@ -139,7 +147,32 @@ class UserTest(unittest.TestCase):
         self.assertEqual(404, response.status_code)
         self.assertIsNotNone(response.text)
 
-    def test_7_read_empty_team_host(self):
+    def test_07_read_empty_event_organizer(self):
+        response = self.client.get(f'/user/{USER_ID}/events', headers=self.headers)
+
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(0, len(data))
+
+    def test_08_read_valid_event_organizer(self):
+        EVENT_JSON['organizer_id'] = USER_ID
+
+        self.client.post(f'/event/', json=EVENT_JSON, headers=self.headers)
+
+        response = self.client.get(f'/user/{USER_ID}/events', headers=self.headers)
+
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(1, len(data))
+
+        self.assertEqual(EVENT_JSON['name'], data[0]['name'])
+        self.assertEqual(EVENT_JSON['organizer_id'], data[0]['organizer_id'])
+
+    def test_09_read_empty_team_host(self):
         response = self.client.get(f'/user/{USER_ID}/teams?host=true', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
@@ -148,7 +181,7 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(0, len(data))
 
-    def test_8_read_valid_team_host(self):
+    def test_10_read_valid_team_host(self):
         TEAM_1_JSON['host_id'] = USER_ID
         TEAM_2_JSON['host_id'] = USER_ID
 
@@ -169,7 +202,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(TEAM_2_JSON['name'], data[1]['name'])
         self.assertEqual(TEAM_2_JSON['host_id'], data[1]['host_id'])
 
-    def test_9_delete_user(self):
+    def test_11_delete_user(self):
         response = self.client.delete(f'/user/{USER_ID}/', headers=self.headers)
 
         self.assertEqual(200, response.status_code)
