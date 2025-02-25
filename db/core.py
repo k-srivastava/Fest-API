@@ -9,7 +9,7 @@ from typing import Optional, Generator
 
 import dotenv
 import sqlalchemy
-from sqlalchemy import Enum as SQLAlchemyEnum, Numeric, ForeignKey, orm, String
+from sqlalchemy import Enum as SQLAlchemyEnum, Numeric, ForeignKey, orm, String, event as sql_alchemy_event
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session
 
 
@@ -52,7 +52,7 @@ class DBEvent(DBBase):
     team_members: Mapped[Optional[int]]
     start: Mapped[Optional[datetime]]
     venue: Mapped[Optional[str]]
-    organizer_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('user.id'))
+    organizer_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('user.id', ondelete='CASCADE'))
 
 
 class DBPass(DBBase):
@@ -69,7 +69,7 @@ class DBTeam(DBBase):
     __tablename__ = 'team'
 
     name: Mapped[str] = orm.mapped_column(unique=True)
-    host_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id'))
+    host_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id', ondelete='CASCADE'))
 
 
 class DBUser(DBBase):
@@ -81,41 +81,54 @@ class DBUser(DBBase):
     email_address: Mapped[str] = orm.mapped_column(unique=True)
     phone_number: Mapped[Optional[str]]
     mahe_registration_number: Mapped[Optional[int]]
-    pass_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('pass.id'))
+    pass_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('pass.id', ondelete='CASCADE'))
 
 
 class DBPassEvent(DBBase):
     """Pass and event association table."""
     __tablename__ = 'pass_event'
 
-    pass_id: Mapped[str] = orm.mapped_column(ForeignKey('pass.id'))
-    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id'))
+    pass_id: Mapped[str] = orm.mapped_column(ForeignKey('pass.id', ondelete='CASCADE'))
+    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id', ondelete='CASCADE'))
 
 
 class DBTeamUser(DBBase):
     """Team and user association table."""
     __tablename__ = 'team_user'
 
-    team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id'))
-    user_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id'))
+    team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id', ondelete='CASCADE'))
+    user_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id', ondelete='CASCADE'))
 
 
 class DBTeamEvent(DBBase):
     """Team and event association table."""
     __tablename__ = 'team_event'
 
-    team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id'))
-    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id'))
+    team_id: Mapped[str] = orm.mapped_column(ForeignKey('team.id', ondelete='CASCADE'))
+    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id', ondelete='CASCADE'))
 
 
 class DBNotFoundError(Exception):
     pass
 
 
+def pragma_on_connect(db_api_connection, _connection_record):
+    """
+    Enable the foreign key support in SQLite to work with cascade deletes.
+    Undocumented function to be used on engine 'connect' event in SQLAlchemy.
+
+    :param db_api_connection: Database connection.
+    :param _connection_record: Database connection record.
+    """
+    db_api_connection.execute('PRAGMA foreign_keys=ON')
+
+
 dotenv.load_dotenv()
 
 _database_url = os.getenv('DATABASE_URL')
 _engine = sqlalchemy.create_engine(_database_url)
+
+sql_alchemy_event.listen(_engine, 'connect', pragma_on_connect)
 
 _session_local = orm.sessionmaker(autocommit=False, autoflush=False, bind=_engine)
 DBBase.metadata.create_all(bind=_engine)

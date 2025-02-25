@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Updated the user-teams endpoint to allow searching for both host and member users for a team.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added an organizer (user) ID to every event.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/associations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +71,7 @@
     "HTTP Request.generated-requests | Add the team to an event..executor": "Run",
     "HTTP Request.generated-requests | All Passes.executor": "Run",
     "HTTP Request.generated-requests | All Sports Pass.executor": "Run",
+    "HTTP Request.generated-requests | All-Sports Pass.executor": "Run",
     "HTTP Request.generated-requests | Associate Batman with two events..executor": "Run",
     "HTTP Request.generated-requests | Check here.executor": "Run",
     "HTTP Request.generated-requests | Create a new team..executor": "Run",
@@ -96,6 +90,16 @@
     "HTTP Request.generated-requests | Teams Registered for Track&Field Event.executor": "Run",
     "HTTP Request.generated-requests | Track&Field Event.executor": "Run",
     "HTTP Request.generated-requests | Users Part of Sports Champs Team.executor": "Run",
+    "HTTP Request.test_main | Add the team to the event..executor": "Run",
+    "HTTP Request.test_main | Add user to team..executor": "Run",
+    "HTTP Request.test_main | Create a pass..executor": "Run",
+    "HTTP Request.test_main | Create a team..executor": "Run",
+    "HTTP Request.test_main | Create a user..executor": "Run",
+    "HTTP Request.test_main | Create an event..executor": "Run",
+    "HTTP Request.test_main | Delete the pass now..executor": "Run",
+    "HTTP Request.test_main | Delete the team now..executor": "Run",
+    "HTTP Request.test_main | Delete the team..executor": "Run",
+    "HTTP Request.test_main | Delete the user now..executor": "Run",
     "Python tests.Python Test Suite.executor": "Run",
     "Python tests.Python tests for pass_.PassTest.executor": "Run",
     "Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor": "Run",
@@ -112,7 +116,7 @@
     "Python.test_suite.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.export.id": "SQL-Insert-Multirow.sql.groovy",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
@@ -128,13 +132,16 @@
   }
 }]]></component>
   <component name="RunManager" selected="Python tests.Test Suite">
-    <configuration name="generated-requests | Add organizer to event." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Add organizer to event." index="16" runType="Run single request">
+    <configuration name="test_main | Add the team to the event." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Add the team to the event." index="4" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | Associate Batman with two events." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Associate Batman with two events." index="14" runType="Run single request">
+    <configuration name="test_main | Create a team." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Create a team." index="2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | Delete Batman" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Delete Batman" index="15" runType="Run single request">
+    <configuration name="test_main | Create an event." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Create an event." index="3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test_main | Delete the team." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Delete the team." index="5" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Fest-API" type="Python.FastAPI">
@@ -152,35 +159,38 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Test Suite" type="tests" factoryName="Autodetect" temporary="true">
+    <configuration name="Test Suite" type="tests" factoryName="Unittests">
       <module name="Fest-API" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/Scripts/python.exe" />
+      <option name="SDK_NAME" value="Python 3.13 (Fest-API)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_pattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;C:\\Users\\kshit\\Developer\\Python\\Fest-API\\tests\\test_suite.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_suite.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | Add organizer to event." />
-      <item itemvalue="HTTP Request.generated-requests | Associate Batman with two events." />
-      <item itemvalue="HTTP Request.generated-requests | Delete Batman" />
+      <item itemvalue="HTTP Request.test_main | Add the team to the event." />
+      <item itemvalue="HTTP Request.test_main | Create a team." />
+      <item itemvalue="HTTP Request.test_main | Create an event." />
+      <item itemvalue="HTTP Request.test_main | Delete the team." />
       <item itemvalue="Python tests.Test Suite" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Test Suite" />
-        <item itemvalue="HTTP Request.generated-requests | Add organizer to event." />
-        <item itemvalue="HTTP Request.generated-requests | Delete Batman" />
-        <item itemvalue="HTTP Request.generated-requests | Associate Batman with two events." />
+        <item itemvalue="HTTP Request.test_main | Delete the team." />
+        <item itemvalue="HTTP Request.test_main | Add the team to the event." />
+        <item itemvalue="HTTP Request.test_main | Create an event." />
+        <item itemvalue="HTTP Request.test_main | Create a team." />
       </list>
     </recent_temporary>
   </component>
@@ -232,15 +242,9 @@
       <workItem from="1739439012731" duration="1229000" />
       <workItem from="1740042695498" duration="1543000" />
       <workItem from="1740050181851" duration="2510000" />
-      <workItem from="1740112272991" duration="2207000" />
-    </task>
-    <task id="LOCAL-00001" summary="Initial commit.">
-      <option name="closed" value="true" />
-      <created>1733890470552</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1733890470552</updated>
+      <workItem from="1740112272991" duration="2625000" />
+      <workItem from="1740115655646" duration="83000" />
+      <workItem from="1740408261211" duration="4687000" />
     </task>
     <task id="LOCAL-00002" summary="Added core files.">
       <option name="closed" value="true" />
@@ -626,7 +630,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740113627738</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Added an organizer (user) ID to every event.">
+      <option name="closed" value="true" />
+      <created>1740114541063</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1740114541064</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +669,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Added endpoint to get all teams a user is the host of." />
     <MESSAGE value="Updated workflow to allow manual running." />
     <MESSAGE value="Fixed indentation error with workflow_dispatch." />
     <MESSAGE value="Updated test suite to work correctly in workflows." />
@@ -682,16 +693,18 @@
     <MESSAGE value="Updated repository and actions with secret keys." />
     <MESSAGE value="Changed the workflow to use an .env file instead of the environment variable." />
     <MESSAGE value="Updated the user-teams endpoint to allow searching for both host and member users for a team." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the user-teams endpoint to allow searching for both host and member users for a team." />
+    <MESSAGE value="Added an organizer (user) ID to every event." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an organizer (user) ID to every event." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1740112696653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1740453605925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1740453800993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740114479182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740408576140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$test_suite.coverage" NAME="test_suite Coverage Results" MODIFIED="1740112627581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$test_suite.coverage" NAME="test_suite Coverage Results" MODIFIED="1740453766967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
