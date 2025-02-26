@@ -38,6 +38,18 @@ class EventType(Enum):
     TECHNICAL = 'technical'
 
 
+class SupportTicketCategory(Enum):
+    """Types of support ticket categories."""
+    CONTEST = 'contest'
+    EVENT = 'event'
+    ORGANIZATION = 'organization'
+    OTHER = 'other'
+    PASSES = 'passes'
+    PAYMENT = 'payment'
+    SPECIAL_REQUEST = 'special_request'
+    WEBSITE = 'website'
+
+
 class DBBase(DeclarativeBase):
     id: Mapped[str] = orm.mapped_column(String(22), primary_key=True, default=_generate_base64_uuid, index=True)
 
@@ -82,6 +94,21 @@ class DBUser(DBBase):
     phone_number: Mapped[Optional[str]]
     mahe_registration_number: Mapped[Optional[int]]
     pass_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('pass.id', ondelete='CASCADE'))
+
+
+class DBSupportTicket(DBBase):
+    """Support ticket table."""
+    __tablename__ = 'support_ticket'
+
+    name: Mapped[str]
+    description: Mapped[str]
+    category: Mapped[SupportTicketCategory] = orm.mapped_column(SQLAlchemyEnum(SupportTicketCategory))
+    timestamp: Mapped[datetime]
+    solved: Mapped[bool]
+    college_name: Mapped[Optional[str]]
+    email_address: Mapped[Optional[str]]
+    phone_number: Mapped[Optional[str]]
+    solved_email_address: Mapped[Optional[str]]
 
 
 class DBPassEvent(DBBase):
