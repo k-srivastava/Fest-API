@@ -1,6 +1,6 @@
 import datetime
 import unittest
-from typing import Optional
+from typing import Optional, Any
 
 from starlette.testclient import TestClient
 
@@ -30,7 +30,7 @@ class EventTest(unittest.TestCase):
         core.teardown_tests()
 
     def assert_event_is_equal(
-            self, data: dict[str, any], name: str, description: Optional[str], type_: EventType,
+            self, data: dict[str, Any], name: str, description: Optional[str], type_: EventType,
             team_members: Optional[int], start: Optional[str], venue: Optional[str]
     ):
         self.assertEqual(name, data['name'])
