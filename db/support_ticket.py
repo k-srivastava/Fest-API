@@ -2,6 +2,7 @@
 from datetime import datetime
 from typing import Optional
 
+import sqlalchemy
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -67,6 +68,41 @@ def read_db(support_ticket_id: str, session: Session) -> DBSupportTicket:
         raise DBNotFoundError(f'Support ticket with ID {support_ticket_id} not found.')
 
     return db_support_ticket
+
+
+def read_all_db(session: Session) -> list[DBSupportTicket]:
+    """
+    Read all support tickets from the DB.
+
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: All support ticket DB instances.
+    :rtype: list[DBSupportTicket]
+    """
+    # noinspection PyTypeChecker
+    return session.query(DBSupportTicket).all()
+
+
+def read_all_by_category(category: SupportTicketCategory, session: Session) -> list[str]:
+    """
+    Read all the support ticket IDs from the DB with the given category.
+
+    :param category: Category of the support ticket to be read.
+    :type category: SupportTicketCategory
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: List of DB support ticket IDs, if any, else empty list.
+    :rtype: list[str]
+    """
+    query = sqlalchemy.select(DBSupportTicket.id).where(DBSupportTicket.category == category)
+    db_support_ticket_ids = session.execute(query).scalars().all()
+
+    if db_support_ticket_ids is None:
+        return []
+
+    return [db_support_ticket_id for db_support_ticket_id in db_support_ticket_ids]
 
 
 def create_db(support_ticket: SupportTicketCreate, session: Session) -> DBSupportTicket:

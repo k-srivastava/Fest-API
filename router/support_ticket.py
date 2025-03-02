@@ -5,10 +5,16 @@ from starlette.exceptions import HTTPException
 from typing_extensions import Optional
 
 from db import core, support_ticket
-from db.core import DBNotFoundError
+from db.core import DBNotFoundError, SupportTicketCategory
 from db.support_ticket import SupportTicketCreate, SupportTicket, SupportTicketUpdate
 
 router = APIRouter(prefix='/support-ticket', tags=['support_ticket'])
+
+
+@router.get('/')
+def read_all_support_tickets(db: Session = Depends(core.get_db)) -> list[SupportTicket]:
+    db_support_tickets = support_ticket.read_all_db(db)
+    return [SupportTicket.model_validate(db_support_ticket) for db_support_ticket in db_support_tickets]
 
 
 @router.post('/')
@@ -17,6 +23,12 @@ def create_support_ticket(
 ) -> SupportTicket:
     db_support_ticket = support_ticket.create_db(support_ticket_create, db)
     return SupportTicket.model_validate(db_support_ticket)
+
+
+@router.get('/ids')
+def read_support_ticket_by_category(category: SupportTicketCategory, db: Session = Depends(core.get_db)) -> list[str]:
+    db_support_ticket_ids = support_ticket.read_all_by_category(category, db)
+    return db_support_ticket_ids
 
 
 @router.get('/{support_ticket_id}')
