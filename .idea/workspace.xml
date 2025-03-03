@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Moved main DB from SQLite to Postgres.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added an endpoint that generates a QR with the user's ID.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,89 +56,89 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "FastAPI.Fest-API.executor": "Run",
-    "HTTP Request.All in generated-requests.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.generated-requests | #12.executor": "Run",
-    "HTTP Request.generated-requests | #2.executor": "Run",
-    "HTTP Request.generated-requests | #3.executor": "Run",
-    "HTTP Request.generated-requests | #4.executor": "Run",
-    "HTTP Request.generated-requests | #7.executor": "Run",
-    "HTTP Request.generated-requests | Add another support ticket..executor": "Run",
-    "HTTP Request.generated-requests | Add organizer to event..executor": "Run",
-    "HTTP Request.generated-requests | Add support tickets..executor": "Run",
-    "HTTP Request.generated-requests | Add the team to an event..executor": "Run",
-    "HTTP Request.generated-requests | All Passes.executor": "Run",
-    "HTTP Request.generated-requests | All Sports Pass.executor": "Run",
-    "HTTP Request.generated-requests | All-Sports Pass.executor": "Run",
-    "HTTP Request.generated-requests | Associate Batman with two events..executor": "Run",
-    "HTTP Request.generated-requests | Check here.executor": "Run",
-    "HTTP Request.generated-requests | Create a new team..executor": "Run",
-    "HTTP Request.generated-requests | Create a new team.executor": "Run",
-    "HTTP Request.generated-requests | Create an event that does not need a pass..executor": "Run",
-    "HTTP Request.generated-requests | Delete Batman.executor": "Run",
-    "HTTP Request.generated-requests | Email ID to User ID of John Smith User.executor": "Run",
-    "HTTP Request.generated-requests | Events Accessible by All-Sports Pass.executor": "Run",
-    "HTTP Request.generated-requests | Events Registered by Sports Champs.executor": "Run",
-    "HTTP Request.generated-requests | Get support ticket..executor": "Run",
-    "HTTP Request.generated-requests | John Smith User.executor": "Run",
-    "HTTP Request.generated-requests | John Smith.executor": "Run",
-    "HTTP Request.generated-requests | Passes Used to Acess Track&Field Event.executor": "Run",
-    "HTTP Request.generated-requests | Retrieve both ways..executor": "Run",
-    "HTTP Request.generated-requests | Sports Champs Team.executor": "Run",
-    "HTTP Request.generated-requests | Teams Created by John Smith User.executor": "Run",
-    "HTTP Request.generated-requests | Teams Registered for Track&Field Event.executor": "Run",
-    "HTTP Request.generated-requests | Track&Field Event.executor": "Run",
-    "HTTP Request.generated-requests | Users Part of Sports Champs Team.executor": "Run",
-    "HTTP Request.test_main | Add the team to the event..executor": "Run",
-    "HTTP Request.test_main | Add user to team..executor": "Run",
-    "HTTP Request.test_main | Create a pass..executor": "Run",
-    "HTTP Request.test_main | Create a team..executor": "Run",
-    "HTTP Request.test_main | Create a user..executor": "Run",
-    "HTTP Request.test_main | Create an event..executor": "Run",
-    "HTTP Request.test_main | Delete the pass now..executor": "Run",
-    "HTTP Request.test_main | Delete the team now..executor": "Run",
-    "HTTP Request.test_main | Delete the team..executor": "Run",
-    "HTTP Request.test_main | Delete the user now..executor": "Run",
-    "Python tests.Python Test Suite.executor": "Run",
-    "Python tests.Python tests for pass_.PassTest.executor": "Run",
-    "Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor": "Run",
-    "Python tests.Python tests for pass_.test_create_pass.executor": "Run",
-    "Python tests.Python tests for pass_tests.PassTestNew.executor": "Run",
-    "Python tests.Python tests for team.TeamTest.executor": "Run",
-    "Python tests.Python tests for user.UserTest.executor": "Run",
-    "Python tests.Python tests for user.UserTest.test_1_create_user.executor": "Run",
-    "Python tests.Python tests in test_suite.py.executor": "Run",
-    "Python tests.Test Suite.executor": "Run",
-    "Python tests.pytest in pass_.py.executor": "Run",
-    "Python tests.pytest in test_api.py.executor": "Run",
-    "Python.test_app.executor": "Run",
-    "Python.test_suite.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "SQL-Insert-Multirow.sql.groovy",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/kshit/Developer/Python/Fest-API/tests/test_suite.py",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;FastAPI.Fest-API.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.All in generated-requests.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #12.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Add another support ticket..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Add organizer to event..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Add support tickets..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Add the team to an event..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | All Passes.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | All Sports Pass.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | All-Sports Pass.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Associate Batman with two events..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Check here.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Create a new team..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Create a new team.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Create an event that does not need a pass..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Delete Batman.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Email ID to User ID of John Smith User.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Events Accessible by All-Sports Pass.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Events Registered by Sports Champs.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Get support ticket..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | John Smith User.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | John Smith.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Passes Used to Acess Track&amp;Field Event.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Retrieve both ways..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Sports Champs Team.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Teams Created by John Smith User.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Teams Registered for Track&amp;Field Event.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Track&amp;Field Event.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | Users Part of Sports Champs Team.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Add the team to the event..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Add user to team..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Create a pass..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Create a team..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Create a user..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Create an event..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Delete the pass now..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Delete the team now..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Delete the team..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Delete the user now..executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python Test Suite.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.PassTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_.test_create_pass.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for pass_tests.PassTestNew.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for team.TeamTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for user.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for user.UserTest.test_1_create_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_suite.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Test Suite.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in pass_.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_api.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_suite.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL-Insert-Multirow.sql.groovy&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kshit/Developer/Python/Fest-API/tests/test_suite.py&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="FastAPI.Fest-API">
     <configuration name="generated-requests | Add another support ticket." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Add another support ticket." index="14" runType="Run single request">
       <method v="2" />
@@ -191,12 +189,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | John Smith User" />
       <item itemvalue="HTTP Request.generated-requests | Add another support ticket." />
       <item itemvalue="HTTP Request.generated-requests | Add support tickets." />
       <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
+      <item itemvalue="HTTP Request.generated-requests | John Smith User" />
       <item itemvalue="HTTP Request.test_main | Delete the team." />
+      <item itemvalue="FastAPI.Fest-API" />
       <item itemvalue="Python tests.Test Suite" />
     </list>
     <recent_temporary>
@@ -266,15 +264,8 @@
       <workItem from="1740804315902" duration="24000" />
       <workItem from="1740895752883" duration="4511000" />
       <workItem from="1740936081327" duration="7000" />
-      <workItem from="1741024233184" duration="2401000" />
-    </task>
-    <task id="LOCAL-00007" summary="Removed unnecessary file runner.">
-      <option name="closed" value="true" />
-      <created>1737690886549</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1737690886549</updated>
+      <workItem from="1741024233184" duration="2528000" />
+      <workItem from="1741026931925" duration="289000" />
     </task>
     <task id="LOCAL-00008" summary="Created a test suite for all tests.">
       <option name="closed" value="true" />
@@ -660,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741025782519</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Added an endpoint that generates a QR with the user's ID.">
+      <option name="closed" value="true" />
+      <created>1741026733769</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1741026733769</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +690,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Updated environment variables in the workflow." />
     <MESSAGE value="Added caching for pip dependencies." />
     <MESSAGE value="Created a README." />
     <MESSAGE value="Updated the README." />
@@ -716,14 +714,15 @@
     <MESSAGE value="Added a support ticket model with endpoints and tests." />
     <MESSAGE value="Added endpoints to get all support tickets and get support tickets by category." />
     <MESSAGE value="Moved main DB from SQLite to Postgres." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved main DB from SQLite to Postgres." />
+    <MESSAGE value="Added an endpoint that generates a QR with the user's ID." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an endpoint that generates a QR with the user's ID." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741026511087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741025768287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741026725615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740408576140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

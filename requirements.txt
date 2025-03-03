@@ -4,5 +4,6 @@ pydantic~=2.10.6
 segno~=1.6.1
 fastapi~=0.115.8
 starlette~=0.45.3
+httpx~=0.28.1
 typing_extensions~=4.12.2
 psycopg2~=2.9.10
