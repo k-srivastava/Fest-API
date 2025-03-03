@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
-from starlette.responses import JSONResponse
+from starlette.responses import JSONResponse, StreamingResponse, Response
 
 from db import core, event, user, pass_, team, associations
 from db.core import DBNotFoundError
@@ -40,6 +40,17 @@ def read_user(user_id: str, db: Session = Depends(core.get_db)) -> User:
         raise HTTPException(status_code=404, detail=str(e))
 
     return User.model_validate(db_user)
+
+
+@router.get('/{user_id}/qr_code')
+def read_user_qr_code(user_id: str, db: Session = Depends(core.get_db)) -> Response:
+    try:
+        bytes_stream = user.create_qr_code(user_id, db)
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return StreamingResponse(bytes_stream, media_type='image/png')
 
 
 @router.get('/{user_id}/pass')

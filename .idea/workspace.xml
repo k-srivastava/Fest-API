@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added endpoints to get all support tickets and get support tickets by category.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Moved main DB from SQLite to Postgres.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +151,7 @@
     <configuration name="generated-requests | Get support ticket." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Get support ticket." index="14" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test_main | Create an event." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Create an event." index="3" runType="Run single request">
+    <configuration name="generated-requests | John Smith User" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="John Smith User" index="11" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="test_main | Delete the team." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Delete the team." index="5" runType="Run single request">
@@ -191,20 +192,20 @@
     </configuration>
     <list>
       <item itemvalue="FastAPI.Fest-API" />
+      <item itemvalue="HTTP Request.generated-requests | John Smith User" />
       <item itemvalue="HTTP Request.generated-requests | Add another support ticket." />
       <item itemvalue="HTTP Request.generated-requests | Add support tickets." />
       <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
-      <item itemvalue="HTTP Request.test_main | Create an event." />
       <item itemvalue="HTTP Request.test_main | Delete the team." />
       <item itemvalue="Python tests.Test Suite" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.generated-requests | John Smith User" />
         <item itemvalue="HTTP Request.generated-requests | Add another support ticket." />
         <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
         <item itemvalue="HTTP Request.generated-requests | Add support tickets." />
         <item itemvalue="HTTP Request.test_main | Delete the team." />
-        <item itemvalue="HTTP Request.test_main | Create an event." />
       </list>
     </recent_temporary>
   </component>
@@ -265,15 +266,7 @@
       <workItem from="1740804315902" duration="24000" />
       <workItem from="1740895752883" duration="4511000" />
       <workItem from="1740936081327" duration="7000" />
-      <workItem from="1741024233184" duration="1439000" />
-    </task>
-    <task id="LOCAL-00006" summary="Removed bug that would not update fields with values set to None.">
-      <option name="closed" value="true" />
-      <created>1737690806232</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1737690806232</updated>
+      <workItem from="1741024233184" duration="2401000" />
     </task>
     <task id="LOCAL-00007" summary="Removed unnecessary file runner.">
       <option name="closed" value="true" />
@@ -659,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740897563777</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Moved main DB from SQLite to Postgres.">
+      <option name="closed" value="true" />
+      <created>1741025782518</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1741025782519</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +691,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Fixed typo." />
     <MESSAGE value="Updated environment variables in the workflow." />
     <MESSAGE value="Added caching for pip dependencies." />
     <MESSAGE value="Created a README." />
@@ -715,14 +715,15 @@
     <MESSAGE value="Updated type definition error." />
     <MESSAGE value="Added a support ticket model with endpoints and tests." />
     <MESSAGE value="Added endpoints to get all support tickets and get support tickets by category." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added endpoints to get all support tickets and get support tickets by category." />
+    <MESSAGE value="Moved main DB from SQLite to Postgres." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved main DB from SQLite to Postgres." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741025284686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741025649534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741026511087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741025768287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740408576140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

@@ -1,6 +1,8 @@
 """Fest user and mapping."""
+from io import BytesIO
 from typing import Optional
 
+import segno
 import sqlalchemy
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -158,6 +160,34 @@ def create_db(user: UserCreate, session: Session) -> DBUser:
     :rtype: DBUser
     """
     return operations.create_db(user, DBUser, session)
+
+
+def create_qr_code(user_id: str, session: Session) -> BytesIO:
+    """
+    Generate a QR code that contains the user's primary key.
+
+    :param user_id: ID of the user whose QR code is to be generated.
+    :type user_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: Byte stream containing a QR code.
+    :rtype: BytesIO
+
+    :raise DBNotFoundError: User does not exist.
+    """
+    db_user: Optional[DBUser] = session.get(DBUser, user_id)
+
+    if db_user is None:
+        raise DBNotFoundError(f'User with ID {user_id} not found.')
+
+    qr_code = segno.make_qr(user_id)
+    image_stream = BytesIO()
+
+    qr_code.save(image_stream, kind='png')
+    image_stream.seek(0)
+
+    return image_stream
 
 
 def update_db(user_id: str, user: UserUpdate, session: Session) -> DBUser:
