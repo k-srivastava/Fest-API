@@ -9,7 +9,7 @@ from typing import Optional, Generator
 
 import dotenv
 import sqlalchemy
-from sqlalchemy import Enum as SQLAlchemyEnum, Numeric, ForeignKey, orm, String, event as sql_alchemy_event
+from sqlalchemy import Enum as SQLAlchemyEnum, Numeric, ForeignKey, orm, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session
 
 
@@ -139,23 +139,10 @@ class DBNotFoundError(Exception):
     pass
 
 
-def pragma_on_connect(db_api_connection, _connection_record):
-    """
-    Enable the foreign key support in SQLite to work with cascade deletes.
-    Undocumented function to be used on engine 'connect' event in SQLAlchemy.
-
-    :param db_api_connection: Database connection.
-    :param _connection_record: Database connection record.
-    """
-    db_api_connection.execute('PRAGMA foreign_keys=ON')
-
-
 dotenv.load_dotenv()
 
 _database_url = os.getenv('DATABASE_URL')
 _engine = sqlalchemy.create_engine(_database_url)
-
-sql_alchemy_event.listen(_engine, 'connect', pragma_on_connect)
 
 _session_local = orm.sessionmaker(autocommit=False, autoflush=False, bind=_engine)
 DBBase.metadata.create_all(bind=_engine)

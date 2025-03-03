@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added a support ticket model with endpoints and tests.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added endpoints to get all support tickets and get support tickets by category.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/support_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/support_ticket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/support_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/support_ticket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,8 +131,13 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="FastAPI.Fest-API">
@@ -195,8 +200,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
         <item itemvalue="HTTP Request.generated-requests | Add another support ticket." />
+        <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
         <item itemvalue="HTTP Request.generated-requests | Add support tickets." />
         <item itemvalue="HTTP Request.test_main | Delete the team." />
         <item itemvalue="HTTP Request.test_main | Create an event." />
@@ -258,15 +263,9 @@
       <workItem from="1740566619297" duration="2425000" />
       <workItem from="1740658756896" duration="941000" />
       <workItem from="1740804315902" duration="24000" />
-      <workItem from="1740895752883" duration="1757000" />
-    </task>
-    <task id="LOCAL-00005" summary="Added passes.">
-      <option name="closed" value="true" />
-      <created>1735546256006</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1735546256006</updated>
+      <workItem from="1740895752883" duration="4511000" />
+      <workItem from="1740936081327" duration="7000" />
+      <workItem from="1741024233184" duration="1439000" />
     </task>
     <task id="LOCAL-00006" summary="Removed bug that would not update fields with values set to None.">
       <option name="closed" value="true" />
@@ -652,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740566492578</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Added endpoints to get all support tickets and get support tickets by category.">
+      <option name="closed" value="true" />
+      <created>1740897563776</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1740897563777</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +690,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Updated requirements.txt." />
     <MESSAGE value="Fixed typo." />
     <MESSAGE value="Updated environment variables in the workflow." />
     <MESSAGE value="Added caching for pip dependencies." />
@@ -708,14 +714,15 @@
     <MESSAGE value="Added cascade delete to all foreign key references." />
     <MESSAGE value="Updated type definition error." />
     <MESSAGE value="Added a support ticket model with endpoints and tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a support ticket model with endpoints and tests." />
+    <MESSAGE value="Added endpoints to get all support tickets and get support tickets by category." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added endpoints to get all support tickets and get support tickets by category." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1740897463196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1740566504232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741025284686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741025649534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740408576140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
