@@ -4,7 +4,8 @@ from typing import Optional
 import sqlalchemy
 from sqlalchemy.orm import Session
 
-from db.core import DBPassEvent, DBTeamUser, DBTeamEvent, DBTeam, DBNotFoundError, DBUser, DBValidationError
+from db.core import DBPassEvent, DBTeamUser, DBTeamEvent, DBTeam, DBNotFoundError, DBUser, DBValidationError, \
+    DBUserEvent
 
 
 def _validate_user_for_event(user_id: str, event_id: str, session: Session) -> bool:
@@ -351,6 +352,7 @@ def create_team_event_db(
     return new_id
 
 
+# noinspection DuplicatedCode
 def delete_team_event_db(team_id: str, event_id: str, session: Session) -> str:
     """
     Delete an existing team-event association in the DB.
@@ -369,6 +371,103 @@ def delete_team_event_db(team_id: str, event_id: str, session: Session) -> str:
         sqlalchemy.delete(DBTeamEvent)
         .where(DBTeamEvent.team_id == team_id, DBTeamEvent.event_id == event_id)
         .returning(DBTeamEvent.id)
+    )
+
+    result = session.execute(query)
+    deleted_id = result.scalar()
+    session.commit()
+
+    return deleted_id
+
+
+def read_user_events_db(user_id: str, session: Session) -> list[str]:
+    """
+    Read a user's events from the DB via its primary key.
+
+    :param user_id: ID of the user whose events are to be read.
+    :type user_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: List of event primary keys, if any, else empty list.
+    :rtype: list[str]
+    """
+    query = sqlalchemy.select(DBUserEvent.event_id).where(DBUserEvent.user_id == user_id)
+    event_ids = session.execute(query).scalars().all()
+
+    return [event_id for event_id in event_ids] if event_ids is not None else []
+
+
+def read_event_users_db(event_id: str, session: Session) -> list[str]:
+    """
+    Read an event's registered users from the DB via its primary key.
+
+    :param event_id: ID of the event whose registered users are to be read.
+    :type event_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: List of registered user primary keys, if any, else empty list.
+    :rtype: list[str]
+    """
+    query = sqlalchemy.select(DBUserEvent.user_id).where(DBUserEvent.event_id == event_id)
+    user_ids = session.execute(query).scalars().all()
+
+    return [user_id for user_id in user_ids] if user_ids is not None else []
+
+
+def create_user_event_db(user_id: str, event_id: str, validate: bool, session: Session) -> str:
+    """
+    Create a new user-event association in the DB.
+
+    :param user_id: User ID to associate with the event.
+    :type user_id: str
+    :param event_id: Event ID to associate with the user.
+    :type event_id: str
+    :param validate: Validate whether the user is eligible for the event.
+    :type validate: bool
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: New user-event association ID.
+    :rtype: str
+
+    :raise DBNotFoundError: User does not have a pass.
+    :raise DBValidationError: User is not eligible for the event.
+    """
+    if validate:
+        if not _validate_user_for_event(user_id, event_id, session):
+            raise DBValidationError(
+                f'User with ID {user_id} cannot be added to event with ID {event_id} because of an invalid pass.'
+            )
+
+    query = sqlalchemy.insert(DBUserEvent).values(user_id=user_id, event_id=event_id).returning(DBUserEvent.id)
+
+    result = session.execute(query)
+    new_id = result.scalar()
+    session.commit()
+
+    return new_id
+
+
+def delete_user_event_db(user_id: str, event_id: str, session: Session) -> str:
+    """
+    Delete an existing user-event association in the DB.
+
+    :param user_id: User ID to disassociate from the event.
+    :type user_id: str
+    :param event_id: Event ID to disassociate from the user.
+    :type event_id: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: Deleted user-event association ID.
+    :rtype: str
+    """
+    query = (
+        sqlalchemy.delete(DBUserEvent)
+        .where(DBUserEvent.user_id == user_id, DBUserEvent.event_id == event_id)
+        .returning(DBUserEvent.id)
     )
 
     result = session.execute(query)

@@ -117,6 +117,40 @@ def delete_user_team(user_id: str, team_id: str, db: Session = Depends(core.get_
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
+@router.get('/{user_id}/events')
+def read_user_events(user_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
+    try:
+        event_ids = associations.read_user_events_db(user_id, db)
+        db_events = [event.read_db(event_id, db) for event_id in event_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [Event.model_validate(db_event) for db_event in db_events]
+
+
+@router.post('/{user_id}/events/{event_id}')
+def create_user_event(
+        user_id: str, event_id: str, validate: bool = True, db: Session = Depends(core.get_db)
+) -> JSONResponse:
+    try:
+        association_id = associations.create_user_event_db(user_id, event_id, validate, db)
+
+    except DBValidationError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.delete('/{user_id}/events/{event_id}')
+def delete_user_event(user_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.delete_user_event_db(user_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
 @router.patch('/{user_id}')
 def update_user(user_id: str, user_update: UserUpdate, db: Session = Depends(core.get_db)) -> User:
     try:

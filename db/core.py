@@ -135,6 +135,14 @@ class DBTeamEvent(DBBase):
     event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id', ondelete='CASCADE'))
 
 
+class DBUserEvent(DBBase):
+    """User and event association table. Use only for shows like pro-shows."""
+    __tablename__ = 'user_event'
+
+    user_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id', ondelete='CASCADE'))
+    event_id: Mapped[str] = orm.mapped_column(ForeignKey('event.id', ondelete='CASCADE'))
+
+
 class DBNotFoundError(Exception):
     pass
 

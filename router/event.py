@@ -6,11 +6,12 @@ from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
-from db import associations, core, event, pass_, team
+from db import associations, core, event, pass_, team, user
 from db.core import DBNotFoundError, DBValidationError
 from db.event import EventCreate, Event, EventUpdate
 from db.pass_ import Pass
 from db.team import Team
+from db.user import User
 
 router = APIRouter(prefix='/event', tags=['event'])
 
@@ -94,6 +95,40 @@ def create_event_team(
 @router.delete('/{event_id}/teams/{team_id}')
 def delete_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_team_event_db(team_id, event_id, db)
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.get('/{event_id}/users')
+def read_event_users(event_id: str, db: Session = Depends(core.get_db)) -> list[User]:
+    try:
+        user_ids = associations.read_event_users_db(event_id, db)
+        db_users = [user.read_db(user_id, db) for user_id in user_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return [User.model_validate(db_user) for db_user in db_users]
+
+
+@router.post('/{event_id}/users/{user_id}')
+def create_event_user(
+        event_id: str, user_id: str, validate: bool = True, db: Session = Depends(core.get_db)
+) -> JSONResponse:
+    try:
+        association_id = associations.create_user_event_db(user_id, event_id, validate, db)
+
+    except DBValidationError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return JSONResponse(content={'id': association_id}, status_code=200)
+
+
+@router.delete('/{event_id}/users/{user_id}')
+def delete_event_user(event_id: str, user_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+    association_id = associations.delete_user_event_db(user_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
