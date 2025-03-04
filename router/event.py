@@ -1,11 +1,13 @@
 """Route for all events at /event."""
+from typing import Optional
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
 from db import associations, core, event, pass_, team
-from db.core import DBNotFoundError
+from db.core import DBNotFoundError, DBValidationError
 from db.event import EventCreate, Event, EventUpdate
 from db.pass_ import Pass
 from db.team import Team
@@ -73,8 +75,19 @@ def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) -> list[
 
 
 @router.post('/{event_id}/teams/{team_id}')
-def create_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
-    association_id = associations.create_team_event_db(team_id, event_id, db)
+def create_event_team(
+        event_id: str, team_id: str, validate: bool = True, validate_host_only: Optional[bool] = False,
+        db: Session = Depends(core.get_db)
+) -> JSONResponse:
+    try:
+        association_id = associations.create_team_event_db(team_id, event_id, validate, validate_host_only, db)
+
+    except DBValidationError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 

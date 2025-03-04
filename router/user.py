@@ -5,7 +5,7 @@ from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse, StreamingResponse, Response
 
 from db import core, event, user, pass_, team, associations
-from db.core import DBNotFoundError
+from db.core import DBNotFoundError, DBValidationError
 from db.event import Event
 from db.pass_ import Pass
 from db.team import Team
@@ -94,8 +94,17 @@ def read_user_teams(user_id: str, host: bool, db: Session = Depends(core.get_db)
 
 
 @router.post('/{user_id}/teams/{team_id}')
-def create_user_team(user_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
-    association_id = associations.create_team_user_db(team_id, user_id, db)
+def create_user_team(user_id: str, team_id: str, validate: bool = True,
+                     db: Session = Depends(core.get_db)) -> JSONResponse:
+    try:
+        association_id = associations.create_team_user_db(team_id, user_id, validate, db)
+
+    except DBValidationError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 

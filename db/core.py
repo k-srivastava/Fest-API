@@ -139,6 +139,10 @@ class DBNotFoundError(Exception):
     pass
 
 
+class DBValidationError(Exception):
+    pass
+
+
 dotenv.load_dotenv()
 
 _database_url = os.getenv('DATABASE_URL')

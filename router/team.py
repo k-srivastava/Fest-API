@@ -1,4 +1,6 @@
 """Route for all teams at /team."""
+from typing import Optional
+
 from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
@@ -6,7 +8,7 @@ from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
 from db import associations, core, event, team, user
-from db.core import DBNotFoundError
+from db.core import DBNotFoundError, DBValidationError
 from db.event import Event
 from db.team import TeamCreate, Team, TeamUpdate
 from db.user import User
@@ -44,8 +46,19 @@ def read_team_events(team_id: str, db: Session = Depends(core.get_db)) -> list[E
 
 
 @router.post('/{team_id}/events/{event_id}')
-def create_team_event(team_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
-    association_id = associations.create_team_event_db(team_id, event_id, db)
+def create_team_event(
+        team_id: str, event_id: str, validate: bool = True, validate_host_only: Optional[bool] = False,
+        db: Session = Depends(core.get_db)
+) -> JSONResponse:
+    try:
+        association_id = associations.create_team_event_db(team_id, event_id, validate, validate_host_only, db)
+
+    except DBValidationError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
@@ -68,8 +81,17 @@ def read_team_users(team_id: str, db: Session = Depends(core.get_db)) -> list[Us
 
 
 @router.post('/{team_id}/users/{user_id}')
-def create_team_user(team_id: str, user_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
-    association_id = associations.create_team_user_db(team_id, user_id, db)
+def create_team_user(team_id: str, user_id: str, validate: bool = True,
+                     db: Session = Depends(core.get_db)) -> JSONResponse:
+    try:
+        association_id = associations.create_team_user_db(team_id, user_id, validate, db)
+
+    except DBValidationError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
