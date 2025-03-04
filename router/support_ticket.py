@@ -25,9 +25,15 @@ def create_support_ticket(
     return SupportTicket.model_validate(db_support_ticket)
 
 
-@router.get('/ids')
+@router.get('/category/ids')
 def read_support_ticket_by_category(category: SupportTicketCategory, db: Session = Depends(core.get_db)) -> list[str]:
     db_support_ticket_ids = support_ticket.read_all_by_category(category, db)
+    return db_support_ticket_ids
+
+
+@router.get('/email_address/ids')
+def read_support_ticket_by_email_address(email_address: str, db: Session = Depends(core.get_db)) -> list[str]:
+    db_support_ticket_ids = support_ticket.read_all_by_email_address(email_address, db)
     return db_support_ticket_ids
 
 

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added validation checks for teams and users in events.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added an association for users and events for special events like shows.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/associations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/support_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/support_ticket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/support_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/support_ticket.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +140,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Python tests.Test Suite">
+  <component name="RunManager" selected="FastAPI.Fest-API">
     <configuration name="generated-requests | Add another support ticket." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Add another support ticket." index="14" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -202,9 +200,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
         <item itemvalue="HTTP Request.generated-requests | John Smith User" />
         <item itemvalue="HTTP Request.generated-requests | Add another support ticket." />
-        <item itemvalue="HTTP Request.generated-requests | Get support ticket." />
         <item itemvalue="HTTP Request.generated-requests | Add support tickets." />
         <item itemvalue="HTTP Request.test_main | Delete the team." />
       </list>
@@ -269,15 +267,7 @@
       <workItem from="1740936081327" duration="7000" />
       <workItem from="1741024233184" duration="2528000" />
       <workItem from="1741026931925" duration="373000" />
-      <workItem from="1741068222819" duration="5842000" />
-    </task>
-    <task id="LOCAL-00010" summary="Added user tests to the testing suite.">
-      <option name="closed" value="true" />
-      <created>1737691356378</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1737691356378</updated>
+      <workItem from="1741068222819" duration="6808000" />
     </task>
     <task id="LOCAL-00011" summary="Added user routing to the main app.">
       <option name="closed" value="true" />
@@ -663,7 +653,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741073538294</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Added an association for users and events for special events like shows.">
+      <option name="closed" value="true" />
+      <created>1741087504916</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1741087504916</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,7 +692,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Updated the README." />
     <MESSAGE value="Swapped the order of columns in the table for logical consistency." />
     <MESSAGE value="Swapped the order of columns for consistency." />
     <MESSAGE value="Added a team to event many-to-many relation." />
@@ -719,14 +716,15 @@
     <MESSAGE value="Added an endpoint that generates a QR with the user's ID." />
     <MESSAGE value="Updated requirements.txt." />
     <MESSAGE value="Added validation checks for teams and users in events." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added validation checks for teams and users in events." />
+    <MESSAGE value="Added an association for users and events for special events like shows." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an association for users and events for special events like shows." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741026511087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741070819419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741088329305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741087496225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740408576140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
