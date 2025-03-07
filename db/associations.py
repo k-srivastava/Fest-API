@@ -333,9 +333,6 @@ def create_team_event_db(
     :raise DBNotFoundError: Team does not have a host or team members do not have a pass.
     :raise DBValidationError: Team is not eligible for the event.
     """
-    # Validation of host should only be provided if validation must occur in the first place.
-    assert validate_host_only is None or validate_host_only is True
-
     if validate:
         if not _validate_team_users_for_event(team_id, event_id, validate_host_only, session):
             raise DBValidationError(
