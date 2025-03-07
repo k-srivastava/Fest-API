@@ -24,13 +24,17 @@ def _validate_user_for_event(user_id: str, event_id: str, session: Session) -> b
 
     :raise DBNotFoundError: User does not have a pass.
     """
+    event_passes = read_event_passes_db(event_id, session)
+    if len(event_passes) == 0:
+        return True
+
     query = sqlalchemy.select(DBUser.pass_id).where(DBUser.id == user_id)
     user_pass_id = session.execute(query).scalar()
 
     if user_pass_id is None:
         raise DBNotFoundError(f'User with ID {user_id} does not have a pass.')
 
-    return user_pass_id in read_event_passes_db(event_id, session)
+    return user_pass_id in event_passes
 
 
 def _validate_team_users_for_event(team_id: str, event_id: str, host_only_access: bool, session: Session) -> bool:
@@ -57,13 +61,16 @@ def _validate_team_users_for_event(team_id: str, event_id: str, host_only_access
     if host_id is None:
         raise DBNotFoundError(f'Team with ID {team_id} does not have a host.')
 
+    event_passes = read_event_passes_db(event_id, session)
+    if len(event_passes) == 0:
+        return True
+
     query = sqlalchemy.select(DBUser.pass_id).where(DBUser.id == host_id)
     host_pass_id = session.execute(query).scalar()
 
     if host_pass_id is None:
         raise DBNotFoundError(f'Host with ID {host_id} of team with ID {team_id} does not have a pass.')
 
-    event_passes = read_event_passes_db(event_id, session)
     host_pass_valid = host_pass_id in event_passes
 
     if host_only_access:
