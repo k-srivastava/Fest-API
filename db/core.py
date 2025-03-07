@@ -1,6 +1,7 @@
 """Generate the DB schema and SQLAlchemy session."""
 import base64
 import os
+import string
 import uuid
 from datetime import datetime
 from decimal import Decimal
@@ -22,6 +23,34 @@ def _generate_base64_uuid() -> str:
     """
     raw_uuid = uuid.uuid4()
     return base64.urlsafe_b64encode(raw_uuid.bytes).decode('utf-8').rstrip('=')
+
+
+def _generate_shortened_user_id() -> str:
+    """
+    Generate a shorted ID for use as primary keys only on certain human-readable IDs in the database. Avoid using for
+    any ID that does not need to be directly exposed as it is not as guaranteed unique as UUIDv4.
+
+    :return: Shorted ID.
+    :rtype: str
+    """
+    base_62_alphabet = string.digits + string.ascii_letters
+
+    def int_to_base_62(number: int) -> str:
+        if number == 0:
+            return base_62_alphabet[0]
+
+        base62_string = []
+        while number:
+            number, remainder = divmod(number, len(base_62_alphabet))
+            base62_string.append(base_62_alphabet[remainder])
+
+        return ''.join(reversed(base62_string))
+
+    raw_uuid = uuid.uuid4()
+    uuid_bytes = raw_uuid.bytes[:6]
+    uuid_int = int.from_bytes(uuid_bytes, 'big')
+
+    return int_to_base_62(uuid_int)
 
 
 class EventType(Enum):
@@ -94,6 +123,7 @@ class DBUser(DBBase):
     phone_number: Mapped[Optional[str]]
     mahe_registration_number: Mapped[Optional[int]]
     pass_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('pass.id', ondelete='CASCADE'))
+    id: Mapped[str] = orm.mapped_column(String(22), primary_key=True, default=_generate_shortened_user_id, index=True)
 
 
 class DBSupportTicket(DBBase):
