@@ -16,6 +16,12 @@ from db.user import User
 router = APIRouter(prefix='/team', tags=['team'])
 
 
+@router.get('/')
+def read_all_teams(db: Session = Depends(core.get_db)) -> list[Team]:
+    db_teams = team.read_all_db(db)
+    return [Team.model_validate(db_team) for db_team in db_teams]
+
+
 @router.post('/')
 def create_team(team_create: TeamCreate, db: Session = Depends(core.get_db)) -> Team:
     db_team = team.create_db(team_create, db)

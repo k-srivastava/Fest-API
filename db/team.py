@@ -54,6 +54,20 @@ def read_db(team_id: str, session: Session) -> DBTeam:
     return db_team
 
 
+def read_all_db(session: Session) -> list[DBTeam]:
+    """
+    Read all teams from the DB.
+
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: All team DB instances.
+    :rtype: list[DBTeam]
+    """
+    # noinspection PyTypeChecker
+    return session.query(DBTeam).all()
+
+
 def create_db(team: TeamCreate, session: Session) -> DBTeam:
     """
     Create a new team in the DB.
