@@ -109,7 +109,7 @@ class DBTeam(DBBase):
     """Team table."""
     __tablename__ = 'team'
 
-    name: Mapped[str] = orm.mapped_column(unique=True)
+    name: Mapped[str]
     host_id: Mapped[str] = orm.mapped_column(ForeignKey('user.id', ondelete='CASCADE'))
 
 
@@ -121,7 +121,7 @@ class DBUser(DBBase):
     last_name: Mapped[str]
     email_address: Mapped[str] = orm.mapped_column(unique=True)
     phone_number: Mapped[Optional[str]]
-    mahe_registration_number: Mapped[Optional[int]]
+    mahe_registration_number: Mapped[Optional[int]] = orm.mapped_column(unique=True)
     pass_id: Mapped[Optional[str]] = orm.mapped_column(ForeignKey('pass.id', ondelete='CASCADE'))
     id: Mapped[str] = orm.mapped_column(String(22), primary_key=True, default=_generate_shortened_user_id, index=True)
 
