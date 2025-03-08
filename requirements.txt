@@ -8,3 +8,4 @@ httpx~=0.28.1
 typing_extensions~=4.12.2
 psycopg2~=2.9.10
 hypercorn~=0.17.3
+alembic~=1.15.1

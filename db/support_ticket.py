@@ -21,6 +21,7 @@ class _SupportTicketBase(BaseModel):
     email_address: Optional[str]
     phone_number: Optional[str]
     solved_email_address: Optional[str]
+    comment: Optional[str]
 
 
 class SupportTicket(_SupportTicketBase):
@@ -46,6 +47,7 @@ class SupportTicketUpdate(_SupportTicketBase):
     email_address: Optional[str] = None
     phone_number: Optional[str] = None
     solved_email_address: Optional[str] = None
+    comment: Optional[str] = None
 
 
 def read_db(support_ticket_id: str, session: Session) -> DBSupportTicket:

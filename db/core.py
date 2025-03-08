@@ -139,6 +139,7 @@ class DBSupportTicket(DBBase):
     email_address: Mapped[Optional[str]]
     phone_number: Mapped[Optional[str]]
     solved_email_address: Mapped[Optional[str]]
+    comment: Mapped[Optional[str]]
 
 
 class DBPassEvent(DBBase):
