@@ -103,6 +103,17 @@ class UserTest(unittest.TestCase):
         data = response.json()
         self.assertEqual(USER_ID, data)
 
+        response = self.client.get(
+            '/user/id-registration', params={'mahe_registration_number': USER_JSON['mahe_registration_number']},
+            headers=self.headers
+        )
+
+        self.assertEqual(200, response.status_code)
+        self.assertIsNotNone(response.text)
+
+        data = response.json()
+        self.assertEqual(USER_ID, data)
+
     def test_04_update_user(self):
         response = self.client.patch(
             f'/user/{USER_ID}/',

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added alembic for DB migrations.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Dropped unique key from team names and added unique key to MAHE registration number.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,10 +107,15 @@
     &quot;HTTP Request.test_main | Create a team..executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.test_main | Create a user..executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.test_main | Create an event..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Create passes..executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.test_main | Delete the pass now..executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.test_main | Delete the team now..executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.test_main | Delete the team..executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.test_main | Delete the user now..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Get Dalal's user ID..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Get all events..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Get all passes..executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | Get all teams..executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python Test Suite.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for pass_.PassTest.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for pass_.PassTest.test_1_create_pass.executor&quot;: &quot;Run&quot;,
@@ -145,20 +152,20 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="FastAPI.Fest-API">
-    <configuration name="generated-requests | Get all teams." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Get all teams." index="17" runType="Run single request">
+  <component name="RunManager" selected="Python tests.Test Suite">
+    <configuration name="test_main | Create passes." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Create passes." index="2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | Make many users." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Make many users." index="16" runType="Run single request">
+    <configuration name="test_main | Get Dalal's user ID." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Get Dalal's user ID." index="3" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test_main | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="#1" runType="Run single request">
+    <configuration name="test_main | Get all events." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Get all events." index="4" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test_main | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="#2" index="2" runType="Run single request">
+    <configuration name="test_main | Get all passes." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Get all passes." index="5" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test_main | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="#3" index="3" runType="Run single request">
+    <configuration name="test_main | Get all teams." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Get all teams." index="4" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Fest-API" type="Python.FastAPI">
@@ -196,20 +203,20 @@
     </configuration>
     <list>
       <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | Get all teams." />
-      <item itemvalue="HTTP Request.generated-requests | Make many users." />
-      <item itemvalue="HTTP Request.test_main | #1" />
-      <item itemvalue="HTTP Request.test_main | #2" />
-      <item itemvalue="HTTP Request.test_main | #3" />
+      <item itemvalue="HTTP Request.test_main | Get Dalal's user ID." />
+      <item itemvalue="HTTP Request.test_main | Get all events." />
+      <item itemvalue="HTTP Request.test_main | Get all passes." />
+      <item itemvalue="HTTP Request.test_main | Get all teams." />
+      <item itemvalue="HTTP Request.test_main | Create passes." />
       <item itemvalue="Python tests.Test Suite" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | Get all teams." />
-        <item itemvalue="HTTP Request.generated-requests | Make many users." />
-        <item itemvalue="HTTP Request.test_main | #3" />
-        <item itemvalue="HTTP Request.test_main | #2" />
-        <item itemvalue="HTTP Request.test_main | #1" />
+        <item itemvalue="HTTP Request.test_main | Get all passes." />
+        <item itemvalue="HTTP Request.test_main | Create passes." />
+        <item itemvalue="HTTP Request.test_main | Get all teams." />
+        <item itemvalue="HTTP Request.test_main | Get all events." />
+        <item itemvalue="HTTP Request.test_main | Get Dalal's user ID." />
       </list>
     </recent_temporary>
   </component>
@@ -276,15 +283,12 @@
       <workItem from="1741109412782" duration="9000" />
       <workItem from="1741239929475" duration="2891000" />
       <workItem from="1741325344565" duration="4092000" />
-      <workItem from="1741394495718" duration="2845000" />
-    </task>
-    <task id="LOCAL-00021" summary="Moved DB to use a Base-64 encoded UUIDv4 for primary keys.">
-      <option name="closed" value="true" />
-      <created>1739271828445</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1739271828445</updated>
+      <workItem from="1741394495718" duration="3645000" />
+      <workItem from="1741413143876" duration="16000" />
+      <workItem from="1741414786818" duration="1700000" />
+      <workItem from="1741423517469" duration="4000" />
+      <workItem from="1741429396010" duration="730000" />
+      <workItem from="1741444782961" duration="693000" />
     </task>
     <task id="LOCAL-00022" summary="Added an endpoint to get all events.">
       <option name="closed" value="true" />
@@ -670,7 +674,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741397085881</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Dropped unique key from team names and added unique key to MAHE registration number.">
+      <option name="closed" value="true" />
+      <created>1741397709676</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1741397709676</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -701,7 +713,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Added new event types for Solstice '25." />
     <MESSAGE value="Cleaned up main.py." />
     <MESSAGE value="Added a bearer token based authentication to all endpoints." />
     <MESSAGE value="Updated repository and actions with secret keys." />
@@ -726,14 +737,15 @@
     <MESSAGE value="Updated validation for events that do not require a pass." />
     <MESSAGE value="Updated support tickets to have a comment attribute." />
     <MESSAGE value="Added alembic for DB migrations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added alembic for DB migrations." />
+    <MESSAGE value="Dropped unique key from team names and added unique key to MAHE registration number." />
+    <option name="LAST_COMMIT_MESSAGE" value="Dropped unique key from team names and added unique key to MAHE registration number." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1741397585142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741397118602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1741445447273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1740408576140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

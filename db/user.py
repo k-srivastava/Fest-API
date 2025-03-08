@@ -65,7 +65,7 @@ def read_db(user_id: str, session: Session) -> DBUser:
     return db_user
 
 
-def read_id_db(user_email_address: str, session: Session) -> Optional[str]:
+def read_id_from_email_address_db(user_email_address: str, session: Session) -> Optional[str]:
     """
     Read a user's ID from the DB via their unique email address.
 
@@ -84,6 +84,33 @@ def read_id_db(user_email_address: str, session: Session) -> Optional[str]:
 
     if user_id is None:
         raise DBNotFoundError(f'User with email address {user_email_address} not found.')
+
+    return user_id
+
+
+def read_id_from_mahe_registration_number_db(mahe_registration_number: Optional[int], session: Session) -> Optional[
+    str]:
+    """
+    Read a user's ID from the DB via their unique MAHE registration number.
+
+    :param mahe_registration_number: MAHE registration of the user whose ID is to be read.
+    :type mahe_registration_number: Optional[int]
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: User ID primary key, if it exists, else None.
+    :rtype: Optional[str]
+
+    :raise DBNotFoundError: User does not exist.
+    """
+    if mahe_registration_number is None:
+        raise DBNotFoundError('MAHE registration number is required.')
+
+    query = sqlalchemy.select(DBUser.id).where(DBUser.mahe_registration_number == mahe_registration_number)
+    user_id = session.execute(query).scalar()
+
+    if user_id is None:
+        raise DBNotFoundError(f'User with MAHE registration number {mahe_registration_number} not found.')
 
     return user_id
 

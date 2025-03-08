@@ -21,9 +21,22 @@ def create_user(user_create: UserCreate, db: Session = Depends(core.get_db)) -> 
 
 
 @router.get('/id')
-def read_user_id(email_address: str, db: Session = Depends(core.get_db)) -> str:
+def read_user_id_from_email_address(email_address: str, db: Session = Depends(core.get_db)) -> str:
     try:
-        user_id = user.read_id_db(email_address, db)
+        user_id = user.read_id_from_email_address_db(email_address, db)
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return user_id
+
+
+@router.get('/id-registration')
+def read_user_id_from_mahe_registration_number(
+        mahe_registration_number: int, db: Session = Depends(core.get_db)
+) -> str:
+    try:
+        user_id = user.read_id_from_mahe_registration_number_db(mahe_registration_number, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
