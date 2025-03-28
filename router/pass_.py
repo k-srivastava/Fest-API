@@ -13,19 +13,19 @@ router = APIRouter(prefix='/pass', tags=['pass'])
 
 
 @router.get('/')
-def read_all_passes(db: Session = Depends(core.get_db)) -> list[Pass]:
+async def read_all_passes(db: Session = Depends(core.get_db)) -> list[Pass]:
     db_passes = pass_.read_all_db(db)
     return [Pass.model_validate(db_pass) for db_pass in db_passes]
 
 
 @router.post('/')
-def create_pass(pass_create: PassCreate, db: Session = Depends(core.get_db)) -> Pass:
+async def create_pass(pass_create: PassCreate, db: Session = Depends(core.get_db)) -> Pass:
     db_pass = pass_.create_db(pass_create, db)
     return Pass.model_validate(db_pass)
 
 
 @router.get('/{pass_id}')
-def read_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
+async def read_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
     try:
         db_pass = pass_.read_db(pass_id, db)
 
@@ -36,7 +36,7 @@ def read_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
 
 
 @router.get('/{pass_id}/events')
-def read_pass_events(pass_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
+async def read_pass_events(pass_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
     try:
         event_ids = associations.read_pass_events_db(pass_id, db)
         db_events = [event.read_db(event_id, db) for event_id in event_ids]
@@ -48,19 +48,19 @@ def read_pass_events(pass_id: str, db: Session = Depends(core.get_db)) -> list[E
 
 
 @router.post('/{pass_id}/events/{event_id}')
-def create_pass_event(pass_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+async def create_pass_event(pass_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.create_pass_event_db(pass_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.delete('/{pass_id}/events/{event_id}')
-def delete_pass_event(pass_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+async def delete_pass_event(pass_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_pass_event_db(pass_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.patch('/{pass_id}')
-def update_pass(pass_id: str, pass_update: PassUpdate, db: Session = Depends(core.get_db)) -> Pass:
+async def update_pass(pass_id: str, pass_update: PassUpdate, db: Session = Depends(core.get_db)) -> Pass:
     try:
         db_pass = pass_.update_db(pass_id, pass_update, db)
 
@@ -71,7 +71,7 @@ def update_pass(pass_id: str, pass_update: PassUpdate, db: Session = Depends(cor
 
 
 @router.delete('/{pass_id}')
-def delete_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
+async def delete_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
     try:
         db_pass = pass_.delete_db(pass_id, db)
 

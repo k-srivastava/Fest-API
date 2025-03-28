@@ -17,19 +17,19 @@ router = APIRouter(prefix='/event', tags=['event'])
 
 
 @router.get('/')
-def read_all_events(db: Session = Depends(core.get_db)) -> list[Event]:
+async def read_all_events(db: Session = Depends(core.get_db)) -> list[Event]:
     db_events = event.read_all_db(db)
     return [Event.model_validate(db_event) for db_event in db_events]
 
 
 @router.post('/')
-def create_event(event_create: EventCreate, db: Session = Depends(core.get_db)) -> Event:
+async def create_event(event_create: EventCreate, db: Session = Depends(core.get_db)) -> Event:
     db_event = event.create_db(event_create, db)
     return Event.model_validate(db_event)
 
 
 @router.get('/{event_id}')
-def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
+async def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
     try:
         db_event = event.read_db(event_id, db)
 
@@ -40,7 +40,7 @@ def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
 
 
 @router.get('/{event_id}/passes')
-def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -> list[Pass]:
+async def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -> list[Pass]:
     try:
         pass_ids = associations.read_event_passes_db(event_id, db)
         db_passes = [pass_.read_db(pass_id, db) for pass_id in pass_ids]
@@ -52,19 +52,19 @@ def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -> list
 
 
 @router.post('/{event_id}/passes/{pass_id}')
-def create_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+async def create_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.create_pass_event_db(pass_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.delete('/{event_id}/passes/{pass_id}')
-def delete_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+async def delete_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_pass_event_db(pass_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.get('/{event_id}/teams')
-def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) -> list[Team]:
+async def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) -> list[Team]:
     try:
         team_ids = associations.read_event_teams_db(event_id, db)
         db_teams = [team.read_db(team_id, db) for team_id in team_ids]
@@ -76,7 +76,7 @@ def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) -> list[
 
 
 @router.post('/{event_id}/teams/{team_id}')
-def create_event_team(
+async def create_event_team(
         event_id: str, team_id: str, validate: bool = True, validate_host_only: Optional[bool] = False,
         db: Session = Depends(core.get_db)
 ) -> JSONResponse:
@@ -93,13 +93,13 @@ def create_event_team(
 
 
 @router.delete('/{event_id}/teams/{team_id}')
-def delete_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+async def delete_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_team_event_db(team_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.get('/{event_id}/users')
-def read_event_users(event_id: str, db: Session = Depends(core.get_db)) -> list[User]:
+async def read_event_users(event_id: str, db: Session = Depends(core.get_db)) -> list[User]:
     try:
         user_ids = associations.read_event_users_db(event_id, db)
         db_users = [user.read_db(user_id, db) for user_id in user_ids]
@@ -111,7 +111,7 @@ def read_event_users(event_id: str, db: Session = Depends(core.get_db)) -> list[
 
 
 @router.post('/{event_id}/users/{user_id}')
-def create_event_user(
+async def create_event_user(
         event_id: str, user_id: str, validate: bool = True, db: Session = Depends(core.get_db)
 ) -> JSONResponse:
     try:
@@ -127,13 +127,13 @@ def create_event_user(
 
 
 @router.delete('/{event_id}/users/{user_id}')
-def delete_event_user(event_id: str, user_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
+async def delete_event_user(event_id: str, user_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_user_event_db(user_id, event_id, db)
     return JSONResponse(content={'id': association_id}, status_code=200)
 
 
 @router.patch('/{event_id}')
-def update_event(event_id: str, event_update: EventUpdate, db: Session = Depends(core.get_db)) -> Event:
+async def update_event(event_id: str, event_update: EventUpdate, db: Session = Depends(core.get_db)) -> Event:
     try:
         db_event = event.update_db(event_id, event_update, db)
 
@@ -144,7 +144,7 @@ def update_event(event_id: str, event_update: EventUpdate, db: Session = Depends
 
 
 @router.delete('/{event_id}')
-def delete_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
+async def delete_event(event_id: str, db: Session = Depends(core.get_db)) -> Event:
     try:
         db_event = event.delete_db(event_id, db)
 

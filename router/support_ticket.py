@@ -12,13 +12,13 @@ router = APIRouter(prefix='/support-ticket', tags=['support_ticket'])
 
 
 @router.get('/')
-def read_all_support_tickets(db: Session = Depends(core.get_db)) -> list[SupportTicket]:
+async def read_all_support_tickets(db: Session = Depends(core.get_db)) -> list[SupportTicket]:
     db_support_tickets = support_ticket.read_all_db(db)
     return [SupportTicket.model_validate(db_support_ticket) for db_support_ticket in db_support_tickets]
 
 
 @router.post('/')
-def create_support_ticket(
+async def create_support_ticket(
         support_ticket_create: SupportTicketCreate, db: Session = Depends(core.get_db)
 ) -> SupportTicket:
     db_support_ticket = support_ticket.create_db(support_ticket_create, db)
@@ -26,19 +26,20 @@ def create_support_ticket(
 
 
 @router.get('/category/ids')
-def read_support_ticket_by_category(category: SupportTicketCategory, db: Session = Depends(core.get_db)) -> list[str]:
+async def read_support_ticket_by_category(category: SupportTicketCategory, db: Session = Depends(core.get_db)) -> list[
+    str]:
     db_support_ticket_ids = support_ticket.read_all_by_category(category, db)
     return db_support_ticket_ids
 
 
 @router.get('/email_address/ids')
-def read_support_ticket_by_email_address(email_address: str, db: Session = Depends(core.get_db)) -> list[str]:
+async def read_support_ticket_by_email_address(email_address: str, db: Session = Depends(core.get_db)) -> list[str]:
     db_support_ticket_ids = support_ticket.read_all_by_email_address(email_address, db)
     return db_support_ticket_ids
 
 
 @router.get('/{support_ticket_id}')
-def read_support_ticket(support_ticket_id: str, db: Session = Depends(core.get_db)) -> SupportTicket:
+async def read_support_ticket(support_ticket_id: str, db: Session = Depends(core.get_db)) -> SupportTicket:
     try:
         db_support_ticket = support_ticket.read_db(support_ticket_id, db)
 
@@ -49,7 +50,7 @@ def read_support_ticket(support_ticket_id: str, db: Session = Depends(core.get_d
 
 
 @router.post('/{support_ticket_id}')
-def solve_support_ticket(
+async def solve_support_ticket(
         support_ticket_id: str, solved: bool, email_address: Optional[str] = None, db: Session = Depends(core.get_db)
 ) -> SupportTicket:
     if not solved and email_address is not None:
@@ -69,7 +70,7 @@ def solve_support_ticket(
 
 
 @router.patch('/{support_ticket_id}')
-def update_support_ticket(
+async def update_support_ticket(
         support_ticket_id: str, support_ticket_update: SupportTicketUpdate, db: Session = Depends(core.get_db)
 ) -> SupportTicket:
     try:
@@ -82,7 +83,7 @@ def update_support_ticket(
 
 
 @router.delete('/{support_ticket_id}')
-def delete_support_ticket(support_ticket_id: str, db: Session = Depends(core.get_db)) -> SupportTicket:
+async def delete_support_ticket(support_ticket_id: str, db: Session = Depends(core.get_db)) -> SupportTicket:
     try:
         db_support_ticket = support_ticket.delete_db(support_ticket_id, db)
 
