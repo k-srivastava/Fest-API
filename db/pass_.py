@@ -73,7 +73,7 @@ def read_all_db(session: Session) -> list[DBPass]:
 
 def create_db(pass_: PassCreate, session: Session) -> DBPass:
     """
-    Create a new pass int the DB.
+    Create a new pass in the DB.
 
     :param pass_: Pass to create.
     :type pass_: PassCreate
