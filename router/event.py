@@ -75,6 +75,22 @@ async def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) ->
     return [Team.model_validate(db_team) for db_team in db_teams]
 
 
+@router.get('/{event_id}/teams/users')
+async def read_event_teams_users(event_id: str, db: Session = Depends(core.get_db)) -> dict[str, list[User]]:
+    try:
+        team_ids = associations.read_event_teams_db(event_id, db)
+
+        result: dict[str, list[User]] = {}
+        for team_id in team_ids:
+            user_ids = associations.read_team_users_db(team_id, db)
+            result[team_id] = [User.model_validate(user.read_db(user_id, db)) for user_id in user_ids]
+
+    except DBNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return result
+
+
 @router.post('/{event_id}/teams/{team_id}')
 async def create_event_team(
         event_id: str, team_id: str, validate: bool = True, validate_host_only: Optional[bool] = False,
@@ -90,8 +106,6 @@ async def create_event_team(
         raise HTTPException(status_code=404, detail=str(e))
 
     return JSONResponse(content={'id': association_id}, status_code=200)
-
-
 @router.delete('/{event_id}/teams/{team_id}')
 async def delete_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_team_event_db(team_id, event_id, db)
