@@ -88,8 +88,9 @@ def read_id_from_email_address_db(user_email_address: str, session: Session) -> 
     return user_id
 
 
-def read_id_from_mahe_registration_number_db(mahe_registration_number: Optional[int], session: Session) -> Optional[
-    str]:
+def read_id_from_mahe_registration_number_db(
+        mahe_registration_number: Optional[int], session: Session
+) -> Optional[str]:
     """
     Read a user's ID from the DB via their unique MAHE registration number.
 
