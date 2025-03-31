@@ -107,8 +107,9 @@ async def read_user_teams(user_id: str, host: bool, db: Session = Depends(core.g
 
 
 @router.post('/{user_id}/teams/{team_id}')
-async def create_user_team(user_id: str, team_id: str, validate: bool = True,
-                     db: Session = Depends(core.get_db)) -> JSONResponse:
+async def create_user_team(
+        user_id: str, team_id: str, validate: bool = True, db: Session = Depends(core.get_db)
+) -> JSONResponse:
     try:
         association_id = associations.create_team_user_db(team_id, user_id, validate, db)
 
