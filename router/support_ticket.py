@@ -3,9 +3,11 @@ from typing import Sequence
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from starlette import status
 from starlette.exceptions import HTTPException
 from typing_extensions import Optional
 
+import router as router_core
 from db import core, support_ticket
 from db.core import DBNotFoundError, SupportTicketCategory
 from db.support_ticket import SupportTicketCreate, SupportTicket, SupportTicketUpdate
@@ -47,7 +49,7 @@ async def read_support_ticket(support_ticket_id: str, db: Session = Depends(core
         db_support_ticket = support_ticket.read_db(support_ticket_id, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return SupportTicket.model_validate(db_support_ticket)
 
@@ -58,7 +60,7 @@ async def solve_support_ticket(
 ) -> SupportTicket:
     if not solved and email_address is not None:
         raise HTTPException(
-            status_code=400,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail='Email address provided for an unsolved support ticket. Use PATCH for manual updates instead.'
         )
 
@@ -67,7 +69,7 @@ async def solve_support_ticket(
         db_support_ticket = support_ticket.update_db(support_ticket_id, update_model, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return SupportTicket.model_validate(db_support_ticket)
 
@@ -80,7 +82,7 @@ async def update_support_ticket(
         db_support_ticket = support_ticket.update_db(support_ticket_id, support_ticket_update, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return SupportTicket.model_validate(db_support_ticket)
 
@@ -91,6 +93,6 @@ async def delete_support_ticket(support_ticket_id: str, db: Session = Depends(co
         db_support_ticket = support_ticket.delete_db(support_ticket_id, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return SupportTicket.model_validate(db_support_ticket)

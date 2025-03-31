@@ -3,9 +3,10 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from starlette.exceptions import HTTPException
+from starlette import status
 from starlette.responses import JSONResponse
 
+import router as router_core
 from db import associations, core, event, pass_, team, user
 from db.core import DBNotFoundError, DBValidationError
 from db.event import EventCreate, Event, EventUpdate
@@ -34,7 +35,7 @@ async def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event
         db_event = event.read_db(event_id, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return Event.model_validate(db_event)
 
@@ -46,7 +47,7 @@ async def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -
         db_passes = pass_.read_by_ids_db(pass_ids, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return [Pass.model_validate(db_pass) for db_pass in db_passes]
 
@@ -54,13 +55,13 @@ async def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -
 @router.post('/{event_id}/passes/{pass_id}')
 async def create_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.create_pass_event_db(pass_id, event_id, db)
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.delete('/{event_id}/passes/{pass_id}')
 async def delete_event_pass(event_id: str, pass_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_pass_event_db(pass_id, event_id, db)
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.get('/{event_id}/teams')
@@ -70,7 +71,7 @@ async def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) ->
         db_teams = team.read_by_ids_db(team_ids, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return [Team.model_validate(db_team) for db_team in db_teams]
 
@@ -88,7 +89,7 @@ async def read_event_teams_users(event_id: str, db: Session = Depends(core.get_d
             result[team_id] = [User.model_validate(db_user) for db_user in db_users]
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return result
 
@@ -102,16 +103,18 @@ async def create_event_team(
         association_id = associations.create_team_event_db(team_id, event_id, validate, validate_host_only, db)
 
     except DBValidationError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise router_core.validation_error(e)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
+
+
 @router.delete('/{event_id}/teams/{team_id}')
 async def delete_event_team(event_id: str, team_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_team_event_db(team_id, event_id, db)
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.get('/{event_id}/users')
@@ -121,7 +124,7 @@ async def read_event_users(event_id: str, db: Session = Depends(core.get_db)) ->
         db_users = user.read_by_ids_db(user_ids, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return [User.model_validate(db_user) for db_user in db_users]
 
@@ -134,18 +137,18 @@ async def create_event_user(
         association_id = associations.create_user_event_db(user_id, event_id, validate, db)
 
     except DBValidationError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise router_core.validation_error(e)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.delete('/{event_id}/users/{user_id}')
 async def delete_event_user(event_id: str, user_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_user_event_db(user_id, event_id, db)
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.patch('/{event_id}')
@@ -154,7 +157,7 @@ async def update_event(event_id: str, event_update: EventUpdate, db: Session = D
         db_event = event.update_db(event_id, event_update, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return Event.model_validate(db_event)
 
@@ -165,6 +168,6 @@ async def delete_event(event_id: str, db: Session = Depends(core.get_db)) -> Eve
         db_event = event.delete_db(event_id, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return Event.model_validate(db_event)

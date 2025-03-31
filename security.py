@@ -4,6 +4,7 @@ import os
 import dotenv
 from fastapi import Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from starlette import status
 from starlette.exceptions import HTTPException
 
 _security = HTTPBearer()
@@ -24,4 +25,4 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Security(_security)
     expected_token = os.getenv('BEARER_TOKEN')
 
     if token != expected_token:
-        raise HTTPException(status_code=403, detail='Invalid authentication credentials.')
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Invalid authentication credentials.')

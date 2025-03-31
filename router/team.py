@@ -4,9 +4,11 @@ from typing import Optional
 from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
+from starlette import status
 from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
+import router as router_core
 from db import associations, core, event, team, user
 from db.core import DBNotFoundError, DBValidationError
 from db.event import Event
@@ -34,7 +36,7 @@ async def read_team(team_id: str, db: Session = Depends(core.get_db)) -> Team:
         db_team = team.read_db(team_id, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return Team.model_validate(db_team)
 
@@ -46,7 +48,7 @@ async def read_team_events(team_id: str, db: Session = Depends(core.get_db)) -> 
         db_events = event.read_by_ids_db(event_ids, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return [Event.model_validate(db_event) for db_event in db_events]
 
@@ -60,18 +62,18 @@ async def create_team_event(
         association_id = associations.create_team_event_db(team_id, event_id, validate, validate_host_only, db)
 
     except DBValidationError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise router_core.validation_error(e)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.delete('/{team_id}/events/{event_id}')
 async def delete_team_event(team_id: str, event_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     association_id = associations.delete_team_event_db(team_id, event_id, db)
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.get('/{team_id}/users')
@@ -81,7 +83,7 @@ async def read_team_users(team_id: str, db: Session = Depends(core.get_db)) -> l
         db_users = user.read_by_ids_db(user_ids, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return [User.model_validate(db_user) for db_user in db_users]
 
@@ -93,21 +95,21 @@ async def create_team_user(team_id: str, user_id: str, validate: bool = True,
         association_id = associations.create_team_user_db(team_id, user_id, validate, db)
 
     except DBValidationError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise router_core.validation_error(e)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.delete('/{team_id}/users/{user_id}')
 async def delete_team_user(team_id: str, user_id: str, db: Session = Depends(core.get_db)) -> JSONResponse:
     if team.read_db(team_id, db).host_id == user_id:
-        raise HTTPException(status_code=403, detail='Cannot delete host of team.')
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Cannot delete host of team.')
 
     association_id = associations.delete_team_user_db(team_id, user_id, db)
-    return JSONResponse(content={'id': association_id}, status_code=200)
+    return JSONResponse(content={'id': association_id}, status_code=status.HTTP_200_OK)
 
 
 @router.patch('/{team_id}')
@@ -116,7 +118,7 @@ async def update_team(team_id: str, team_update: TeamUpdate, db: Session = Depen
         db_team = team.update_db(team_id, team_update, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return Team.model_validate(db_team)
 
@@ -127,6 +129,6 @@ async def delete_team(team_id: str, db: Session = Depends(core.get_db)) -> Team:
         db_team = team.delete_db(team_id, db)
 
     except DBNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise router_core.not_found_error(e)
 
     return Team.model_validate(db_team)
