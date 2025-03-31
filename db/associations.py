@@ -4,8 +4,9 @@ from typing import Optional, Sequence
 import sqlalchemy
 from sqlalchemy.orm import Session
 
-from db.core import DBPassEvent, DBTeamUser, DBTeamEvent, DBTeam, DBNotFoundError, DBUser, DBValidationError, \
-    DBUserEvent
+from db.core import (
+    DBPassEvent, DBTeamUser, DBTeamEvent, DBTeam, DBNotFoundError, DBUser, DBValidationError, DBUserEvent
+)
 
 
 def _validate_user_for_event(user_id: str, event_id: str, session: Session) -> bool:
@@ -29,7 +30,7 @@ def _validate_user_for_event(user_id: str, event_id: str, session: Session) -> b
         return True
 
     query = sqlalchemy.select(DBUser.pass_id).where(DBUser.id == user_id)
-    user_pass_id = session.execute(query).scalar()
+    user_pass_id = session.scalar(query)
 
     if user_pass_id is None:
         raise DBNotFoundError(f'User with ID {user_id} does not have a pass.')
@@ -56,7 +57,7 @@ def _validate_team_users_for_event(team_id: str, event_id: str, host_only_access
     :raise DBNotFoundError: Team does not have a host or members do not have a pass.
     """
     query = sqlalchemy.select(DBTeam.host_id).where(DBTeam.id == team_id)
-    host_id = session.execute(query).scalar()
+    host_id = session.scalar(query)
 
     if host_id is None:
         raise DBNotFoundError(f'Team with ID {team_id} does not have a host.')
@@ -66,7 +67,7 @@ def _validate_team_users_for_event(team_id: str, event_id: str, host_only_access
         return True
 
     query = sqlalchemy.select(DBUser.pass_id).where(DBUser.id == host_id)
-    host_pass_id = session.execute(query).scalar()
+    host_pass_id = session.scalar(query)
 
     if host_pass_id is None:
         raise DBNotFoundError(f'Host with ID {host_id} of team with ID {team_id} does not have a pass.')
@@ -80,7 +81,7 @@ def _validate_team_users_for_event(team_id: str, event_id: str, host_only_access
 
     for team_member_id in team_member_ids:
         query = sqlalchemy.select(DBUser.pass_id).where(DBUser.id == team_member_id)
-        team_member_pass_id = session.execute(query).scalar()
+        team_member_pass_id = session.scalar(query)
 
         if team_member_pass_id is None:
             raise DBNotFoundError(f'Member with ID {team_member_id} of team with ID {team_id} does not have a pass.')
@@ -105,7 +106,7 @@ def read_pass_events_db(pass_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBPassEvent.event_id).where(DBPassEvent.pass_id == pass_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_event_passes_db(event_id: str, session: Session) -> Sequence[str]:
@@ -121,7 +122,7 @@ def read_event_passes_db(event_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBPassEvent.pass_id).where(DBPassEvent.event_id == event_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def create_pass_event_db(pass_id: str, event_id: str, session: Session) -> str:
@@ -139,9 +140,7 @@ def create_pass_event_db(pass_id: str, event_id: str, session: Session) -> str:
     :rtype: str
     """
     query = sqlalchemy.insert(DBPassEvent).values(pass_id=pass_id, event_id=event_id).returning(DBPassEvent.id)
-
-    result = session.execute(query)
-    new_id = result.scalar()
+    new_id = session.scalar(query)
     session.commit()
 
     return new_id
@@ -168,8 +167,7 @@ def delete_pass_event_db(pass_id: str, event_id: str, session: Session) -> str:
         .returning(DBPassEvent.id)
     )
 
-    result = session.execute(query)
-    deleted_id = result.scalar()
+    deleted_id = session.scalar(query)
     session.commit()
 
     return deleted_id
@@ -188,7 +186,7 @@ def read_team_users_db(team_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamUser.user_id).where(DBTeamUser.team_id == team_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_user_teams_db(user_id: str, session: Session) -> Sequence[str]:
@@ -204,7 +202,7 @@ def read_user_teams_db(user_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamUser.team_id).where(DBTeamUser.user_id == user_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def create_team_user_db(team_id: str, user_id: str, validate: bool, session: Session) -> str:
@@ -237,9 +235,7 @@ def create_team_user_db(team_id: str, user_id: str, validate: bool, session: Ses
                 )
 
     query = sqlalchemy.insert(DBTeamUser).values(team_id=team_id, user_id=user_id).returning(DBTeamUser.id)
-
-    result = session.execute(query)
-    new_id = result.scalar()
+    new_id = session.scalar(query)
     session.commit()
 
     return new_id
@@ -266,8 +262,7 @@ def delete_team_user_db(team_id: str, user_id: str, session: Session) -> str:
         .returning(DBTeamUser.id)
     )
 
-    result = session.execute(query)
-    deleted_id = result.scalar()
+    deleted_id = session.scalar(query)
     session.commit()
 
     return deleted_id
@@ -286,7 +281,7 @@ def read_team_events_db(team_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamEvent.event_id).where(DBTeamEvent.team_id == team_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_event_teams_db(event_id: str, session: Session) -> Sequence[str]:
@@ -302,7 +297,7 @@ def read_event_teams_db(event_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamEvent.team_id).where(DBTeamEvent.event_id == event_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def create_team_event_db(
@@ -336,9 +331,7 @@ def create_team_event_db(
             )
 
     query = sqlalchemy.insert(DBTeamEvent).values(team_id=team_id, event_id=event_id).returning(DBTeamEvent.id)
-
-    result = session.execute(query)
-    new_id = result.scalar()
+    new_id = session.scalar(query)
     session.commit()
 
     return new_id
@@ -365,8 +358,7 @@ def delete_team_event_db(team_id: str, event_id: str, session: Session) -> str:
         .returning(DBTeamEvent.id)
     )
 
-    result = session.execute(query)
-    deleted_id = result.scalar()
+    deleted_id = session.scalar(query)
     session.commit()
 
     return deleted_id
@@ -385,10 +377,10 @@ def read_user_events_db(user_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBUserEvent.event_id).where(DBUserEvent.user_id == user_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
-def read_event_users_db(event_id: str, session: Session) -> list[str]:
+def read_event_users_db(event_id: str, session: Session) -> Sequence[str]:
     """
     Read an event's registered users from the DB via its primary key.
 
@@ -397,13 +389,11 @@ def read_event_users_db(event_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of registered user primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB user IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBUserEvent.user_id).where(DBUserEvent.event_id == event_id)
-    user_ids = session.execute(query).scalars().all()
-
-    return [user_id for user_id in user_ids] if user_ids is not None else []
+    return session.scalars(query).all()
 
 
 def create_user_event_db(user_id: str, event_id: str, validate: bool, session: Session) -> str:
@@ -432,9 +422,7 @@ def create_user_event_db(user_id: str, event_id: str, validate: bool, session: S
             )
 
     query = sqlalchemy.insert(DBUserEvent).values(user_id=user_id, event_id=event_id).returning(DBUserEvent.id)
-
-    result = session.execute(query)
-    new_id = result.scalar()
+    new_id = session.scalar(query)
     session.commit()
 
     return new_id
@@ -460,8 +448,7 @@ def delete_user_event_db(user_id: str, event_id: str, session: Session) -> str:
         .returning(DBUserEvent.id)
     )
 
-    result = session.execute(query)
-    deleted_id = result.scalar()
+    deleted_id = session.scalar(query)
     session.commit()
 
     return deleted_id

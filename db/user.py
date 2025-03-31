@@ -78,7 +78,7 @@ def read_by_ids_db(user_ids: Sequence[str], session: Session) -> Sequence[DBUser
     :rtype: Sequence[DBUser]
     """
     query = sqlalchemy.select(DBUser).where(DBUser.id.in_(user_ids))
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_id_from_email_address_db(user_email_address: str, session: Session) -> Optional[str]:
@@ -96,7 +96,7 @@ def read_id_from_email_address_db(user_email_address: str, session: Session) -> 
     :raise DBNotFoundError: User does not exist.
     """
     query = sqlalchemy.select(DBUser.id).where(DBUser.email_address == user_email_address)
-    user_id = session.execute(query).scalar()
+    user_id = session.scalar(query)
 
     if user_id is None:
         raise DBNotFoundError(f'User with email address {user_email_address} not found.')
@@ -124,7 +124,7 @@ def read_id_from_mahe_registration_number_db(
         raise DBNotFoundError('MAHE registration number is required.')
 
     query = sqlalchemy.select(DBUser.id).where(DBUser.mahe_registration_number == mahe_registration_number)
-    user_id = session.execute(query).scalar()
+    user_id = session.scalar(query)
 
     if user_id is None:
         raise DBNotFoundError(f'User with MAHE registration number {mahe_registration_number} not found.')
@@ -147,7 +147,7 @@ def read_pass_db(user_id: str, session: Session) -> Optional[str]:
     :raise DBNotFoundError: User does not exist.
     """
     query = sqlalchemy.select(DBUser.pass_id).where(DBUser.id == user_id)
-    pass_id = session.execute(query).scalar()
+    pass_id = session.scalar(query)
 
     if pass_id is None:
         raise DBNotFoundError(f'User with ID {user_id} not found.')
@@ -168,7 +168,7 @@ def read_events_organizer_db(user_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBEvent.id).where(DBEvent.organizer_id == user_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_teams_host_db(user_id: str, session: Session) -> Sequence[str]:
@@ -184,7 +184,7 @@ def read_teams_host_db(user_id: str, session: Session) -> Sequence[str]:
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeam.id).where(DBTeam.host_id == user_id)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def create_db(user: UserCreate, session: Session) -> DBUser:

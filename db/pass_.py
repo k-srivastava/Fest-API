@@ -71,7 +71,7 @@ def read_by_ids_db(pass_ids: Sequence[str], session: Session) -> Sequence[DBPass
     :rtype: Sequence[DBPass]
     """
     query = sqlalchemy.select(DBPass).where(DBPass.id.in_(pass_ids))
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_all_db(session: Session) -> list[DBPass]:

@@ -99,7 +99,7 @@ def read_all_by_email_address(email_address: str, session: Session) -> Sequence[
     :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBSupportTicket.id).where(DBSupportTicket.email_address == email_address)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_all_by_category(category: SupportTicketCategory, session: Session) -> Sequence[str]:
@@ -115,7 +115,7 @@ def read_all_by_category(category: SupportTicketCategory, session: Session) -> S
     :rtype: Sequence
     """
     query = sqlalchemy.select(DBSupportTicket.id).where(DBSupportTicket.category == category)
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def create_db(support_ticket: SupportTicketCreate, session: Session) -> DBSupportTicket:

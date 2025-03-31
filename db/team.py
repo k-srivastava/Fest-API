@@ -68,7 +68,7 @@ def read_by_ids_db(team_ids: Sequence[str], session: Session) -> Sequence[DBTeam
     :rtype: Sequence[DBTeam]
     """
     query = sqlalchemy.select(DBTeam).where(DBTeam.id.in_(team_ids))
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_all_db(session: Session) -> list[DBTeam]:

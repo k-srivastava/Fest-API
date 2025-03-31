@@ -79,7 +79,7 @@ def read_by_ids_db(event_ids: Sequence[str], session: Session) -> Sequence[DBEve
     :rtype: Sequence[DBEvent]
     """
     query = sqlalchemy.select(DBEvent).where(DBEvent.id.in_(event_ids))
-    return session.execute(query).scalars().all()
+    return session.scalars(query).all()
 
 
 def read_all_db(session: Session) -> list[DBEvent]:
