@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Changed multiple queries to a single DB query instead of list comprehensions.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Removed list comprehension.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Fest-API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Fest-API.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/event.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +184,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kshit\Developer\Python\Fest-API" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kshit\Developer\Python\Fest-API\logs" />
+      <recent name="C:\Users\kshit\Developer\Python\Fest-API\data" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Test Suite">
@@ -385,23 +388,7 @@
       <workItem from="1743183444277" duration="9000" />
       <workItem from="1743313337863" duration="518000" />
       <workItem from="1743317157263" duration="108000" />
-      <workItem from="1743342162998" duration="8659000" />
-    </task>
-    <task id="LOCAL-00031" summary="Updated environment variables in the workflow.">
-      <option name="closed" value="true" />
-      <created>1739340875285</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1739340875285</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Added caching for pip dependencies.">
-      <option name="closed" value="true" />
-      <created>1739341188018</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1739341188018</updated>
+      <workItem from="1743342162998" duration="8908000" />
     </task>
     <task id="LOCAL-00033" summary="Created a README.">
       <option name="closed" value="true" />
@@ -779,7 +766,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743395303919</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Updated tests to be order-agnostic.">
+      <option name="closed" value="true" />
+      <created>1743395449378</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1743395449378</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Removed list comprehension.">
+      <option name="closed" value="true" />
+      <created>1743395530446</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1743395530446</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -810,7 +813,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Added a support ticket model with endpoints and tests." />
     <MESSAGE value="Added endpoints to get all support tickets and get support tickets by category." />
     <MESSAGE value="Moved main DB from SQLite to Postgres." />
     <MESSAGE value="Added an endpoint that generates a QR with the user's ID." />
@@ -834,6 +836,7 @@
     <MESSAGE value="Reformatted code." />
     <MESSAGE value="Changed return types to Sequences for collections." />
     <MESSAGE value="Changed multiple queries to a single DB query instead of list comprehensions." />
+    <MESSAGE value="Updated tests to be order-agnostic." />
     <MESSAGE value="Removed list comprehension." />
     <option name="LAST_COMMIT_MESSAGE" value="Removed list comprehension." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
@@ -843,7 +846,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fest_API$help_desk.coverage" NAME="help_desk Coverage Results" MODIFIED="1743313542531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1743392993517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1743395361926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1743395545604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_pass_test_py.coverage" NAME="pytest in pass_test.py Coverage Results" MODIFIED="1743158988201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1743158840556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

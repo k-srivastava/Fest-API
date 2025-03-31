@@ -2,5 +2,8 @@
 fest.db
 
 /tests/fest.db
+/data
+/logs
+
 /__pycache__
 */__pycache__
