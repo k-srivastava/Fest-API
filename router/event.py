@@ -67,7 +67,7 @@ async def delete_event_pass(event_id: str, pass_id: str, db: Session = Depends(c
 async def read_event_teams(event_id: str, db: Session = Depends(core.get_db)) -> list[Team]:
     try:
         team_ids = associations.read_event_teams_db(event_id, db)
-        db_teams = [team.read_db(team_id, db) for team_id in team_ids]
+        db_teams = team.read_by_ids_db(team_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
