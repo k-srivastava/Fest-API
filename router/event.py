@@ -43,7 +43,7 @@ async def read_event(event_id: str, db: Session = Depends(core.get_db)) -> Event
 async def read_event_passes(event_id: str, db: Session = Depends(core.get_db)) -> list[Pass]:
     try:
         pass_ids = associations.read_event_passes_db(event_id, db)
-        db_passes = [pass_.read_db(pass_id, db) for pass_id in pass_ids]
+        db_passes = pass_.read_by_ids_db(pass_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -83,7 +83,9 @@ async def read_event_teams_users(event_id: str, db: Session = Depends(core.get_d
         result: dict[str, list[User]] = {}
         for team_id in team_ids:
             user_ids = associations.read_team_users_db(team_id, db)
-            result[team_id] = [User.model_validate(user.read_db(user_id, db)) for user_id in user_ids]
+            db_users = user.read_by_ids_db(user_ids, db)
+
+            result[team_id] = [User.model_validate(db_user) for db_user in db_users]
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -116,7 +118,7 @@ async def delete_event_team(event_id: str, team_id: str, db: Session = Depends(c
 async def read_event_users(event_id: str, db: Session = Depends(core.get_db)) -> list[User]:
     try:
         user_ids = associations.read_event_users_db(event_id, db)
-        db_users = [user.read_db(user_id, db) for user_id in user_ids]
+        db_users = user.read_by_ids_db(user_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
