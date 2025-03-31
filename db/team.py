@@ -1,6 +1,7 @@
 """Fest team and mapping."""
-from typing import Optional
+from typing import Optional, Sequence
 
+import sqlalchemy
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -52,6 +53,22 @@ def read_db(team_id: str, session: Session) -> DBTeam:
         raise DBNotFoundError(f'Team with ID {team_id} not found.')
 
     return db_team
+
+
+def read_by_ids_db(team_ids: Sequence[str], session: Session) -> Sequence[DBTeam]:
+    """
+    Read all teams from the DB via their primary keys.
+
+    :param team_ids: IDs of the events to be read.
+    :type team_ids: Sequence[str]
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: Team DB instances.
+    :rtype: Sequence[DBTeam]
+    """
+    query = sqlalchemy.select(DBTeam).where(DBTeam.id.in_(team_ids))
+    return session.execute(query).scalars().all()
 
 
 def read_all_db(session: Session) -> list[DBTeam]:

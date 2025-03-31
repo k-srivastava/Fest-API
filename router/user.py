@@ -82,7 +82,7 @@ async def read_user_pass(user_id: str, db: Session = Depends(core.get_db)) -> Pa
 async def read_user_events(user_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
     try:
         event_ids = user.read_events_organizer_db(user_id, db)
-        db_events = [event.read_db(event_id, db) for event_id in event_ids]
+        db_events = event.read_by_ids_db(event_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -98,7 +98,7 @@ async def read_user_teams(user_id: str, host: bool, db: Session = Depends(core.g
         else:
             team_ids = associations.read_user_teams_db(user_id, db)
 
-        db_teams = [team.read_db(team_id, db) for team_id in team_ids]
+        db_teams = team.read_by_ids_db(team_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -135,7 +135,7 @@ async def delete_user_team(user_id: str, team_id: str, db: Session = Depends(cor
 async def read_user_events(user_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
     try:
         event_ids = associations.read_user_events_db(user_id, db)
-        db_events = [event.read_db(event_id, db) for event_id in event_ids]
+        db_events = event.read_by_ids_db(event_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))

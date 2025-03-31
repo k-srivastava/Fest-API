@@ -1,7 +1,8 @@
 """Fest pass type and mapping."""
 from decimal import Decimal
-from typing import Optional
+from typing import Optional, Sequence
 
+import sqlalchemy
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -55,6 +56,22 @@ def read_db(pass_id: str, session: Session) -> DBPass:
         raise DBNotFoundError(f'Pass with ID {pass_id} not found.')
 
     return db_pass
+
+
+def read_by_ids_db(pass_ids: Sequence[str], session: Session) -> Sequence[DBPass]:
+    """
+    Read all events from the DB via their primary keys.
+
+    :param pass_ids: IDs of the passes to be read.
+    :type pass_ids: Sequence[str]
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: Pass DB instances.
+    :rtype: Sequence[DBPass]
+    """
+    query = sqlalchemy.select(DBPass).where(DBPass.id.in_(pass_ids))
+    return session.execute(query).scalars().all()
 
 
 def read_all_db(session: Session) -> list[DBPass]:

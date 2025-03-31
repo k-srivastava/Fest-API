@@ -65,6 +65,22 @@ def read_db(user_id: str, session: Session) -> DBUser:
     return db_user
 
 
+def read_by_ids_db(user_ids: Sequence[str], session: Session) -> Sequence[DBUser]:
+    """
+    Read all users from the DB via their primary keys.
+
+    :param user_ids: IDs of the users to be read.
+    :type user_ids: Sequence[str]
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: User DB instances.
+    :rtype: Sequence[DBUser]
+    """
+    query = sqlalchemy.select(DBUser).where(DBUser.id.in_(user_ids))
+    return session.execute(query).scalars().all()
+
+
 def read_id_from_email_address_db(user_email_address: str, session: Session) -> Optional[str]:
     """
     Read a user's ID from the DB via their unique email address.

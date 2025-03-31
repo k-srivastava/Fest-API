@@ -205,6 +205,7 @@ class UserTest(unittest.TestCase):
         self.assertIsNotNone(response.text)
 
         data = response.json()
+        print(data)  # TODO: Debug printing makes tests pass?
         self.assertEqual(2, len(data))
 
         self.assertEqual(TEAM_1_JSON['name'], data[0]['name'])

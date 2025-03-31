@@ -39,7 +39,7 @@ async def read_pass(pass_id: str, db: Session = Depends(core.get_db)) -> Pass:
 async def read_pass_events(pass_id: str, db: Session = Depends(core.get_db)) -> list[Event]:
     try:
         event_ids = associations.read_pass_events_db(pass_id, db)
-        db_events = [event.read_db(event_id, db) for event_id in event_ids]
+        db_events = event.read_by_ids_db(event_ids, db)
 
     except DBNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))

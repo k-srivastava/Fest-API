@@ -1,7 +1,8 @@
 """Fest event type and mapping."""
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Sequence
 
+import sqlalchemy
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -63,6 +64,22 @@ def read_db(event_id: str, session: Session) -> DBEvent:
         raise DBNotFoundError(f'Event with ID {event_id} not found.')
 
     return db_event
+
+
+def read_by_ids_db(event_ids: Sequence[str], session: Session) -> Sequence[DBEvent]:
+    """
+    Read all events from the DB via their primary keys.
+
+    :param event_ids: IDs of the events to be read.
+    :type event_ids: Sequence[str]
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: Event DB instances.
+    :rtype: Sequence[DBEvent]
+    """
+    query = sqlalchemy.select(DBEvent).where(DBEvent.id.in_(event_ids))
+    return session.execute(query).scalars().all()
 
 
 def read_all_db(session: Session) -> list[DBEvent]:
