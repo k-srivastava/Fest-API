@@ -1,5 +1,5 @@
 """Fest many-to-many associations."""
-from typing import Optional
+from typing import Optional, Sequence
 
 import sqlalchemy
 from sqlalchemy.orm import Session
@@ -92,7 +92,7 @@ def _validate_team_users_for_event(team_id: str, event_id: str, host_only_access
 
 
 # noinspection DuplicatedCode
-def read_pass_events_db(pass_id: str, session: Session) -> list[str]:
+def read_pass_events_db(pass_id: str, session: Session) -> Sequence[str]:
     """
     Read a pass' events from the DB via its primary key.
 
@@ -101,16 +101,14 @@ def read_pass_events_db(pass_id: str, session: Session) -> list[str]:
     :param session: Current DB session.s
     :type session: Session
 
-    :return: List of event primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB event IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBPassEvent.event_id).where(DBPassEvent.pass_id == pass_id)
-    event_ids = session.execute(query).scalars().all()
-
-    return [event_id for event_id in event_ids] if event_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
-def read_event_passes_db(event_id: str, session: Session) -> list[str]:
+def read_event_passes_db(event_id: str, session: Session) -> Sequence[str]:
     """
     Read an event's passes from the DB via its primary key.
 
@@ -119,13 +117,11 @@ def read_event_passes_db(event_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of pass primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB pass IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBPassEvent.pass_id).where(DBPassEvent.event_id == event_id)
-    pass_ids = session.execute(query).scalars().all()
-
-    return [pass_id for pass_id in pass_ids] if pass_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
 def create_pass_event_db(pass_id: str, event_id: str, session: Session) -> str:
@@ -179,7 +175,7 @@ def delete_pass_event_db(pass_id: str, event_id: str, session: Session) -> str:
     return deleted_id
 
 
-def read_team_users_db(team_id: str, session: Session) -> list[str]:
+def read_team_users_db(team_id: str, session: Session) -> Sequence[str]:
     """
     Read a team's members from the DB via its primary key.
 
@@ -188,16 +184,14 @@ def read_team_users_db(team_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of user member primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB user IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamUser.user_id).where(DBTeamUser.team_id == team_id)
-    user_ids = session.execute(query).scalars().all()
-
-    return [user_id for user_id in user_ids] if user_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
-def read_user_teams_db(user_id: str, session: Session) -> list[str]:
+def read_user_teams_db(user_id: str, session: Session) -> Sequence[str]:
     """
     Read a user's teams of which they are a member from the DB via its primary key.
 
@@ -206,13 +200,11 @@ def read_user_teams_db(user_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of team primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB team IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamUser.team_id).where(DBTeamUser.user_id == user_id)
-    team_ids = session.execute(query).scalars().all()
-
-    return [team_id for team_id in team_ids] if team_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
 def create_team_user_db(team_id: str, user_id: str, validate: bool, session: Session) -> str:
@@ -281,7 +273,7 @@ def delete_team_user_db(team_id: str, user_id: str, session: Session) -> str:
     return deleted_id
 
 
-def read_team_events_db(team_id: str, session: Session) -> list[str]:
+def read_team_events_db(team_id: str, session: Session) -> Sequence[str]:
     """
     Read a team's events from the DB via its primary key.
 
@@ -290,16 +282,14 @@ def read_team_events_db(team_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of event primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB event IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamEvent.event_id).where(DBTeamEvent.team_id == team_id)
-    event_ids = session.execute(query).scalars().all()
-
-    return [event_id for event_id in event_ids] if event_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
-def read_event_teams_db(event_id: str, session: Session) -> list[str]:
+def read_event_teams_db(event_id: str, session: Session) -> Sequence[str]:
     """
     Read an event's registered teams from the DB via its primary key.
 
@@ -308,13 +298,11 @@ def read_event_teams_db(event_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of registered team primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB team IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeamEvent.team_id).where(DBTeamEvent.event_id == event_id)
-    team_ids = session.execute(query).scalars().all()
-
-    return [team_id for team_id in team_ids] if team_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
 def create_team_event_db(
@@ -384,7 +372,7 @@ def delete_team_event_db(team_id: str, event_id: str, session: Session) -> str:
     return deleted_id
 
 
-def read_user_events_db(user_id: str, session: Session) -> list[str]:
+def read_user_events_db(user_id: str, session: Session) -> Sequence[str]:
     """
     Read a user's events from the DB via its primary key.
 
@@ -393,13 +381,11 @@ def read_user_events_db(user_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of event primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB event IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBUserEvent.event_id).where(DBUserEvent.user_id == user_id)
-    event_ids = session.execute(query).scalars().all()
-
-    return [event_id for event_id in event_ids] if event_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
 def read_event_users_db(event_id: str, session: Session) -> list[str]:

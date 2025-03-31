@@ -1,6 +1,6 @@
 """Fest support ticket and mapping."""
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Sequence
 
 import sqlalchemy
 from pydantic import BaseModel
@@ -86,7 +86,7 @@ def read_all_db(session: Session) -> list[DBSupportTicket]:
     return session.query(DBSupportTicket).all()
 
 
-def read_all_by_email_address(email_address: str, session: Session) -> list[str]:
+def read_all_by_email_address(email_address: str, session: Session) -> Sequence[str]:
     """
     Read all the support ticket IDs from the DB with the given email address.
 
@@ -95,19 +95,14 @@ def read_all_by_email_address(email_address: str, session: Session) -> list[str]
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of DB support ticket IDs, if any, else empty list.
-    :rtype: list[str]
+    :return: DB support ticket IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBSupportTicket.id).where(DBSupportTicket.email_address == email_address)
-    db_support_ticket_ids = session.execute(query).scalars().all()
-
-    if db_support_ticket_ids is None:
-        return []
-
-    return [db_support_ticket_id for db_support_ticket_id in db_support_ticket_ids]
+    return session.execute(query).scalars().all()
 
 
-def read_all_by_category(category: SupportTicketCategory, session: Session) -> list[str]:
+def read_all_by_category(category: SupportTicketCategory, session: Session) -> Sequence[str]:
     """
     Read all the support ticket IDs from the DB with the given category.
 
@@ -116,16 +111,11 @@ def read_all_by_category(category: SupportTicketCategory, session: Session) -> l
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of DB support ticket IDs, if any, else empty list.
-    :rtype: list[str]
+    :return: DB support ticket IDs.
+    :rtype: Sequence
     """
     query = sqlalchemy.select(DBSupportTicket.id).where(DBSupportTicket.category == category)
-    db_support_ticket_ids = session.execute(query).scalars().all()
-
-    if db_support_ticket_ids is None:
-        return []
-
-    return [db_support_ticket_id for db_support_ticket_id in db_support_ticket_ids]
+    return session.execute(query).scalars().all()
 
 
 def create_db(support_ticket: SupportTicketCreate, session: Session) -> DBSupportTicket:

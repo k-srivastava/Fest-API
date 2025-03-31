@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Moved all endpoints to use async functions.">
+    <list default="true" id="e88fee4e-914c-45d8-bd04-1e6ce35feab4" name="Changes" comment="Added endpoint to get all teams with users registered to an event.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/associations.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/associations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/support_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/support_ticket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/support_ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/router/support_ticket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,6 +108,7 @@
     "HTTP Request.generated-requests | Make many users..executor": "Run",
     "HTTP Request.generated-requests | Passes Used to Access Track&Field Event.executor": "Run",
     "HTTP Request.generated-requests | Passes Used to Acess Track&Field Event.executor": "Run",
+    "HTTP Request.generated-requests | Read support tickets..executor": "Run",
     "HTTP Request.generated-requests | Retrieve both ways..executor": "Run",
     "HTTP Request.generated-requests | Sports Champs Team.executor": "Run",
     "HTTP Request.generated-requests | Teams Created by John Smith User.executor": "Run",
@@ -153,6 +157,7 @@
     "Python tests.pytest in pass_.py.executor": "Run",
     "Python tests.pytest in pass_test.py.executor": "Run",
     "Python tests.pytest in test_api.py.executor": "Run",
+    "Python.help_desk.executor": "Run",
     "Python.manipal.executor": "Run",
     "Python.test_app.executor": "Run",
     "Python.test_suite.executor": "Run",
@@ -185,19 +190,59 @@
     </key>
   </component>
   <component name="RunManager" selected="FastAPI.Fest-API">
-    <configuration name="generated-requests | Email ID to User ID of John Smith User" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Email ID to User ID of John Smith User" index="12" runType="Run single request">
+    <configuration name="generated-requests | Read support tickets." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Read support tickets." index="18" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | John Smith User" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="John Smith User" index="11" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | Test new-endpoint." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Test new-endpoint." index="17" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | Update user." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="Update user." index="16" runType="Run single request">
+    <configuration name="test_main | Test Manipal API" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Test Manipal API" index="7" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="test_main | Test new-endpoint." type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" executionIdentifier="Test new-endpoint." index="8" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="help_desk" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Fest-API" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/help_desk.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="manipal" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Fest-API" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manipal.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="Fest-API" type="Python.FastAPI">
@@ -235,20 +280,20 @@
     </configuration>
     <list>
       <item itemvalue="FastAPI.Fest-API" />
-      <item itemvalue="HTTP Request.generated-requests | Test new-endpoint." />
+      <item itemvalue="HTTP Request.generated-requests | Read support tickets." />
+      <item itemvalue="HTTP Request.test_main | Test Manipal API" />
       <item itemvalue="HTTP Request.test_main | Test new-endpoint." />
-      <item itemvalue="HTTP Request.generated-requests | Email ID to User ID of John Smith User" />
-      <item itemvalue="HTTP Request.generated-requests | John Smith User" />
-      <item itemvalue="HTTP Request.generated-requests | Update user." />
+      <item itemvalue="Python.help_desk" />
+      <item itemvalue="Python.manipal" />
       <item itemvalue="Python tests.Test Suite" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | Test new-endpoint." />
+        <item itemvalue="HTTP Request.generated-requests | Read support tickets." />
+        <item itemvalue="Python.manipal" />
+        <item itemvalue="HTTP Request.test_main | Test Manipal API" />
+        <item itemvalue="Python.help_desk" />
         <item itemvalue="HTTP Request.test_main | Test new-endpoint." />
-        <item itemvalue="HTTP Request.generated-requests | Update user." />
-        <item itemvalue="HTTP Request.generated-requests | John Smith User" />
-        <item itemvalue="HTTP Request.generated-requests | Email ID to User ID of John Smith User" />
       </list>
     </recent_temporary>
   </component>
@@ -338,31 +383,11 @@
       <workItem from="1742899274848" duration="3783000" />
       <workItem from="1742953414173" duration="2292000" />
       <workItem from="1743147470482" duration="14618000" />
-      <workItem from="1743162260576" duration="910000" />
-    </task>
-    <task id="LOCAL-00025" summary="Added endpoint to get all teams a user is the host of.">
-      <option name="closed" value="true" />
-      <created>1739337955444</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1739337955444</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Updated workflow to allow manual running.">
-      <option name="closed" value="true" />
-      <created>1739339845617</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1739339845617</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fixed indentation error with workflow_dispatch.">
-      <option name="closed" value="true" />
-      <created>1739340093706</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1739340093706</updated>
+      <workItem from="1743162260576" duration="7379000" />
+      <workItem from="1743183444277" duration="9000" />
+      <workItem from="1743313337863" duration="518000" />
+      <workItem from="1743317157263" duration="108000" />
+      <workItem from="1743342162998" duration="6879000" />
     </task>
     <task id="LOCAL-00028" summary="Updated test suite to work correctly in workflows.">
       <option name="closed" value="true" />
@@ -732,7 +757,31 @@
       <option name="project" value="LOCAL" />
       <updated>1743150108501</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Added endpoint to get all teams with users registered to an event.">
+      <option name="closed" value="true" />
+      <created>1743163196805</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1743163196806</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Reformatted code.">
+      <option name="closed" value="true" />
+      <created>1743393273494</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1743393273494</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Reformatted code.">
+      <option name="closed" value="true" />
+      <created>1743393442628</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1743393442628</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -763,8 +812,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Changed the workflow to use an .env file instead of the environment variable." />
-    <MESSAGE value="Updated the user-teams endpoint to allow searching for both host and member users for a team." />
     <MESSAGE value="Added an organizer (user) ID to every event." />
     <MESSAGE value="Added cascade delete to all foreign key references." />
     <MESSAGE value="Updated type definition error." />
@@ -788,18 +835,21 @@
     <MESSAGE value="Added an endpoint to retrieve users by unique MAHE registration numbers." />
     <MESSAGE value="Moved all endpoints to use async functions." />
     <MESSAGE value="Fixed documentation typo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed documentation typo." />
+    <MESSAGE value="Added endpoint to get all teams with users registered to an event." />
+    <MESSAGE value="Reformatted code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted code." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1743163141330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1743162004409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$help_desk.coverage" NAME="help_desk Coverage Results" MODIFIED="1743313542531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fest_API$Fest_API.coverage" NAME="Fest-API Coverage Results" MODIFIED="1743392993517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Fest_API$Test_Suite.coverage" NAME="Test Suite Coverage Results" MODIFIED="1743393444077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_pass_test_py.coverage" NAME="pytest in pass_test.py Coverage Results" MODIFIED="1743158988201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_app.coverage" NAME="test_app Coverage Results" MODIFIED="1734501411785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Fest_API$manipal.coverage" NAME="manipal Coverage Results" MODIFIED="1742953638451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Fest_API$.coverage" NAME=" Coverage Results" MODIFIED="1743158840556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Fest_API$manipal.coverage" NAME="manipal Coverage Results" MODIFIED="1743342856995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Fest_API$pytest_in_test_api_py.coverage" NAME="pytest in pass_.py Coverage Results" MODIFIED="1734502855690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Fest_API$test_suite.coverage" NAME="test_suite Coverage Results" MODIFIED="1740453766967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>

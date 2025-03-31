@@ -1,4 +1,6 @@
 """Route for all support tickets at /support-ticket."""
+from typing import Sequence
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException
@@ -26,14 +28,15 @@ async def create_support_ticket(
 
 
 @router.get('/category/ids')
-async def read_support_ticket_by_category(category: SupportTicketCategory, db: Session = Depends(core.get_db)) -> list[
-    str]:
+async def read_support_ticket_by_category(
+        category: SupportTicketCategory, db: Session = Depends(core.get_db)
+) -> Sequence[str]:
     db_support_ticket_ids = support_ticket.read_all_by_category(category, db)
     return db_support_ticket_ids
 
 
 @router.get('/email_address/ids')
-async def read_support_ticket_by_email_address(email_address: str, db: Session = Depends(core.get_db)) -> list[str]:
+async def read_support_ticket_by_email_address(email_address: str, db: Session = Depends(core.get_db)) -> Sequence[str]:
     db_support_ticket_ids = support_ticket.read_all_by_email_address(email_address, db)
     return db_support_ticket_ids
 

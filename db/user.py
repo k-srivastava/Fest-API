@@ -1,6 +1,6 @@
 """Fest user and mapping."""
 from io import BytesIO
-from typing import Optional
+from typing import Optional, Sequence
 
 import segno
 import sqlalchemy
@@ -139,7 +139,7 @@ def read_pass_db(user_id: str, session: Session) -> Optional[str]:
     return pass_id
 
 
-def read_events_organizer_db(user_id: str, session: Session) -> list[str]:
+def read_events_organizer_db(user_id: str, session: Session) -> Sequence[str]:
     """
     Read all the events a user is an organizer of from the DB via the organizer's primary key.
 
@@ -148,16 +148,14 @@ def read_events_organizer_db(user_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of event primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB event IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBEvent.id).where(DBEvent.organizer_id == user_id)
-    event_ids = session.execute(query).scalars().all()
-
-    return [event_id for event_id in event_ids] if event_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
-def read_teams_host_db(user_id: str, session: Session) -> list[str]:
+def read_teams_host_db(user_id: str, session: Session) -> Sequence[str]:
     """
     Read all the teams a user is a host of from the DB via the host's primary key.
 
@@ -166,13 +164,11 @@ def read_teams_host_db(user_id: str, session: Session) -> list[str]:
     :param session: Current DB session.
     :type session: Session
 
-    :return: List of team primary keys, if any, else empty list.
-    :rtype: list[str]
+    :return: DB team IDs.
+    :rtype: Sequence[str]
     """
     query = sqlalchemy.select(DBTeam.id).where(DBTeam.host_id == user_id)
-    team_ids = session.execute(query).scalars().all()
-
-    return [team_id for team_id in team_ids] if team_ids is not None else []
+    return session.execute(query).scalars().all()
 
 
 def create_db(user: UserCreate, session: Session) -> DBUser:
