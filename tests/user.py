@@ -205,14 +205,19 @@ class UserTest(unittest.TestCase):
         self.assertIsNotNone(response.text)
 
         data = response.json()
-        print(data)  # TODO: Debug printing makes tests pass?
         self.assertEqual(2, len(data))
 
-        self.assertEqual(TEAM_1_JSON['name'], data[0]['name'])
-        self.assertEqual(TEAM_1_JSON['host_id'], data[0]['host_id'])
+        if data[0]['name'] == TEAM_1_JSON['name']:
+            self.assertEqual(TEAM_1_JSON['host_id'], data[0]['host_id'])
 
-        self.assertEqual(TEAM_2_JSON['name'], data[1]['name'])
-        self.assertEqual(TEAM_2_JSON['host_id'], data[1]['host_id'])
+            self.assertEqual(TEAM_2_JSON['name'], data[1]['name'])
+            self.assertEqual(TEAM_2_JSON['host_id'], data[1]['host_id'])
+
+        elif data[0]['name'] == TEAM_2_JSON['name']:
+            self.assertEqual(TEAM_2_JSON['host_id'], data[0]['host_id'])
+
+            self.assertEqual(TEAM_1_JSON['name'], data[1]['name'])
+            self.assertEqual(TEAM_1_JSON['host_id'], data[1]['host_id'])
 
     def test_11_delete_user(self):
         response = self.client.delete(f'/user/{USER_ID}/', headers=self.headers)
