@@ -185,7 +185,9 @@ class DBValidationError(Exception):
 dotenv.load_dotenv()
 
 _database_url = os.getenv('DATABASE_URL')
-_engine = sqlalchemy.create_engine(_database_url)
+_engine = sqlalchemy.create_engine(
+    _database_url, pool_size=32, max_overflow=64, pool_timeout=30, pool_recycle=1800, pool_pre_ping=True
+)
 
 _session_local = orm.sessionmaker(autocommit=False, autoflush=False, bind=_engine)
 DBBase.metadata.create_all(bind=_engine)
