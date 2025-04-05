@@ -104,6 +104,24 @@ def read_id_from_email_address_db(user_email_address: str, session: Session) -> 
     return user_id
 
 
+def read_ids_from_phone_number_db(phone_number: str, session: Session) -> Sequence[str]:
+    """
+    Read all the user IDs from the DB via their phone number.
+
+    :param phone_number: Phone number of the users whose IDs are to be read.
+    :type phone_number: str
+    :param session: Current DB session.
+    :type session: Session
+
+    :return: User ID primary keys.
+    :rtype: Sequence[str]
+    """
+    query = sqlalchemy.select(DBUser.id).where(DBUser.phone_number == phone_number)
+    user_ids = session.scalars(query).all()
+
+    return user_ids
+
+
 def read_id_from_mahe_registration_number_db(
         mahe_registration_number: Optional[int], session: Session
 ) -> Optional[str]:

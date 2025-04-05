@@ -1,4 +1,6 @@
 """Route for all users at /user."""
+from typing import Sequence
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette import status
@@ -31,6 +33,12 @@ async def read_user_id_from_email_address(email_address: str, db: Session = Depe
         raise router_core.not_found_error(e)
 
     return user_id
+
+
+@router.get('/id-phone-number')
+async def read_user_ids_from_phone_number(phone_number: str, db: Session = Depends(core.get_db)) -> Sequence[str]:
+    user_ids = user.read_ids_from_phone_number_db(phone_number, db)
+    return user_ids
 
 
 @router.get('/id-registration')
